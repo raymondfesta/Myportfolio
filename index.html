@@ -177,22 +177,20 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden;
-            overscroll-behavior-y: contain;
+            width: 100%;
         }
         html {
             scroll-behavior: smooth;
         }
         body {
-            position: fixed;
-            width: 100%;
-            overscroll-behavior-y: auto;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
     </style>
 </head>
 <body class="font-sans antialiased bg-white text-slate-900">
     <!-- Coming Soon Section -->
-    <section id="home" class="relative h-screen flex items-center overflow-hidden bg-white">
+    <section id="home" class="relative flex items-center overflow-hidden bg-white" style="height: 100vh; height: 100dvh;">
         <!-- Animated Background -->
         <div class="absolute inset-0 overflow-hidden">
             <!-- Grid Pattern -->
