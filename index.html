@@ -5,173 +5,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Product Designer specializing in enterprise design, clean interfaces, and user-centered solutions.">
     <title>Your Name — Product Designer</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes logo-frame-expand {
+            0% {
+                stroke-dashoffset: 180;
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes logo-letter-draw {
+            0% {
+                stroke-dashoffset: 100;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+        @keyframes logo-glow {
+            0% {
+                filter: drop-shadow(0 0 0px rgba(15, 23, 42, 0));
+            }
+            50% {
+                filter: drop-shadow(0 0 8px rgba(15, 23, 42, 0.3));
+            }
+            100% {
+                filter: drop-shadow(0 0 0px rgba(15, 23, 42, 0));
+            }
+        }
+        .logo-frame {
+            stroke-dasharray: 180;
+            stroke-dashoffset: 180;
+            transform-origin: center;
+            animation: logo-frame-expand 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .logo-letter {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: logo-letter-draw 0.8s ease-out 0.6s forwards;
+        }
+        .logo-container {
+            animation: logo-glow 2s ease-out 0.5s;
+        }
+        @keyframes slide-right {
+            0% { left: -20%; }
+            100% { left: 120%; }
+        }
+        @keyframes slide-left {
+            0% { right: -20%; }
+            100% { right: 120%; }
+        }
+        @keyframes pulse-scale {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.5; }
+        }
+        .animate-float {
+            animation: float 20s ease-in-out infinite;
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .hero-orb-1 {
+            position: absolute;
+            top: 10%;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: slide-right 15s linear infinite;
+        }
+        .hero-orb-2 {
+            position: absolute;
+            top: 40%;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: slide-left 12s linear infinite;
+        }
+        .hero-orb-3 {
+            position: absolute;
+            bottom: 15%;
+            left: 20%;
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: pulse-scale 10s ease-in-out infinite;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans antialiased bg-white text-slate-900">
     <!-- Navigation -->
-    <nav class="nav" role="navigation">
-        <div class="nav-container">
-            <a href="#home" class="nav-logo">Your Name</a>
-            <ul class="nav-menu">
-                <li><a href="#work" class="nav-link">Work</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-950/[0.12]">
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-2 group">
+                <svg class="logo-container" width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Minimal frame -->
+                    <rect class="logo-frame" x="2" y="2" width="36" height="36" rx="8"
+                          stroke="#0f172a" stroke-width="1.5" fill="none"/>
+                    <!-- R -->
+                    <path class="logo-letter" d="M 8 10 L 8 30 M 8 10 L 16 10 C 18.5 10 20 11.5 20 14 C 20 16.5 18.5 18 16 18 L 8 18 M 16 18 L 20 30"
+                          stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- F -->
+                    <path class="logo-letter" d="M 24 10 L 24 30 M 24 10 L 32 10 M 24 18 L 30 18"
+                          stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-[14px] font-medium tracking-tight text-slate-950 group-hover:text-slate-600 transition-colors uppercase">RF Design</span>
+            </a>
+            <a href="#work" class="text-[13px] font-medium tracking-wide text-slate-600 hover:text-slate-950 transition-colors uppercase">Work</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1 class="hero-title">Product Designer</h1>
-            <p class="hero-subtitle">Crafting intuitive enterprise experiences with clarity and purpose.</p>
-            <p class="hero-description">I design functional, minimal interfaces that prioritize user needs and business goals.</p>
-            <a href="#work" class="cta-button">View Work</a>
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-32 pb-20 bg-white">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Grid Pattern -->
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+            <!-- Animated Orbs -->
+            <div class="hero-orb-1"></div>
+            <div class="hero-orb-2"></div>
+            <div class="hero-orb-3"></div>
+
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+        </div>
+
+        <div class="container max-w-7xl mx-auto px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
+                <h1 class="text-4xl md:text-6xl font-medium tracking-tight leading-[1.2] mb-6 text-slate-950 opacity-0 animate-fadeInUp" style="animation-delay: 0.3s;">Enterprise Design</h1>
+                <p class="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 font-normal max-w-2xl mx-auto opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">Systematic solutions for complex problems. Clean interfaces built with precision and purpose.</p>
+                <a href="#work" class="inline-flex items-center gap-2 px-6 py-3 bg-slate-950 text-white text-[14px] font-medium tracking-tight hover:bg-slate-800 border border-slate-950 transition-all duration-200 group opacity-0 animate-fadeInUp" style="animation-delay: 0.7s;">
+                    <span>View Work</span>
+                    <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Work Section -->
-    <section id="work" class="work">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Selected Work</h2>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="enterprise">Enterprise</button>
-                    <button class="filter-btn" data-filter="personal">Personal</button>
-                </div>
-            </div>
+    <!-- My Work Section -->
+    <section id="work" class="relative py-32 bg-white border-t border-slate-950/[0.08]">
+        <div class="container max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-4 text-slate-950 opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">Projects</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-20 max-w-2xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s;">A selection of work showcasing systematic design solutions for complex enterprise challenges.</p>
 
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <article class="project-card" data-category="enterprise">
-                    <div class="project-image">
-                        <img src="images/projects/project-1.jpg" alt="Enterprise Dashboard Project" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Enterprise</span>
-                        <h3 class="project-title">Analytics Dashboard</h3>
-                        <p class="project-description">Redesigned complex data visualization platform for Fortune 500 company, improving user task completion by 40%.</p>
-                        <a href="#" class="project-link">View Case Study →</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Project Card 1 -->
+                <article class="group opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="bg-white rounded-xl border border-slate-950/[0.08] shadow-sm hover:shadow-2xl hover:shadow-slate-950/[0.12] hover:border-slate-950/[0.12] transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-slate-900 via-slate-800 to-slate-700 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-blue-600/10 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-medium bg-slate-950/[0.06] px-3 py-1.5 mb-4">Enterprise</span>
+                            <h3 class="text-xl font-medium tracking-tight mb-3 text-slate-950 leading-snug">Analytics Dashboard</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Redesigned complex data visualization platform for Fortune 500 company, improving user task completion by 40%.</p>
+                            <a href="#" class="inline-flex items-center text-[13px] font-medium text-slate-950 tracking-tight hover:text-slate-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                                View Case Study
+                                <span class="transition-transform group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
                     </div>
                 </article>
 
-                <!-- Project 2 -->
-                <article class="project-card" data-category="enterprise">
-                    <div class="project-image">
-                        <img src="images/projects/project-2.jpg" alt="SaaS Platform Design" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Enterprise</span>
-                        <h3 class="project-title">SaaS Platform Redesign</h3>
-                        <p class="project-description">Led UX transformation of B2B collaboration tool, streamlining workflows for 10,000+ daily users.</p>
-                        <a href="#" class="project-link">View Case Study →</a>
-                    </div>
-                </article>
-
-                <!-- Project 3 -->
-                <article class="project-card" data-category="personal">
-                    <div class="project-image">
-                        <img src="images/projects/project-3.jpg" alt="Personal Project" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Personal</span>
-                        <h3 class="project-title">Minimal Task Manager</h3>
-                        <p class="project-description">Personal exploration in distraction-free productivity design with focus on essential features.</p>
-                        <a href="#" class="project-link">View Project →</a>
+                <!-- Project Card 2 -->
+                <article class="group opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
+                    <div class="bg-white rounded-xl border border-slate-950/[0.08] shadow-sm hover:shadow-2xl hover:shadow-slate-950/[0.12] hover:border-slate-950/[0.12] transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-bl from-slate-600/10 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-medium bg-slate-950/[0.06] px-3 py-1.5 mb-4">Enterprise</span>
+                            <h3 class="text-xl font-medium tracking-tight mb-3 text-slate-950 leading-snug">SaaS Platform Redesign</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Led UX transformation of B2B collaboration tool, streamlining workflows for 10,000+ daily users.</p>
+                            <a href="#" class="inline-flex items-center text-[13px] font-medium text-slate-950 tracking-tight hover:text-slate-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                                View Case Study
+                                <span class="transition-transform group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
                     </div>
                 </article>
 
-                <!-- Project 4 -->
-                <article class="project-card" data-category="enterprise">
-                    <div class="project-image">
-                        <img src="images/projects/project-4.jpg" alt="Design System" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Enterprise</span>
-                        <h3 class="project-title">Design System</h3>
-                        <p class="project-description">Built scalable design system from ground up, enabling consistent experiences across 15+ product teams.</p>
-                        <a href="#" class="project-link">View Case Study →</a>
-                    </div>
-                </article>
-
-                <!-- Project 5 -->
-                <article class="project-card" data-category="personal">
-                    <div class="project-image">
-                        <img src="images/projects/project-5.jpg" alt="Mobile App Concept" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Personal</span>
-                        <h3 class="project-title">Reading App Concept</h3>
-                        <p class="project-description">Experimental mobile reading experience emphasizing typography and readability.</p>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </article>
-
-                <!-- Project 6 -->
-                <article class="project-card" data-category="enterprise">
-                    <div class="project-image">
-                        <img src="images/projects/project-6.jpg" alt="Admin Portal" loading="lazy">
-                    </div>
-                    <div class="project-content">
-                        <span class="project-tag">Enterprise</span>
-                        <h3 class="project-title">Admin Portal</h3>
-                        <p class="project-description">Simplified complex administrative workflows with clear information architecture and intuitive controls.</p>
-                        <a href="#" class="project-link">View Case Study →</a>
+                <!-- Project Card 3 -->
+                <article class="group opacity-0 animate-fadeInUp" style="animation-delay: 0.6s;">
+                    <div class="bg-white rounded-xl border border-slate-950/[0.08] shadow-sm hover:shadow-2xl hover:shadow-slate-950/[0.12] hover:border-slate-950/[0.12] transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-slate-700 via-slate-900 to-slate-800 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-tl from-slate-500/10 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-medium bg-slate-950/[0.06] px-3 py-1.5 mb-4">Enterprise</span>
+                            <h3 class="text-xl font-medium tracking-tight mb-3 text-slate-950 leading-snug">Design System</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Built scalable design system from ground up, enabling consistent experiences across 15+ product teams.</p>
+                            <a href="#" class="inline-flex items-center text-[13px] font-medium text-slate-950 tracking-tight hover:text-slate-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                                View Case Study
+                                <span class="transition-transform group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
                     </div>
                 </article>
             </div>
         </div>
     </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">About</h2>
-                    <p class="about-paragraph">I'm a product designer with over [X] years of experience creating intuitive solutions for enterprise software. My work focuses on the intersection of functionality and clarity—designing systems that people actually understand and enjoy using.</p>
-
-                    <p class="about-paragraph">Throughout my career, I've specialized in translating complex business requirements into clean, minimal interfaces that prioritize user needs. I believe the best design is invisible: it simply works.</p>
-
-                    <p class="about-paragraph">When I'm not designing enterprise products, I explore personal projects that allow for creative experimentation while maintaining my core principles of simplicity and usability.</p>
-
-                    <div class="skills">
-                        <h3 class="skills-title">Core Skills</h3>
-                        <ul class="skills-list">
-                            <li>User Research & Testing</li>
-                            <li>Information Architecture</li>
-                            <li>Interaction Design</li>
-                            <li>Design Systems</li>
-                            <li>Prototyping</li>
-                            <li>Accessibility</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
-            <p class="contact-description">I'm always interested in new opportunities and collaborations.</p>
-            <div class="contact-links">
-                <a href="mailto:your.email@example.com" class="contact-link">your.email@example.com</a>
-                <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://dribbble.com/yourprofile" class="contact-link" target="_blank" rel="noopener">Dribbble</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p class="footer-text">© 2025 Your Name. Designed with intention.</p>
-        </div>
-    </footer>
 
     <script src="js/main.js"></script>
 </body>

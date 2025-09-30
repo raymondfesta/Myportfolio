@@ -27,41 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===================================
-    // Project Filtering
+    // Project Cards
     // ===================================
-    const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filterValue = this.getAttribute('data-filter');
-
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            // Filter projects
-            projectCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-
-                if (filterValue === 'all' || category === filterValue) {
-                    card.style.display = 'block';
-                    // Fade in animation
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 10);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.95)';
-                    // Hide after transition
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
 
     // ===================================
     // Active Navigation Link on Scroll
@@ -97,8 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;
 
-        if (currentScroll > 100) {
-            nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.05)';
+        if (currentScroll > 60) {
+            nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.04)';
         } else {
             nav.style.boxShadow = 'none';
         }
@@ -106,30 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         lastScroll = currentScroll;
     });
 
-    // ===================================
-    // Intersection Observer for Fade-in Animation
-    // ===================================
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe project cards for animation
-    projectCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(card);
-    });
 
     // ===================================
     // CTA Button Click Tracking (Optional)
@@ -187,11 +131,31 @@ document.addEventListener('DOMContentLoaded', function() {
         images.forEach(img => imageObserver.observe(img));
     }
 
+
+    // ===================================
+    // Enhanced Hover Animation for Project Cards
+    // ===================================
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            const projectImage = card.querySelector('.project-image img');
+            if (projectImage) {
+                projectImage.style.transform = 'scale(1.08)';
+            }
+        });
+
+        card.addEventListener('mouseleave', () => {
+            const projectImage = card.querySelector('.project-image img');
+            if (projectImage) {
+                projectImage.style.transform = 'scale(1)';
+            }
+        });
+    });
+
     // ===================================
     // Console Message (Optional - Remove in Production)
     // ===================================
-    console.log('%cPortfolio Website', 'font-size: 20px; font-weight: bold; color: #0a0a0a;');
-    console.log('%cDesigned with functionality and clarity in mind.', 'font-size: 12px; color: #4a4a4a;');
+    console.log('%cPortfolio Website', 'font-size: 20px; font-weight: 300; color: #0a0a0a;');
+    console.log('%cCrafted with precision and clarity', 'font-size: 12px; color: #505050;');
 
 });
 

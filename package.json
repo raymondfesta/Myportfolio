@@ -1,0 +1,23 @@
+{
+  "name": "myportfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/tailwind.css -o ./css/main.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raymondfesta/Myportfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raymondfesta/Myportfolio/issues"
+  },
+  "homepage": "https://github.com/raymondfesta/Myportfolio#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.13"
+  }
+}
