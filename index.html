@@ -178,9 +178,15 @@
             padding: 0;
             height: 100%;
             overflow: hidden;
+            overscroll-behavior-y: contain;
         }
         html {
             scroll-behavior: smooth;
+        }
+        body {
+            position: fixed;
+            width: 100%;
+            overscroll-behavior-y: auto;
         }
     </style>
 </head>
