@@ -98,83 +98,19 @@
             animation: logo-glow 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
             will-change: filter;
         }
-        @keyframes slide-right {
-            0% { left: -20%; }
-            100% { left: 120%; }
-        }
-        @keyframes slide-left {
-            0% { right: -20%; }
-            100% { right: 120%; }
-        }
-        @keyframes pulse-scale {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.2); opacity: 0.5; }
-        }
-        .animate-float {
-            animation: float 20s ease-in-out infinite;
-        }
         .animate-fadeInUp {
             animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
-        .hero-orb-1 {
-            position: absolute;
-            top: 10%;
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.4;
-            animation: slide-right 15s linear infinite;
-        }
-        .hero-orb-2 {
-            position: absolute;
-            top: 40%;
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.4;
-            animation: slide-left 12s linear infinite;
-        }
-        .hero-orb-3 {
-            position: absolute;
-            bottom: 15%;
-            left: 20%;
-            width: 350px;
-            height: 350px;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.4;
-            animation: pulse-scale 10s ease-in-out infinite;
-        }
 
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .hero-orb-1, .hero-orb-2, .hero-orb-3 {
-                animation: none;
-                filter: blur(60px);
-            }
-            .hero-orb-1 {
-                width: 200px;
-                height: 200px;
-                top: 5%;
-                left: -10%;
-            }
-            .hero-orb-2 {
-                width: 180px;
-                height: 180px;
-                top: 35%;
-                right: -10%;
-            }
-            .hero-orb-3 {
-                width: 220px;
-                height: 220px;
-                bottom: 10%;
-                left: 10%;
-            }
+        /* Network Canvas */
+        #network-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
         }
         html, body {
             margin: 0;
@@ -199,13 +135,11 @@
             <!-- Grid Pattern -->
             <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
 
-            <!-- Animated Orbs -->
-            <div class="hero-orb-1"></div>
-            <div class="hero-orb-2"></div>
-            <div class="hero-orb-3"></div>
+            <!-- Network Animation -->
+            <canvas id="network-canvas"></canvas>
 
             <!-- Gradient Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none"></div>
         </div>
 
         <div class="container max-w-7xl mx-auto px-8 relative z-10">
@@ -231,5 +165,100 @@
             </div>
         </div>
     </section>
+
+    <script>
+        // Network Animation
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let nodes = [];
+        let animationId;
+        const maxDistance = 150;
+        const nodeCount = window.innerWidth < 768 ? 30 : 50;
+
+        function setCanvasSize() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.6)';
+                ctx.fill();
+            }
+        }
+
+        function initNodes() {
+            nodes = [];
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push(new Node());
+            }
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = (1 - distance / maxDistance) * 0.3;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(15, 23, 42, ${opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawConnections();
+
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function init() {
+            setCanvasSize();
+            initNodes();
+            animate();
+        }
+
+        window.addEventListener('resize', () => {
+            setCanvasSize();
+            initNodes();
+        });
+
+        // Start animation when page loads
+        init();
+    </script>
 </body>
 </html>
