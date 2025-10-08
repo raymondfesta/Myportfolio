@@ -7,18 +7,22 @@
     <title>Your Name — Product Designer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
                     },
                     colors: {
                         slate: {
                             950: '#0f172a',
+                        },
+                        blue: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
                         }
                     }
                 }
@@ -43,15 +47,13 @@
         }
         @keyframes logo-frame-expand {
             0% {
-                stroke-dashoffset: 136;
+                stroke-dashoffset: 180;
                 opacity: 0;
-                transform: scale(0.92);
+                transform: scale(0.8);
             }
-            35% {
+            60% {
                 opacity: 1;
-            }
-            75% {
-                transform: scale(1.015);
+                transform: scale(1.05);
             }
             100% {
                 stroke-dashoffset: 0;
@@ -64,8 +66,8 @@
                 stroke-dashoffset: 100;
                 opacity: 0;
             }
-            20% {
-                opacity: 0.8;
+            50% {
+                opacity: 1;
             }
             100% {
                 stroke-dashoffset: 0;
@@ -74,29 +76,28 @@
         }
         @keyframes logo-glow {
             0% {
-                filter: drop-shadow(0 0 0px rgba(15, 23, 42, 0));
+                filter: drop-shadow(0 0 0px rgba(59, 130, 246, 0));
             }
             50% {
-                filter: drop-shadow(0 0 12px rgba(15, 23, 42, 0.18));
+                filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
             }
             100% {
-                filter: drop-shadow(0 0 2px rgba(15, 23, 42, 0.08));
+                filter: drop-shadow(0 0 0px rgba(59, 130, 246, 0));
             }
         }
         .logo-frame {
-            stroke-dasharray: 136;
-            stroke-dashoffset: 136;
+            stroke-dasharray: 180;
+            stroke-dashoffset: 180;
             transform-origin: center;
-            animation: logo-frame-expand 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: logo-frame-expand 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
         .logo-letter {
             stroke-dasharray: 100;
             stroke-dashoffset: 100;
-            animation: logo-letter-draw 1.4s cubic-bezier(0.34, 0, 0.2, 1) 0.8s forwards;
+            animation: logo-letter-draw 0.8s ease-out 0.6s forwards;
         }
         .logo-container {
-            animation: logo-glow 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
-            will-change: filter;
+            animation: logo-glow 2s ease-out 0.5s;
         }
         .animate-fadeInUp {
             animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -112,24 +113,35 @@
             opacity: 0;
             animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
         }
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-        }
         html {
             scroll-behavior: smooth;
-        }
-        body {
-            overflow-x: hidden;
-            overflow-y: auto;
         }
     </style>
 </head>
 <body class="font-sans antialiased bg-white text-slate-900">
-    <!-- Coming Soon Section -->
-    <section id="home" class="relative flex items-center overflow-hidden bg-white" style="height: 100vh; height: 100dvh;">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-3 group">
+                <svg class="logo-container" width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Minimal frame -->
+                    <rect class="logo-frame" x="2" y="2" width="36" height="36" rx="8"
+                          stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+                    <!-- R -->
+                    <path class="logo-letter" d="M 8 10 L 8 30 M 8 10 L 16 10 C 18.5 10 20 11.5 20 14 C 20 16.5 18.5 18 16 18 L 8 18 M 16 18 L 20 30"
+                          stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- F -->
+                    <path class="logo-letter" d="M 24 10 L 24 30 M 24 10 L 32 10 M 24 18 L 30 18"
+                          stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-[14px] font-semibold tracking-tight text-slate-950 group-hover:text-blue-600 transition-colors">RF Design</span>
+            </a>
+            <a href="#work" class="text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">Work</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-32 pb-20 bg-white">
         <!-- Animated Background -->
         <div class="absolute inset-0 overflow-hidden">
             <!-- Grid Pattern -->
@@ -143,25 +155,77 @@
         </div>
 
         <div class="container max-w-7xl mx-auto px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="mb-8 opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
-                    <svg class="logo-container mx-auto" width="56" height="56" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Minimal frame -->
-                        <rect class="logo-frame" x="2" y="2" width="36" height="36" rx="8"
-                              stroke="#0f172a" stroke-width="1.5" fill="none"/>
-                        <!-- R -->
-                        <path class="logo-letter" d="M 8 10 L 8 30 M 8 10 L 16 10 C 18.5 10 20 11.5 20 14 C 20 16.5 18.5 18 16 18 L 8 18 M 16 18 L 20 30"
-                              stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <!-- F -->
-                        <path class="logo-letter" d="M 24 10 L 24 30 M 24 10 L 32 10 M 24 18 L 30 18"
-                              stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-medium tracking-tight leading-[1.2] mb-6 text-slate-950 opacity-0 animate-fadeInUp" style="animation-delay: 0.3s;">Under Construction</h1>
-                <p class="text-xl md:text-2xl text-slate-600 leading-relaxed mb-8 font-normal max-w-2xl mx-auto opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">Currently building something great. Check back soon.</p>
-                <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-950/[0.04] text-slate-600 text-[13px] font-medium tracking-tight border border-slate-950/[0.08] opacity-0 animate-fadeInUp" style="animation-delay: 0.7s;">
-                    <span>Coming Soon</span>
-                </div>
+            <div class="max-w-3xl mx-auto text-center opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
+                <h1 class="text-4xl md:text-6xl font-semibold tracking-tight leading-[1.2] mb-6 text-slate-950 opacity-0 animate-fadeInUp" style="animation-delay: 0.3s;">Simplify your complex system workflows</h1>
+                <p class="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 font-normal max-w-2xl mx-auto opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">I help businesses build products that empower their customers.</p>
+                <a href="#work" class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white text-[14px] font-semibold tracking-tight hover:bg-blue-600 rounded-lg transition-all duration-200 group opacity-0 animate-fadeInUp" style="animation-delay: 0.7s;">
+                    <span>View Work</span>
+                    <span class="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Work Section -->
+    <section id="work" class="relative py-32 bg-slate-50 border-t border-slate-200">
+        <div class="container max-w-7xl mx-auto px-8">
+            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-slate-950 opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">Featured Work</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-20 max-w-2xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s;">A selection of projects showcasing systematic design solutions for complex enterprise challenges.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <article class="group opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Enterprise</span>
+                            <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">Analytics Dashboard</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Redesigned complex data visualization platform for Fortune 500 company, improving user task completion by 40%.</p>
+                            <a href="projects/case-study-template.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                                View Case Study
+                                <span class="transition-transform group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project Card 2 -->
+                <article class="group opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
+                    <div class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-bl from-blue-500/5 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Enterprise</span>
+                            <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">SaaS Platform Redesign</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Led UX transformation of B2B collaboration tool, streamlining workflows for 10,000+ daily users.</p>
+                            <a href="projects/case-study-template.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                                View Case Study
+                                <span class="transition-transform group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project Card 3 -->
+                <article class="group opacity-0 animate-fadeInUp" style="animation-delay: 0.6s;">
+                    <div class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-gradient-to-tl from-blue-500/5 to-transparent"></div>
+                        </div>
+                        <div class="p-8">
+                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Enterprise</span>
+                            <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">Design System</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Built scalable design system from ground up, enabling consistent experiences across 15+ product teams.</p>
+                            <a href="projects/case-study-template.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                                View Case Study
+                                <span class="transition-transform group-hover:translate-x-1">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -201,7 +265,7 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(15, 23, 42, 0.6)';
+                ctx.fillStyle = 'rgba(59, 130, 246, 0.4)';
                 ctx.fill();
             }
         }
@@ -221,9 +285,9 @@
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < maxDistance) {
-                        const opacity = (1 - distance / maxDistance) * 0.3;
+                        const opacity = (1 - distance / maxDistance) * 0.2;
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(15, 23, 42, ${opacity})`;
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
                         ctx.lineWidth = 1;
                         ctx.moveTo(nodes[i].x, nodes[i].y);
                         ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -260,5 +324,6 @@
         // Start animation when page loads
         init();
     </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

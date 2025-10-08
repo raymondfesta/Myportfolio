@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[Project Name] - Product design case study showcasing enterprise UX solutions.">
+    <title>[Project Name] — Case Study</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-slate-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-950/[0.06] z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-8 md:px-16 py-7 flex justify-between items-center">
+            <a href="../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
+                ← Back to Portfolio
+            </a>
+            <ul class="flex gap-10 list-none m-0 p-0">
+                <li><a href="#challenge" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Challenge</a></li>
+                <li><a href="#approach" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Approach</a></li>
+                <li><a href="#solution" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Solution</a></li>
+                <li><a href="#impact" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Impact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===================================
+         1. INTRODUCTION SECTION
+         Sets the stage for the project
+         =================================== -->
+    <section class="pt-40 pb-32 bg-gradient-to-br from-slate-50 to-white border-b border-slate-950/[0.08]">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <!-- Project Category -->
+            <span class="inline-block text-sm uppercase tracking-wider text-blue-500 font-semibold mb-6 px-5 py-2.5 bg-blue-500/[0.08] rounded-md opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
+                Enterprise Design
+            </span>
+
+            <!-- Project Title -->
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-slate-950 mb-8 max-w-5xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s; letter-spacing: -0.03em;">
+                Transforming Cloud Infrastructure Management for Enterprise Teams
+            </h1>
+
+            <!-- Client/Product Context -->
+            <p class="text-xl text-slate-600 leading-relaxed mb-6 max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
+                A leading cloud services provider needed to simplify complex infrastructure workflows for enterprise development teams managing hundreds of distributed systems. The existing platform created friction at every step, leading to decreased productivity and increased operational risk.
+            </p>
+
+            <!-- Engagement Goal -->
+            <p class="text-xl text-slate-600 leading-relaxed max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
+                <strong class="text-slate-950">Goal:</strong> Design a unified control plane that empowers teams to deploy, monitor, and scale infrastructure with confidence—while maintaining enterprise-grade security and compliance standards.
+            </p>
+
+            <!-- Project Meta -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-slate-950/[0.08] opacity-0 animate-fadeInUp" style="animation-delay: 0.6s;">
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Role</span>
+                    <span class="text-base text-slate-950 font-medium">Lead Product Designer</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Timeline</span>
+                    <span class="text-base text-slate-950 font-medium">6 months (Q2-Q3 2024)</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Team</span>
+                    <span class="text-base text-slate-950 font-medium">2 Designers, 5 Engineers, 1 PM</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Platform</span>
+                    <span class="text-base text-slate-950 font-medium">Web Application (Desktop)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         2. THE CHALLENGE SECTION
+         =================================== -->
+    <section id="challenge" class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Challenge</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Complexity at Scale Was Costing Teams Days, Not Hours
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                Enterprise development teams were drowning in complexity. What should have been simple workflows—deploying applications, monitoring performance, managing permissions—required navigating fragmented tools, cryptic interfaces, and error-prone manual processes.
+            </p>
+
+            <!-- Challenge Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Fragmented Workflows</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Teams juggled 7+ disconnected tools to complete a single deployment. Context-switching between systems created friction, errors, and wasted hours tracking down information across platforms.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Lack of Visibility</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Critical infrastructure health metrics were buried in dense dashboards. Teams couldn't quickly identify issues or understand system dependencies, leading to prolonged outages and reactive firefighting.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Security & Compliance Friction</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Implementing security controls and maintaining compliance standards required expert knowledge and manual audits. Non-security specialists struggled to configure systems correctly, creating organizational risk.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Steep Learning Curve</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        New team members required weeks of training to become productive. Complex, technical interfaces assumed deep infrastructure knowledge, excluding product-focused engineers and operators.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Why it mattered:</strong> These challenges directly impacted business velocity and competitiveness. Engineering teams spent 40% of their time fighting tooling instead of building products. The platform's complexity created a scaling bottleneck—as organizations grew, operational overhead compounded exponentially.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         3. APPROACH SECTION
+         =================================== -->
+    <section id="approach" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Our Approach</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Systems Thinking Meets User-Centered Design
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                We approached this challenge with a consulting mindset—treating design as strategic infrastructure rather than visual polish. Our methodology balanced deep user research with rapid prototyping and cross-functional collaboration.
+            </p>
+
+            <!-- Approach Phases -->
+            <div class="space-y-12 relative before:content-[''] before:absolute before:left-6 before:top-0 before:bottom-0 before:w-0.5 before:bg-slate-200">
+                <!-- Phase 1 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">1</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Discovery & Research</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            We conducted 25+ user interviews across roles (DevOps engineers, SREs, security teams, product managers) to map pain points, workflows, and mental models. Key insight: users weren't struggling with individual features—they were struggling with system architecture and information design.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Conducted contextual inquiry sessions observing real deployment workflows</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Mapped existing tool ecosystem and identified redundant/conflicting patterns</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Synthesized findings into journey maps highlighting critical friction points</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">2</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Strategic Framing</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Rather than treating symptoms, we reframed the problem: how might we design a system that scales with organizational complexity while becoming simpler to use? We prioritized workflows that would deliver 10x improvements, not incremental gains.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Defined design principles: "Progressive disclosure," "Intelligent defaults," "Contextual guidance"</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Mapped high-leverage opportunities based on frequency × impact analysis</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created north-star vision prototypes to align stakeholders on ambition</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">3</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Iterative Design & Prototyping</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            We designed the system through rapid cycles of prototyping and testing. Every major interaction pattern was validated with users before engineering investment. High-fidelity prototypes allowed us to test complex workflows end-to-end.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created modular design system for consistent, scalable UI components</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Built interactive prototypes to test multi-step workflows and information hierarchy</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Ran weekly usability sessions with 5-8 users to validate design decisions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">4</div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Cross-Functional Partnership</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Design success required deep collaboration with engineering and product teams. We embedded in engineering standups, reviewed technical constraints, and co-created solutions that balanced user needs with system architecture.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Partnered with backend engineers to design API structures that enabled better UX</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Collaborated with security team to make compliance features user-friendly</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Worked with product to define phased rollout strategy minimizing disruption</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         4. SOLUTION SECTION
+         =================================== -->
+    <section id="solution" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Solution</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                A Unified Platform Built for Clarity and Control
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                We transformed a fragmented collection of tools into a cohesive control plane. The new platform provides teams with end-to-end visibility, intelligent automation, and progressive complexity—revealing advanced features only when needed.
+            </p>
+
+            <!-- Design Principles -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Progressive Disclosure</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Simple tasks stay simple. Advanced features are accessible but don't clutter primary workflows.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Contextual Intelligence</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">The system understands user context and provides relevant guidance, warnings, and shortcuts.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Trust Through Transparency</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Users see what's happening in real-time with clear system status and dependency visualization.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Designed for Scale</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Patterns and components adapt intelligently whether managing 5 or 500 systems.</p>
+                </div>
+            </div>
+
+            <!-- Visual Showcase Placeholder -->
+            <h3 class="text-3xl font-semibold text-slate-950 mb-8 tracking-tight">Key Interface Patterns</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="border border-slate-950/[0.08] overflow-hidden">
+                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm">
+                        [Screenshot: Unified Dashboard]
+                    </div>
+                    <div class="p-5 bg-white">
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong class="text-slate-950">Unified Dashboard:</strong> At-a-glance system health with intelligent alerting and dependency mapping
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-slate-950/[0.08] overflow-hidden">
+                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm">
+                        [Screenshot: Deployment Workflow]
+                    </div>
+                    <div class="p-5 bg-white">
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong class="text-slate-950">Streamlined Deployments:</strong> Guided workflow with real-time validation and rollback safeguards
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-slate-950/[0.08] overflow-hidden">
+                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm">
+                        [Screenshot: Monitoring View]
+                    </div>
+                    <div class="p-5 bg-white">
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            <strong class="text-slate-950">Intelligent Monitoring:</strong> Contextual metrics that surface issues before they become incidents
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Before/After Comparison -->
+            <h3 class="text-3xl font-semibold text-slate-950 mb-8 tracking-tight">Transformation in Action</h3>
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="border border-slate-950/[0.08] overflow-hidden">
+                    <div class="px-6 py-4 bg-white border-b border-slate-950/[0.08]">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Before</span>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <div class="w-full aspect-[4/3] bg-slate-100 mb-4 flex items-center justify-center text-slate-400 text-sm border border-slate-950/[0.06]">
+                            [Screenshot: Old 12-step workflow]
+                        </div>
+                        <p class="text-[15px] text-slate-600 leading-relaxed">
+                            Teams navigated 12 disconnected steps across 3 tools to deploy infrastructure. Each step required manual validation, with unclear dependencies and cryptic error messages causing frequent rollbacks.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="border border-slate-950/[0.08] overflow-hidden">
+                    <div class="px-6 py-4 bg-white border-b border-slate-950/[0.08]">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">After</span>
+                    </div>
+                    <div class="p-6 bg-white">
+                        <div class="w-full aspect-[4/3] bg-slate-100 mb-4 flex items-center justify-center text-slate-400 text-sm border border-slate-950/[0.06]">
+                            [Screenshot: Streamlined 5-step workflow]
+                        </div>
+                        <p class="text-[15px] text-slate-600 leading-relaxed">
+                            Deployments now require 5 guided steps within a single unified interface. Real-time validation, dependency visualization, and intelligent defaults prevent errors before they happen. Clear rollback options provide confidence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Design Impact:</strong> We transformed a 12-step, error-prone process requiring expert knowledge into a 5-step guided workflow accessible to all team members. The new system proactively prevents configuration errors while maintaining full control for advanced users.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         5. IMPACT SECTION
+         =================================== -->
+    <section id="impact" class="py-24 bg-gradient-to-br from-slate-950 to-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,rgba(59,130,246,0.3)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(168,85,247,0.3)_0%,transparent_50%)]"></div>
+
+        <div class="max-w-6xl mx-auto px-8 md:px-16 relative z-10">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-400 font-semibold mb-6 pb-2 border-b-2 border-white/10">Impact</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-white mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Measurable Outcomes Across the Organization
+            </h2>
+
+            <p class="text-lg text-slate-300 leading-relaxed mb-12 max-w-3xl">
+                The redesigned platform delivered transformational results within the first quarter post-launch. Metrics validated our design strategy: simplifying complexity creates exponential value.
+            </p>
+
+            <!-- Metrics Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="border border-white/10 p-8">
+                    <div class="text-5xl font-bold text-white mb-2">68%</div>
+                    <div class="text-base text-slate-200 font-medium mb-3 tracking-tight">Reduction in Deployment Time</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Average deployment time dropped from 45 minutes to 14 minutes—freeing teams to ship faster.</p>
+                </div>
+
+                <div class="border border-white/10 p-8">
+                    <div class="text-5xl font-bold text-white mb-2">85%</div>
+                    <div class="text-base text-slate-200 font-medium mb-3 tracking-tight">Decrease in Configuration Errors</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Real-time validation and intelligent defaults reduced preventable errors by 85%.</p>
+                </div>
+
+                <div class="border border-white/10 p-8">
+                    <div class="text-5xl font-bold text-white mb-2">3 Days</div>
+                    <div class="text-base text-slate-200 font-medium mb-3 tracking-tight">Onboarding Time (from 3 weeks)</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">New team members became productive in days instead of weeks.</p>
+                </div>
+
+                <div class="border border-white/10 p-8">
+                    <div class="text-5xl font-bold text-white mb-2">92%</div>
+                    <div class="text-base text-slate-200 font-medium mb-3 tracking-tight">User Satisfaction Score</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Post-launch surveys showed overwhelming satisfaction with the new platform.</p>
+                </div>
+            </div>
+
+            <!-- Impact Categories -->
+            <div class="space-y-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Business Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Engineering velocity increased 2.3x as teams spent less time fighting tooling</li>
+                        <li>Platform adoption grew 156% quarter-over-quarter as teams migrated from legacy systems</li>
+                        <li>Support costs decreased 41% due to intuitive workflows and self-service capabilities</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">User Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Teams saved 12+ hours weekly through consolidated workflows and automated validations</li>
+                        <li>Reduced cognitive load: users no longer memorized complex CLI commands or syntax</li>
+                        <li>Democratized platform access—non-specialists could now perform advanced operations safely</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Organizational Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Cross-team alignment improved as everyone used a single source of truth</li>
+                        <li>Scalability unlocked: design system supports future feature expansion without debt</li>
+                        <li>Security and compliance became enablers, not blockers, with user-friendly guardrails</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-300 leading-relaxed mt-12 max-w-3xl">
+                <strong class="text-white">Bottom Line:</strong> By solving complexity at the design layer, we unlocked business value that compounds. Teams don't just save time—they operate with greater confidence, make fewer mistakes, and scale operations efficiently.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         6. KEY TAKEAWAYS SECTION
+         =================================== -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Key Takeaways</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-12 max-w-4xl" style="letter-spacing: -0.025em;">
+                Lessons That Scale Beyond This Project
+            </h2>
+
+            <div class="space-y-8 mb-12">
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Design for Scale Requires Simplifying Complexity, Not Hiding It</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        The instinct in enterprise design is to expose all controls—assuming power users need maximum flexibility. But we learned that true power comes from intelligent systems that handle complexity behind the scenes. Progressive disclosure means simple tasks stay simple, while advanced capabilities remain accessible when needed.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Workflows Are Systems, Not Sequences</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Early on, we treated deployments as linear steps. But users don't think linearly—they context-switch, recover from errors, and jump between related tasks. Designing workflows as interconnected systems (not rigid sequences) created resilience. Systems thinking unlocks flexibility that step-by-step flows can't provide.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Constraints Drive Innovation When Used Strategically</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Technical constraints (API limitations, backend architecture) initially felt limiting. But by partnering deeply with engineering, we transformed constraints into design opportunities. For example, API latency led us to design optimistic UI updates and background processing—patterns that became product strengths.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="bg-gradient-to-br from-slate-950 to-slate-900 p-12 border-l-2 border-white">
+                <p class="text-xl text-white leading-relaxed">
+                    The best enterprise design doesn't feel like enterprise software. It feels like someone anticipated exactly what you needed, precisely when you needed it. That's the bar.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         7. CLOSING / NEXT STEPS SECTION
+         =================================== -->
+    <section class="py-24 bg-white border-t border-slate-950/[0.08]">
+        <div class="max-w-4xl mx-auto px-8 md:px-16 text-center">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Conclusion</span>
+
+            <p class="text-xl text-slate-600 leading-relaxed mb-12">
+                This project demonstrates how thoughtful design unlocks business value in complex enterprise ecosystems. By treating design as strategic infrastructure—not visual polish—we created a platform that scales with organizational complexity while becoming simpler to use.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex gap-4 justify-center flex-wrap mb-24">
+                <a href="../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
+                    See More Projects →
+                </a>
+                <a href="mailto:your.email@example.com" class="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-slate-950 text-base font-semibold tracking-tight border-2 border-slate-950/[0.08] hover:border-slate-950 transition-all">
+                    Get in Touch
+                </a>
+            </div>
+
+            <!-- Related Projects -->
+            <div class="pt-16 border-t border-slate-950/[0.08]">
+                <h3 class="text-2xl font-semibold text-slate-950 mb-8 tracking-tight">More Case Studies</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <a href="./another-project.html" class="border border-slate-950/[0.08] overflow-hidden hover:border-slate-950/[0.12] transition-all text-left group">
+                        <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm">
+                            [Project Thumbnail]
+                        </div>
+                        <div class="p-6 bg-white">
+                            <h4 class="text-lg font-semibold text-slate-950 mb-2 tracking-tight group-hover:text-slate-600 transition-colors">Project Title Here</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Brief description of the project and its impact.</p>
+                        </div>
+                    </a>
+
+                    <a href="./another-project-2.html" class="border border-slate-950/[0.08] overflow-hidden hover:border-slate-950/[0.12] transition-all text-left group">
+                        <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm">
+                            [Project Thumbnail]
+                        </div>
+                        <div class="p-6 bg-white">
+                            <h4 class="text-lg font-semibold text-slate-950 mb-2 tracking-tight group-hover:text-slate-600 transition-colors">Project Title Here</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Brief description of the project and its impact.</p>
+                        </div>
+                    </a>
+
+                    <a href="./another-project-3.html" class="border border-slate-950/[0.08] overflow-hidden hover:border-slate-950/[0.12] transition-all text-left group">
+                        <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm">
+                            [Project Thumbnail]
+                        </div>
+                        <div class="p-6 bg-white">
+                            <h4 class="text-lg font-semibold text-slate-950 mb-2 tracking-tight group-hover:text-slate-600 transition-colors">Project Title Here</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">Brief description of the project and its impact.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        const navHeight = 100;
+                        const targetPosition = targetSection.offsetTop - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

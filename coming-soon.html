@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Product Designer specializing in enterprise design, clean interfaces, and user-centered solutions.">
+    <title>Your Name — Product Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 50px) scale(0.9); }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes logo-frame-expand {
+            0% {
+                stroke-dashoffset: 136;
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            35% {
+                opacity: 1;
+            }
+            75% {
+                transform: scale(1.015);
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes logo-letter-draw {
+            0% {
+                stroke-dashoffset: 100;
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+            }
+            100% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+        }
+        @keyframes logo-glow {
+            0% {
+                filter: drop-shadow(0 0 0px rgba(15, 23, 42, 0));
+            }
+            50% {
+                filter: drop-shadow(0 0 12px rgba(15, 23, 42, 0.18));
+            }
+            100% {
+                filter: drop-shadow(0 0 2px rgba(15, 23, 42, 0.08));
+            }
+        }
+        .logo-frame {
+            stroke-dasharray: 136;
+            stroke-dashoffset: 136;
+            transform-origin: center;
+            animation: logo-frame-expand 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .logo-letter {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: logo-letter-draw 1.4s cubic-bezier(0.34, 0, 0.2, 1) 0.8s forwards;
+        }
+        .logo-container {
+            animation: logo-glow 2.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
+            will-change: filter;
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Network Canvas */
+        #network-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-slate-900">
+    <!-- Coming Soon Section -->
+    <section id="home" class="relative flex items-center overflow-hidden bg-white" style="height: 100vh; height: 100dvh;">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Grid Pattern -->
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+
+            <!-- Network Animation -->
+            <canvas id="network-canvas"></canvas>
+
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white pointer-events-none"></div>
+        </div>
+
+        <div class="container max-w-7xl mx-auto px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="mb-8 opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <svg class="logo-container mx-auto" width="56" height="56" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Minimal frame -->
+                        <rect class="logo-frame" x="2" y="2" width="36" height="36" rx="8"
+                              stroke="#0f172a" stroke-width="1.5" fill="none"/>
+                        <!-- R -->
+                        <path class="logo-letter" d="M 8 10 L 8 30 M 8 10 L 16 10 C 18.5 10 20 11.5 20 14 C 20 16.5 18.5 18 16 18 L 8 18 M 16 18 L 20 30"
+                              stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- F -->
+                        <path class="logo-letter" d="M 24 10 L 24 30 M 24 10 L 32 10 M 24 18 L 30 18"
+                              stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-medium tracking-tight leading-[1.2] mb-6 text-slate-950 opacity-0 animate-fadeInUp" style="animation-delay: 0.3s;">Under Construction</h1>
+                <p class="text-xl md:text-2xl text-slate-600 leading-relaxed mb-8 font-normal max-w-2xl mx-auto opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">Currently building something great. Check back soon.</p>
+                <div class="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-950/[0.04] text-slate-600 text-[13px] font-medium tracking-tight border border-slate-950/[0.08] opacity-0 animate-fadeInUp" style="animation-delay: 0.7s;">
+                    <span>Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Network Animation
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let nodes = [];
+        let animationId;
+        const maxDistance = 150;
+        const nodeCount = window.innerWidth < 768 ? 30 : 50;
+
+        function setCanvasSize() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(15, 23, 42, 0.6)';
+                ctx.fill();
+            }
+        }
+
+        function initNodes() {
+            nodes = [];
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push(new Node());
+            }
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[i].x - nodes[j].x;
+                    const dy = nodes[i].y - nodes[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance) {
+                        const opacity = (1 - distance / maxDistance) * 0.3;
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(15, 23, 42, ${opacity})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawConnections();
+
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
+            });
+
+            animationId = requestAnimationFrame(animate);
+        }
+
+        function init() {
+            setCanvasSize();
+            initNodes();
+            animate();
+        }
+
+        window.addEventListener('resize', () => {
+            setCanvasSize();
+            initNodes();
+        });
+
+        // Start animation when page loads
+        init();
+    </script>
+</body>
+</html>
