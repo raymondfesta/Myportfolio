@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Database Pricing Calculator Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: white;
+        }
+
+        .price-update {
+            animation: priceFlash 0.3s ease-out;
+        }
+
+        @keyframes priceFlash {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); color: #3b82f6; }
+            100% { transform: scale(1); }
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #0f172a;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            background: #1e293b;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: #0f172a;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            background: #1e293b;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%230f172a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.25rem;
+            padding-right: 2.5rem;
+        }
+
+        .breakdown-item {
+            transition: all 0.2s ease;
+        }
+
+        /* Pulse animation for interactive hint */
+        @keyframes gentlePulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.02);
+                opacity: 0.95;
+            }
+        }
+
+        .interactive-hint {
+            animation: gentlePulse 2s ease-in-out 3;
+            animation-delay: 0.5s;
+        }
+
+        /* Popover Styles */
+        .popover-trigger {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            cursor: help;
+        }
+
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background: #94a3b8;
+            color: white;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: bold;
+            font-style: normal;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .popover-trigger:hover .info-icon {
+            background: #64748b;
+            transform: scale(1.1);
+        }
+
+        .popover {
+            position: absolute;
+            bottom: calc(100% + 8px);
+            right: 0;
+            background: #1e293b;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            line-height: 1.5;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 50;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            min-width: 280px;
+        }
+
+        .popover::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 1rem;
+            border: 6px solid transparent;
+            border-top-color: #1e293b;
+        }
+
+        .popover-trigger:hover .popover {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .popover-formula {
+            font-family: 'Courier New', monospace;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .popover-result {
+            color: #93c5fd;
+            font-weight: 600;
+            border-top: 1px solid #334155;
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .popover-label {
+            color: #cbd5e1;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+    </style>
+</head>
+<body class="p-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Configuration Controls -->
+            <div class="space-y-6 interactive-hint">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Instance Type</label>
+                    <select id="instanceType" class="w-full px-4 py-2.5 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                        <option value="0.017">db.t3.micro - 2 vCPU, 1 GB RAM</option>
+                        <option value="0.034" selected>db.t3.small - 2 vCPU, 2 GB RAM</option>
+                        <option value="0.068">db.t3.medium - 2 vCPU, 4 GB RAM</option>
+                        <option value="0.136">db.m5.large - 2 vCPU, 8 GB RAM</option>
+                        <option value="0.272">db.m5.xlarge - 4 vCPU, 16 GB RAM</option>
+                        <option value="0.544">db.m5.2xlarge - 8 vCPU, 32 GB RAM</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">
+                        Storage: <span id="storageDisplay" class="text-slate-900 font-semibold">100 GB</span>
+                    </label>
+                    <input type="range" id="storage" min="20" max="500" value="100" step="10" class="w-full">
+                    <div class="flex justify-between text-xs text-slate-500 mt-1">
+                        <span>20 GB</span>
+                        <span>500 GB</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Region</label>
+                    <select id="region" class="w-full px-4 py-2.5 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                        <option value="1.0" selected>US East (N. Virginia)</option>
+                        <option value="1.08">US West (Oregon)</option>
+                        <option value="1.15">EU (Ireland)</option>
+                        <option value="1.20">EU (Frankfurt)</option>
+                        <option value="1.25">Asia Pacific (Tokyo)</option>
+                        <option value="1.30">Asia Pacific (Sydney)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Backup Retention</label>
+                    <select id="backup" class="w-full px-4 py-2.5 border border-slate-300 rounded-lg bg-white text-slate-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                        <option value="0">No backups</option>
+                        <option value="7" selected>7 days</option>
+                        <option value="14">14 days</option>
+                        <option value="30">30 days</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Pricing Summary -->
+            <div class="bg-gradient-to-br from-slate-50 to-slate-100 p-6 rounded-lg border border-slate-200">
+                <h3 class="text-lg font-semibold text-slate-900 mb-4">Monthly Cost Estimate</h3>
+
+                <div class="mb-6">
+                    <div class="text-5xl font-bold text-slate-950 mb-1" id="totalCost">$0.00</div>
+                    <div class="text-sm text-slate-600">per month</div>
+                </div>
+
+                <div class="space-y-3 pt-4 border-t border-slate-300">
+                    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Cost Breakdown</div>
+
+                    <div class="breakdown-item flex justify-between text-sm">
+                        <span class="text-slate-600">Instance</span>
+                        <span class="popover-trigger">
+                            <span class="font-medium text-slate-900" id="instanceCost">$0.00</span>
+                            <i class="info-icon">i</i>
+                            <div class="popover" id="instancePopover">
+                                <div class="popover-label">Calculation</div>
+                                <div class="popover-formula" id="instanceFormula">Loading...</div>
+                            </div>
+                        </span>
+                    </div>
+
+                    <div class="breakdown-item flex justify-between text-sm">
+                        <span class="text-slate-600">Storage</span>
+                        <span class="popover-trigger">
+                            <span class="font-medium text-slate-900" id="storageCost">$0.00</span>
+                            <i class="info-icon">i</i>
+                            <div class="popover" id="storagePopover">
+                                <div class="popover-label">Calculation</div>
+                                <div class="popover-formula" id="storageFormula">Loading...</div>
+                            </div>
+                        </span>
+                    </div>
+
+                    <div class="breakdown-item flex justify-between text-sm">
+                        <span class="text-slate-600">Backups</span>
+                        <span class="popover-trigger">
+                            <span class="font-medium text-slate-900" id="backupCost">$0.00</span>
+                            <i class="info-icon">i</i>
+                            <div class="popover" id="backupPopover">
+                                <div class="popover-label">Calculation</div>
+                                <div class="popover-formula" id="backupFormula">Loading...</div>
+                            </div>
+                        </span>
+                    </div>
+
+                    <div class="breakdown-item flex justify-between text-sm pt-3 border-t border-slate-300">
+                        <span class="text-slate-600">Region Multiplier</span>
+                        <span class="font-medium text-slate-900" id="regionMultiplier">1.0x</span>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-300">
+                    <div class="text-xs text-slate-500 leading-relaxed">
+                        Prices update in real-time as you adjust your configuration. Estimates are for demonstration purposes.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get all input elements
+        const instanceType = document.getElementById('instanceType');
+        const storage = document.getElementById('storage');
+        const storageDisplay = document.getElementById('storageDisplay');
+        const region = document.getElementById('region');
+        const backup = document.getElementById('backup');
+
+        // Get all cost display elements
+        const totalCost = document.getElementById('totalCost');
+        const instanceCost = document.getElementById('instanceCost');
+        const storageCost = document.getElementById('storageCost');
+        const backupCost = document.getElementById('backupCost');
+        const regionMultiplier = document.getElementById('regionMultiplier');
+
+        // Get popover elements
+        const instanceFormula = document.getElementById('instanceFormula');
+        const storageFormula = document.getElementById('storageFormula');
+        const backupFormula = document.getElementById('backupFormula');
+
+        // Pricing constants
+        const STORAGE_PRICE_PER_GB = 0.115; // $/GB/month
+        const BACKUP_PRICE_PER_GB_DAY = 0.095 / 30; // $/GB/day
+        const HOURS_PER_MONTH = 730; // Average hours per month
+
+        function calculatePricing() {
+            // Get current values
+            const instanceHourly = parseFloat(instanceType.value);
+            const storageGB = parseInt(storage.value);
+            const regionMult = parseFloat(region.value);
+            const backupDays = parseInt(backup.value);
+
+            // Calculate costs (before region multiplier)
+            const instanceMonthly = instanceHourly * HOURS_PER_MONTH;
+            const storageMonthly = storageGB * STORAGE_PRICE_PER_GB;
+            const backupMonthly = backupDays > 0 ? storageGB * BACKUP_PRICE_PER_GB_DAY * backupDays : 0;
+
+            // Calculate subtotal and apply region multiplier
+            const subtotal = instanceMonthly + storageMonthly + backupMonthly;
+            const total = subtotal * regionMult;
+
+            // Update displays with animation
+            updateCostDisplay(totalCost, total);
+            updateCostDisplay(instanceCost, instanceMonthly * regionMult);
+            updateCostDisplay(storageCost, storageMonthly * regionMult);
+            updateCostDisplay(backupCost, backupMonthly * regionMult);
+
+            regionMultiplier.textContent = regionMult.toFixed(2) + 'x';
+
+            // Update popover formulas
+            updatePopoverFormulas(instanceHourly, storageGB, regionMult, backupDays,
+                                instanceMonthly, storageMonthly, backupMonthly);
+        }
+
+        function updatePopoverFormulas(instanceHourly, storageGB, regionMult, backupDays,
+                                      instanceMonthly, storageMonthly, backupMonthly) {
+            // Instance formula
+            instanceFormula.innerHTML = `
+                $${instanceHourly.toFixed(3)}/hr × ${HOURS_PER_MONTH} hrs/month<br>
+                × ${regionMult.toFixed(2)} region<br>
+                <span class="popover-result">= $${(instanceMonthly * regionMult).toFixed(2)}/month</span>
+            `;
+
+            // Storage formula
+            storageFormula.innerHTML = `
+                ${storageGB} GB × $${STORAGE_PRICE_PER_GB.toFixed(3)}/GB/month<br>
+                × ${regionMult.toFixed(2)} region<br>
+                <span class="popover-result">= $${(storageMonthly * regionMult).toFixed(2)}/month</span>
+            `;
+
+            // Backup formula
+            if (backupDays > 0) {
+                backupFormula.innerHTML = `
+                    ${storageGB} GB × $${BACKUP_PRICE_PER_GB_DAY.toFixed(5)}/GB/day<br>
+                    × ${backupDays} days × ${regionMult.toFixed(2)} region<br>
+                    <span class="popover-result">= $${(backupMonthly * regionMult).toFixed(2)}/month</span>
+                `;
+            } else {
+                backupFormula.innerHTML = `
+                    No backups configured<br>
+                    <span class="popover-result">= $0.00/month</span>
+                `;
+            }
+        }
+
+        function updateCostDisplay(element, value) {
+            element.textContent = '$' + value.toFixed(2);
+            element.classList.add('price-update');
+            setTimeout(() => element.classList.remove('price-update'), 300);
+        }
+
+        function updateStorageDisplay() {
+            storageDisplay.textContent = storage.value + ' GB';
+        }
+
+        // Event listeners
+        instanceType.addEventListener('change', calculatePricing);
+        storage.addEventListener('input', () => {
+            updateStorageDisplay();
+            calculatePricing();
+        });
+        region.addEventListener('change', calculatePricing);
+        backup.addEventListener('change', calculatePricing);
+
+        // Initial calculation
+        calculatePricing();
+    </script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Amazon Timestream Data Model Visual Builder - A visual design tool that reduced database setup time from 90+ days to hours, achieving 51% completion rate for new users">
+    <title>Amazon Timestream Data Model Visual Builder — Case Study</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-slate-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-950/[0.06] z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-8 md:px-16 py-7 flex justify-between items-center">
+            <a href="../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
+                ← Back to Portfolio
+            </a>
+            <ul class="flex gap-10 list-none m-0 p-0">
+                <li><a href="#challenge" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Challenge</a></li>
+                <li><a href="#approach" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Approach</a></li>
+                <li><a href="#solution" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Solution</a></li>
+                <li><a href="#impact" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Impact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===================================
+         1. INTRODUCTION SECTION
+         =================================== -->
+    <section class="pt-40 pb-32 bg-gradient-to-br from-slate-50 to-white border-b border-slate-950/[0.08]">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <!-- Project Category -->
+            <span class="inline-block text-sm uppercase tracking-wider text-blue-500 font-semibold mb-6 px-5 py-2.5 bg-blue-500/[0.08] rounded-md opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
+                Database Design Tool
+            </span>
+
+            <!-- Project Title -->
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-slate-950 mb-8 max-w-5xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s; letter-spacing: -0.03em;">
+                Amazon Timestream: Data Model Visual Builder
+            </h1>
+
+            <!-- Overview -->
+            <p class="text-xl text-slate-600 leading-relaxed mb-6 max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
+                A visual design tool that simplifies data model creation for Amazon Timestream, a serverless time-series database. This project addressed a critical adoption barrier by helping developers—particularly those migrating from SQL databases—understand and correctly structure their data in a schemaless environment, reducing setup time from 90+ days to a matter of hours.
+            </p>
+
+            <!-- Goal -->
+            <p class="text-xl text-slate-600 leading-relaxed max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
+                <strong class="text-slate-950">Goal:</strong> Reduce cognitive load for new customers, help SQL database users understand schemaless time-series data structure, increase completion rates for Batch Load and Scheduled Queries workflows, and accelerate time-to-value.
+            </p>
+
+            <!-- Project Meta -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-slate-950/[0.08] opacity-0 animate-fadeInUp" style="animation-delay: 0.6s;">
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Role</span>
+                    <span class="text-base text-slate-950 font-medium">Lead Designer</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Timeline</span>
+                    <span class="text-base text-slate-950 font-medium">6 weeks</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Team</span>
+                    <span class="text-base text-slate-950 font-medium">6 (Engineers, PM, Architect)</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Platform</span>
+                    <span class="text-base text-slate-950 font-medium">AWS Console</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         2. THE CHALLENGE SECTION
+         =================================== -->
+    <section id="challenge" class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Challenge</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                SQL Mental Models Were Blocking Timestream Adoption
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                New customers struggled to adopt Amazon Timestream due to fundamental misunderstandings about schemaless time-series data structure. Developers with SQL backgrounds attempted to structure Timestream databases using traditional relational patterns, resulting in inefficient queries, failed implementations, and a setup process that took over 90 days.
+            </p>
+
+            <!-- Challenge Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Wrong Mental Model</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Developers with SQL backgrounds instinctively tried to structure data relationally, leading to inefficient schema designs that would only reveal problems after data ingestion.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">90+ Day Setup Process</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Many customers would realize their data model was incorrect only after ingesting data and attempting queries, forcing them to restart the entire process or abandon the service altogether.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Hidden Best Practices</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Data model formats and templates that could help customers were buried deep in documentation, making it difficult for new users to find validated starting points.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Low Workflow Completion</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Customers struggled to complete key workflows like Batch Load (data import) and Scheduled Queries (retention driver), directly impacting service adoption and customer retention.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Why it mattered:</strong> This friction was significantly impacting service adoption and customer retention. The 90+ day setup time wasn't due to technical complexity alone—it was cognitive overload from trying to apply the wrong mental model to a fundamentally different data structure.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         3. APPROACH SECTION
+         =================================== -->
+    <section id="approach" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Our Approach</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Bridge the Gap, Don't Force the Change
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                The approach centered on two key principles: matching the customer's existing mental model (SQL databases) while using the interface itself as a teaching tool for time-series concepts. Rather than forcing customers to abandon their existing knowledge, I designed a bridge to new concepts.
+            </p>
+
+            <!-- Approach Phases -->
+            <div class="space-y-12 relative before:content-[''] before:absolute before:left-6 before:top-0 before:bottom-0 before:w-0.5 before:bg-slate-200">
+                <!-- Phase 1 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">1</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Research & Discovery</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            I investigated the root cause of low adoption rates through support ticket analysis, regular meetings with Solution Architects who worked directly with customers, and customer journey mapping of the typical 90+ day setup process.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Analyzed patterns in customer struggles and common misconceptions</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Identified friction points in the onboarding journey</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Discovered customers were applying SQL principles to schemaless structures</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">2</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Ideation & Design</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            I chose a visual builder approach over alternatives (improved documentation, tutorials, CLI tools) because it could simultaneously guide and educate users. Using Figma and the AWS Console Design System library, I created prototypes that made abstract concepts concrete.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Designed template-based starting points surfacing hidden best practices</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created auto-detection from sample data feature</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Built visual relationship mapping to show how dimensions, measures, and time relate</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">3</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Development & Implementation</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            I collaborated closely with service engineers to understand backend constraints and data model validation requirements, console engineers to implement the visual interface, and solution architects to validate that the tool addressed real customer needs and aligned with best practices.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Worked iteratively with regular check-ins to ensure technical feasibility</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Maintained design integrity while accommodating backend requirements</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Ensured performance with various data model sizes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">4</div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Testing & Refinement</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Internal testing with solution architects revealed that the visual relationship mapping needed to scale effectively for large schemas and that template categorization needed refinement based on common use cases.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Optimized rendering for complex data models with many dimensions</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Accounted for various data model formats customers might use</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Refined template organization based on real use cases</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         4. SOLUTION SECTION
+         =================================== -->
+    <section id="solution" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Solution</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                A Visual Builder That Teaches While It Builds
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                The visual builder transforms abstract time-series concepts into concrete, understandable structures while preventing common errors. Rather than relying on external documentation, the tool embeds contextual learning directly into the workflow.
+            </p>
+
+            <!-- Key Features -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Template-Based Creation</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pre-configured templates based on common use cases provide validated starting points that follow best practices.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Auto Schema Detection</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Upload sample data and the system automatically analyzes structure and populates correct fields.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Visual Relationships</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Interactive diagram showing how dimensions, measures, and time columns relate in a schemaless structure.</p>
+                </div>
+            </div>
+
+            <!-- Feature Details -->
+            <h3 class="text-3xl font-semibold text-slate-950 mb-8 tracking-tight">Key Capabilities</h3>
+
+            <div class="space-y-8 mb-16">
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">1. Template-Based Data Model Creation</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Pre-configured templates based on common time-series use cases and supported data model formats. These templates, previously hidden deep in documentation, provide developers with validated starting points that follow Timestream best practices. Templates are organized by use case (IoT, DevOps monitoring, application metrics, etc.) with contextual guidance about when to use each approach.
+                    </p>
+                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm border border-slate-950/[0.06]">
+                        [Screenshot: Template selection interface showing common use-case templates]
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">2. Auto Schema Detection from Sample Records</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Customers can upload sample data or records, and the system automatically analyzes the structure and populates the correct data model fields. This removes guesswork and ensures proper dimensional vs. measure field categorization. The auto-detection handles various data formats and provides confidence scores for its suggestions, allowing customers to validate the analysis.
+                    </p>
+                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm border border-slate-950/[0.06]">
+                        [Screenshot: Auto schema detection analyzing sample data]
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">3. Visual Data Relationship Mapping</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        An interactive diagram that shows how dimensions (attributes), measures (metrics), and time columns relate within the schemaless structure. This visualization bridges the mental model gap for SQL-background developers by making abstract time-series concepts tangible and understandable. For complex schemas, progressive disclosure patterns and grouping mechanisms prevent clutter. Real-time validation warnings alert users when their structure might lead to query inefficiencies.
+                    </p>
+                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm border border-slate-950/[0.06]">
+                        [Screenshot: Visual relationship mapping showing dimensions, measures, and time columns]
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Design Impact:</strong> The visual builder doesn't just enable configuration—it teaches time-series best practices. By embedding education directly into the workflow, customers learn the right patterns while completing real tasks.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         5. IMPACT SECTION
+         =================================== -->
+    <section id="impact" class="py-24 bg-gradient-to-br from-slate-950 to-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,rgba(59,130,246,0.3)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(168,85,247,0.3)_0%,transparent_50%)]"></div>
+
+        <div class="max-w-6xl mx-auto px-8 md:px-16 relative z-10">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-400 font-semibold mb-6 pb-2 border-b-2 border-white/10">Impact</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-white mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                From 90+ Days to Hours: Measurable Transformation
+            </h2>
+
+            <p class="text-lg text-slate-300 leading-relaxed mb-12 max-w-3xl">
+                The visual data model builder transformed the Timestream onboarding experience, dramatically reducing setup time and improving completion rates for critical workflows.
+            </p>
+
+            <!-- Impact Stats -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-lg">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">51%</div>
+                    <div class="text-sm text-slate-300">Completion rate for new customers (0-7 days old) using the visual builder</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-lg">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">70%</div>
+                    <div class="text-sm text-slate-300">Increase in total active users over one year (alongside cross-service integrations)</div>
+                </div>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-lg">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">90+ days → hours</div>
+                    <div class="text-sm text-slate-300">Reduction in setup time, eliminating costly restart cycles</div>
+                </div>
+            </div>
+
+            <!-- Impact Categories -->
+            <div class="space-y-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Customer Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Enabled new customers to successfully import data on first attempt through Batch Load workflow</li>
+                        <li>Increased completion rates for Scheduled Queries workflow, a key retention driver</li>
+                        <li>Accelerated POC development: "Setting up and testing to do a POC much easier and faster" (customer feedback)</li>
+                        <li>Eliminated the 90+ day cycle of discovering incorrect data models only after ingestion</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Technical Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Scaled effectively for complex data models with dozens of dimensions and measures</li>
+                        <li>Supported multiple data model formats (IoT, DevOps, application metrics) without overwhelming users</li>
+                        <li>Real-time validation prevented query inefficiencies before data ingestion</li>
+                        <li>Progressive disclosure patterns maintained usability with large schemas</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Business Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Addressed a critical adoption barrier that was significantly impacting service growth</li>
+                        <li>Improved customer retention through higher workflow completion rates</li>
+                        <li>Reduced support burden by preventing common data modeling mistakes</li>
+                        <li>Enabled faster time-to-value, improving competitive positioning</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-300 leading-relaxed mt-12 max-w-3xl">
+                <strong class="text-white">Bottom Line:</strong> This project demonstrates how thoughtful UX design can address not just usability issues, but fundamental adoption barriers rooted in knowledge gaps and misconceptions. By focusing on the customer's mental model, we created a bridge to new technology rather than expecting customers to abandon their existing frameworks.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         6. KEY TAKEAWAYS SECTION
+         =================================== -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Key Takeaways</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-12 max-w-4xl" style="letter-spacing: -0.025em;">
+                Lessons in Cognitive Design
+            </h2>
+
+            <div class="space-y-8 mb-12">
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Simplify Cognitive-Heavy Tasks</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Breaking down complex, unfamiliar concepts into visual, guided experiences dramatically lowers barriers to entry for new users. The 90+ day setup time wasn't due to technical complexity alone—it was cognitive overload. Visual representation made abstract concepts concrete while preventing common structural errors.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Meet Users Where They Are</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Understanding a customer's existing mental model (SQL databases) and their intent (data migration) allowed me to design an experience that bridged the gap to new concepts (schemaless time-series) rather than forcing them to start from scratch. Used familiar SQL terminology where appropriate but provided clear comparisons showing "SQL approach vs. Timestream approach."
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">The Interface Is the Education</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Rather than relying on external documentation or tutorials, embedding contextual learning directly into the workflow ensured customers learned the right patterns while completing real tasks. The visual builder didn't just enable configuration—it taught time-series best practices through real-time validation and contextual guidance.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Collaborate with Customer-Facing Teams</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Close collaboration with Solution Architects who worked directly with new customers during onboarding provided invaluable insight into real-world pain points. Their input ensured the solution addressed actual customer needs rather than perceived problems, and their validation during testing confirmed the approach would work in practice.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         7. CLOSING SECTION
+         =================================== -->
+    <section class="py-24 bg-white border-t border-slate-950/[0.08]">
+        <div class="max-w-4xl mx-auto px-8 md:px-16 text-center">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Conclusion</span>
+
+            <p class="text-xl text-slate-600 leading-relaxed mb-12">
+                This project reinforced the importance of understanding not just what customers are trying to do, but how they think about the problem. By designing an interface that met customers at their existing level of understanding (SQL) and guided them to new concepts (time-series), we eliminated a critical adoption barrier. Future improvements could include: expanded template library based on emerging use cases, collaborative data model design for teams, and version control for data model iterations.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
+                    See More Projects →
+                </a>
+                <a href="mailto:your.email@example.com" class="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-slate-950 text-base font-semibold tracking-tight border-2 border-slate-950/[0.08] hover:border-slate-950 transition-all">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        const navHeight = 100;
+                        const targetPosition = targetSection.offsetTop - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

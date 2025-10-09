@@ -8,6 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Portfolio Theme System -->
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/common.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,6 +22,15 @@
                         sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
                     },
                     colors: {
+                        // Theme colors from CSS variables
+                        'theme-primary': 'var(--color-primary)',
+                        'theme-primary-dark': 'var(--color-primary-dark)',
+                        'theme-primary-light': 'var(--color-primary-light)',
+                        'theme-bg-primary': 'var(--color-bg-primary)',
+                        'theme-bg-secondary': 'var(--color-bg-secondary)',
+                        'theme-text-primary': 'var(--color-text-primary)',
+                        'theme-text-secondary': 'var(--color-text-secondary)',
+                        // Keep original colors for compatibility
                         slate: {
                             950: '#0f172a',
                         },
@@ -116,6 +130,25 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* THEME OVERRIDE - Apply CSS variables over Tailwind classes */
+        html, body { background-color: var(--color-bg-primary) !important; color: var(--color-text-primary) !important; }
+        nav { background-color: rgba(255, 255, 255, 0.95) !important; }
+        .bg-white { background-color: var(--color-bg-primary) !important; }
+        .bg-slate-50 { background-color: var(--color-bg-secondary) !important; }
+        .bg-slate-100 { background-color: var(--color-bg-tertiary) !important; }
+        .text-slate-900, .text-slate-950 { color: var(--color-text-primary) !important; }
+        .text-slate-600 { color: var(--color-text-secondary) !important; }
+        .text-slate-500 { color: var(--color-text-tertiary) !important; }
+        .text-blue-500, .text-blue-600 { color: var(--color-primary) !important; }
+        .bg-blue-500 { background-color: var(--color-primary) !important; }
+        .bg-blue-600, .hover\:bg-blue-600:hover { background-color: var(--color-primary-dark) !important; }
+        .hover\:text-blue-500:hover, .hover\:text-blue-700:hover { color: var(--color-primary) !important; }
+        .border-slate-200 { border-color: var(--color-border-secondary) !important; }
+        .border-blue-500 { border-color: var(--color-border-accent) !important; }
+        .hover\:border-blue-200:hover { border-color: var(--color-primary) !important; }
+        svg path, svg rect { stroke: var(--color-primary) !important; }
+        h1, h2, h3, h4, h5, h6 { color: var(--color-text-primary) !important; }
     </style>
 </head>
 <body class="font-sans antialiased bg-white text-slate-900">
@@ -180,10 +213,10 @@
                             <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent"></div>
                         </div>
                         <div class="p-8">
-                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Enterprise</span>
-                            <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">Analytics Dashboard</h3>
-                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Redesigned complex data visualization platform for Fortune 500 company, improving user task completion by 40%.</p>
-                            <a href="projects/case-study-template.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Database Design Tool</span>
+                            <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">Amazon Timestream Data Model Builder</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Visual tool that reduced database setup time from 90+ days to hours, achieving 51% completion rate for new users.</p>
+                            <a href="projects/case-study-dataModelBuilder.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
                                 View Case Study
                                 <span class="transition-transform group-hover:translate-x-1">→</span>
                             </a>
@@ -194,14 +227,60 @@
                 <!-- Project Card 2 -->
                 <article class="group opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
                     <div class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
-                        <div class="aspect-[16/10] bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 overflow-hidden relative">
-                            <div class="absolute inset-0 bg-gradient-to-bl from-blue-500/5 to-transparent"></div>
+                        <div class="aspect-[16/10] bg-white overflow-hidden relative p-3">
+                            <!-- Static Preview of Pricing Widget -->
+                            <div class="w-full h-full grid grid-cols-2 gap-2 text-[6px]">
+                                <!-- Left: Configuration Controls -->
+                                <div class="space-y-1.5">
+                                    <div>
+                                        <div class="text-slate-600 font-medium mb-0.5">Instance Type</div>
+                                        <div class="bg-white border border-slate-300 rounded px-1.5 py-1 text-slate-900 text-[5px]">db.t3.small - 2 vCPU, 2 GB</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-slate-600 font-medium mb-0.5">Storage: <span class="text-slate-900 font-semibold">100 GB</span></div>
+                                        <div class="bg-slate-300 h-0.5 rounded-full relative">
+                                            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-slate-950 rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="text-slate-600 font-medium mb-0.5">Region</div>
+                                        <div class="bg-white border border-slate-300 rounded px-1.5 py-1 text-slate-900 text-[5px]">US East (N. Virginia)</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-slate-600 font-medium mb-0.5">Backup Retention</div>
+                                        <div class="bg-white border border-slate-300 rounded px-1.5 py-1 text-slate-900 text-[5px]">7 days</div>
+                                    </div>
+                                </div>
+
+                                <!-- Right: Pricing Summary -->
+                                <div class="bg-gradient-to-br from-slate-50 to-slate-100 rounded border border-slate-200 p-2">
+                                    <div class="text-slate-900 font-semibold mb-1 text-[5px]">Monthly Cost Estimate</div>
+                                    <div class="text-slate-950 font-bold text-[14px] mb-0.5">$36.82</div>
+                                    <div class="text-slate-600 text-[4px] mb-2">per month</div>
+
+                                    <div class="space-y-0.5 pt-1.5 border-t border-slate-300">
+                                        <div class="text-slate-500 font-semibold uppercase text-[4px] mb-1">Cost Breakdown</div>
+                                        <div class="flex justify-between text-[5px]">
+                                            <span class="text-slate-600">Instance</span>
+                                            <span class="text-slate-900 font-medium">$24.82</span>
+                                        </div>
+                                        <div class="flex justify-between text-[5px]">
+                                            <span class="text-slate-600">Storage</span>
+                                            <span class="text-slate-900 font-medium">$11.50</span>
+                                        </div>
+                                        <div class="flex justify-between text-[5px]">
+                                            <span class="text-slate-600">Backups</span>
+                                            <span class="text-slate-900 font-medium">$0.50</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="p-8">
-                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Enterprise</span>
-                            <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">SaaS Platform Redesign</h3>
-                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Led UX transformation of B2B collaboration tool, streamlining workflows for 10,000+ daily users.</p>
-                            <a href="projects/case-study-template.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                            <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Scalable component design</span>
+                            <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">AWS Database Pricing Widget</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Interactive pricing configurator providing real-time cost estimates for AWS database resource configuration.</p>
+                            <a href="projects/case-study-aws-pricing-widget.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
                                 View Case Study
                                 <span class="transition-transform group-hover:translate-x-1">→</span>
                             </a>

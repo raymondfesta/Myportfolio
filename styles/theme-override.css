@@ -1,0 +1,174 @@
+/* ===================================
+   THEME OVERRIDE
+   This file overrides Tailwind classes to use CSS variables
+   This allows instant theme switching without editing HTML
+   =================================== */
+
+/* Override body and html backgrounds */
+html,
+body {
+    background-color: var(--color-bg-primary) !important;
+    color: var(--color-text-primary) !important;
+}
+
+/* Override common background classes */
+.bg-white,
+body.bg-white {
+    background-color: var(--color-bg-primary) !important;
+}
+
+.bg-slate-50 {
+    background-color: var(--color-bg-secondary) !important;
+}
+
+.bg-slate-100 {
+    background-color: var(--color-bg-tertiary) !important;
+}
+
+/* Override gradient backgrounds */
+.bg-gradient-to-br {
+    background-image: linear-gradient(to bottom right, var(--color-bg-secondary), var(--color-bg-primary)) !important;
+}
+
+/* Override text colors */
+.text-slate-900,
+.text-slate-950 {
+    color: var(--color-text-primary) !important;
+}
+
+.text-slate-600 {
+    color: var(--color-text-secondary) !important;
+}
+
+.text-slate-500 {
+    color: var(--color-text-tertiary) !important;
+}
+
+/* Override blue colors to use theme primary */
+.text-blue-500,
+.text-blue-600 {
+    color: var(--color-primary) !important;
+}
+
+.bg-blue-500 {
+    background-color: var(--color-primary) !important;
+}
+
+.bg-blue-600,
+.hover\:bg-blue-600:hover {
+    background-color: var(--color-primary-dark) !important;
+}
+
+.hover\:text-blue-500:hover,
+.hover\:text-blue-600:hover,
+.hover\:text-blue-700:hover {
+    color: var(--color-primary) !important;
+}
+
+/* Border colors */
+.border-slate-200,
+.border-slate-950\/\[0\.06\],
+.border-slate-950\/\[0\.08\] {
+    border-color: var(--color-border-secondary) !important;
+}
+
+.border-blue-200,
+.border-blue-500 {
+    border-color: var(--color-border-accent) !important;
+}
+
+.hover\:border-blue-200:hover,
+.hover\:border-blue-500:hover {
+    border-color: var(--color-primary) !important;
+}
+
+/* Navigation specific overrides */
+nav.bg-white\/95,
+.bg-white\/95 {
+    background-color: rgba(0, 0, 0, 0.95) !important;
+}
+
+/* Card backgrounds */
+.bg-white.rounded-xl {
+    background-color: var(--color-bg-primary) !important;
+}
+
+/* Button hover states */
+.hover\:bg-blue-500:hover {
+    background-color: var(--color-primary) !important;
+}
+
+/* Shadow overrides for dark theme */
+.shadow-sm,
+.hover\:shadow-xl:hover {
+    box-shadow: 0 0 0 1px var(--color-border-secondary) !important;
+}
+
+/* Logo SVG color override */
+svg path,
+svg rect {
+    stroke: var(--color-primary) !important;
+}
+
+/* Special handling for specific text elements */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-text-primary) !important;
+}
+
+/* Links */
+a {
+    color: var(--color-text-primary);
+}
+
+a:hover {
+    color: var(--color-primary);
+}
+
+/* Override background blue shades */
+.bg-blue-500\/\[0\.08\],
+.bg-blue-500\/10,
+.bg-slate-100 {
+    background-color: var(--color-bg-tertiary) !important;
+}
+
+/* Override card image gradients */
+.aspect-\[16\/10\].bg-gradient-to-br {
+    background: linear-gradient(to bottom right, var(--color-bg-tertiary), var(--color-bg-secondary), var(--color-bg-tertiary)) !important;
+}
+
+/* Border opacity overrides */
+.border-blue-500\/20 {
+    border-color: var(--color-border-primary) !important;
+}
+
+.border-blue-500\/30 {
+    border-color: var(--color-border-accent) !important;
+}
+
+.hover\:border-blue-500\/50:hover,
+.hover\:border-blue-500\/70:hover {
+    border-color: var(--color-primary) !important;
+}
+
+/* Tag/badge backgrounds */
+span.bg-slate-100,
+span.bg-blue-500\/\[0\.08\] {
+    background-color: var(--color-bg-tertiary) !important;
+    color: var(--color-text-secondary) !important;
+}
+
+/* White card with borders */
+.bg-white\/50 {
+    background-color: rgba(26, 26, 26, 0.5) !important;
+}
+
+/* Text inverse (for buttons on colored backgrounds) */
+.bg-blue-500.text-white,
+.text-white {
+    color: var(--color-text-inverse) !important;
+}
+
+/* Ensure readability on primary colored backgrounds */
+.bg-blue-500 * {
+    color: var(--color-text-inverse) !important;
+}

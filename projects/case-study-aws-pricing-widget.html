@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AWS Database Pricing Widget - Interactive pricing configurator providing real-time cost estimates for database resource configuration">
+    <title>AWS Database Pricing Widget — Case Study</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-slate-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-950/[0.06] z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-8 md:px-16 py-7 flex justify-between items-center">
+            <a href="../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
+                ← Back to Portfolio
+            </a>
+            <ul class="flex gap-10 list-none m-0 p-0">
+                <li><a href="#challenge" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Challenge</a></li>
+                <li><a href="#approach" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Approach</a></li>
+                <li><a href="#solution" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Solution</a></li>
+                <li><a href="#impact" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Impact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===================================
+         1. INTRODUCTION SECTION
+         =================================== -->
+    <section class="pt-40 pb-32 bg-gradient-to-br from-slate-50 to-white border-b border-slate-950/[0.08]">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <!-- Project Category -->
+            <span class="inline-block text-sm uppercase tracking-wider text-blue-500 font-semibold mb-6 px-5 py-2.5 bg-blue-500/[0.08] rounded-md opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
+                Scalable component design
+            </span>
+
+            <!-- Project Title -->
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-slate-950 mb-8 max-w-5xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s; letter-spacing: -0.03em;">
+                AWS Database Pricing Widget
+            </h1>
+
+            <!-- Overview -->
+            <p class="text-xl text-slate-600 leading-relaxed mb-6 max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
+                An interactive pricing configurator designed for the AWS Console that provides real-time cost estimates as customers configure their database resources. The widget dynamically calculates and displays pricing based on customer selections, connecting directly to the AWS Pricing API to ensure accuracy and transparency at the point of resource creation.
+            </p>
+
+            <!-- Goal -->
+            <p class="text-xl text-slate-600 leading-relaxed max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
+                <strong class="text-slate-950">Goal:</strong> Improve pricing transparency during database resource creation, help customers make educated pricing decisions, and reduce confusion around AWS database pricing through real-time cost visibility.
+            </p>
+
+            <!-- Project Meta -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-slate-950/[0.08] opacity-0 animate-fadeInUp" style="animation-delay: 0.6s;">
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Role</span>
+                    <span class="text-base text-slate-950 font-medium">Lead Product Designer</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Timeline</span>
+                    <span class="text-base text-slate-950 font-medium">4 weeks</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Team</span>
+                    <span class="text-base text-slate-950 font-medium">2 (Designer, Engineer)</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Platform</span>
+                    <span class="text-base text-slate-950 font-medium">AWS Console</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         2. THE CHALLENGE SECTION
+         =================================== -->
+    <section id="challenge" class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Challenge</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Pricing Opacity Was Blocking Customer Confidence
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                AWS customers consistently reported difficulty understanding pricing transparency, particularly during the resource creation process. Without clear visibility into costs at the point of configuration, customers struggled to make informed decisions about their database setup, leading to confusion and frustration.
+            </p>
+
+            <!-- Challenge Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Hidden Costs</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Customers had no visibility into the financial impact of their configuration choices during resource creation. This lack of transparency made it difficult to understand what they would be charged before committing to a database setup.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Complex Pricing Models</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        AWS pricing varies based on multiple factors—instance type, storage, region, and more. Without real-time calculations, customers couldn't easily understand how their choices affected total cost.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Decision Paralysis</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        The absence of pricing information during configuration led to hesitation and abandoned workflows. Customers couldn't confidently proceed without understanding the cost implications.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Fragmented Experience</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Customers had to leave the console and visit separate pricing pages or calculators to estimate costs, creating friction and breaking the creation workflow.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Why it mattered:</strong> Pricing transparency is critical for building customer trust and confidence. Without it, customers hesitated to adopt AWS services or made uninformed decisions that led to unexpected costs.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         3. APPROACH SECTION
+         =================================== -->
+    <section id="approach" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Our Approach</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Real-Time Visibility, Reusable by Design
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                The approach focused on creating an interactive experience that would update dynamically as customers made configuration changes, while building a reusable component that could scale across multiple AWS services with minimal customization.
+            </p>
+
+            <!-- Approach Phases -->
+            <div class="space-y-12 relative before:content-[''] before:absolute before:left-6 before:top-0 before:bottom-0 before:w-0.5 before:bg-slate-200">
+                <!-- Phase 1 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">1</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Research & Discovery</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Leveraged existing usability research study data that specifically highlighted customer pain points around pricing transparency. The research revealed that customers faced significant challenges understanding costs during the resource creation workflow.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Analyzed customer feedback on pricing confusion and uncertainty</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Identified gaps in the resource creation workflow</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Mapped pricing factors to configuration inputs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">2</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Design & Prototyping</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Using Figma and the AWS Design System, I explored various layouts and interaction patterns that would seamlessly integrate into the existing AWS Console experience. The key principle was to make pricing information visible and understandable without disrupting the configuration workflow.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Designed dynamic pricing display that updates in real-time</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created clear visual hierarchy for cost breakdowns</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Ensured seamless integration with AWS Console patterns</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">3</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Technical Architecture</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            The technical architecture was designed with reusability as a core principle. I worked closely with the frontend engineer to define the component's logic, establishing a flexible architecture that would allow any AWS service team to implement the widget with minimal customization.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Mapped configuration inputs to AWS Pricing API SKUs</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created flexible component architecture for multi-service use</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Built using AWS Design System for consistency</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">4</div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Testing & Validation</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Throughout the development process, we validated the technical accuracy of pricing calculations by cross-referencing API responses with known pricing data. The component logic was tested across various configuration scenarios to ensure accuracy and performance.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Validated pricing calculations against API data</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Tested across multiple configuration scenarios</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Ensured performance with real-time updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         4. SOLUTION SECTION
+         =================================== -->
+    <section id="solution" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Solution</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                An Interactive Widget That Builds Trust Through Transparency
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                The pricing widget provides real-time cost estimates directly within the database creation workflow, giving customers immediate visibility into the financial impact of their configuration choices.
+            </p>
+
+            <!-- Key Features -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Real-Time Updates</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Cost estimates update instantly as customers modify their database configuration, providing immediate feedback on pricing impact.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">API Integration</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Direct connection to AWS Pricing API ensures all displayed prices are accurate and reflect current rates.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Reusable Architecture</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Built for flexibility, allowing any AWS service team to implement with minimal customization.</p>
+                </div>
+            </div>
+
+            <!-- Feature Details -->
+            <h3 class="text-3xl font-semibold text-slate-950 mb-8 tracking-tight">Key Capabilities</h3>
+
+            <div class="space-y-8 mb-16">
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">1. Real-Time Dynamic Pricing</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        The component updates cost estimates instantly as customers modify their database configuration, providing immediate feedback on the financial impact of each decision. This eliminates guesswork and helps customers make informed choices.
+                    </p>
+                    <iframe
+                        src="case-study-aws-pricing-widget-demo.html"
+                        class="w-full border border-slate-950/[0.06] rounded"
+                        style="height: 500px; min-height: 500px; overflow: hidden;"
+                        frameborder="0"
+                        scrolling="no"
+                        title="Interactive AWS Pricing Calculator Demo">
+                    </iframe>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">2. AWS Pricing API Integration</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Direct connection to the AWS Pricing API ensures that all displayed prices are accurate and reflect current rates, with each configuration input mapped to its corresponding pricing SKU. This guarantees customers see exactly what they'll be charged.
+                    </p>
+
+                    <!-- API Integration Flow Diagram -->
+                    <div class="w-full bg-white p-8 border border-slate-950/[0.06] rounded-lg">
+                        <svg viewBox="0 0 1000 600" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Title -->
+                            <text x="500" y="30" font-size="18" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">
+                                AWS Pricing API Integration Flow
+                            </text>
+
+                            <!-- Configuration Inputs (Left) -->
+                            <g id="inputs">
+                                <rect x="50" y="80" width="200" height="400" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" rx="8"/>
+                                <text x="150" y="110" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Configuration Inputs
+                                </text>
+
+                                <!-- Input Items -->
+                                <rect x="70" y="130" width="160" height="50" fill="white" stroke="#e2e8f0" stroke-width="1.5" rx="4"/>
+                                <text x="150" y="152" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">Instance Type</text>
+                                <text x="150" y="168" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">db.r5.large</text>
+
+                                <rect x="70" y="195" width="160" height="50" fill="white" stroke="#e2e8f0" stroke-width="1.5" rx="4"/>
+                                <text x="150" y="217" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">Storage (GB)</text>
+                                <text x="150" y="233" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">100</text>
+
+                                <rect x="70" y="260" width="160" height="50" fill="white" stroke="#e2e8f0" stroke-width="1.5" rx="4"/>
+                                <text x="150" y="282" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">Region</text>
+                                <text x="150" y="298" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">us-east-1</text>
+
+                                <rect x="70" y="325" width="160" height="50" fill="white" stroke="#e2e8f0" stroke-width="1.5" rx="4"/>
+                                <text x="150" y="347" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">Engine</text>
+                                <text x="150" y="363" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">PostgreSQL</text>
+
+                                <rect x="70" y="390" width="160" height="50" fill="white" stroke="#e2e8f0" stroke-width="1.5" rx="4"/>
+                                <text x="150" y="412" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">Deployment</text>
+                                <text x="150" y="428" font-size="13" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">Multi-AZ</text>
+                            </g>
+
+                            <!-- Mapping Layer (Center) -->
+                            <g id="mapping">
+                                <rect x="330" y="80" width="340" height="400" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" rx="8"/>
+                                <text x="500" y="110" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    SKU Mapping Logic
+                                </text>
+
+                                <!-- Mapping Items -->
+                                <g id="mapping-1">
+                                    <rect x="350" y="130" width="300" height="50" fill="white" stroke="#3b82f6" stroke-width="1.5" rx="4"/>
+                                    <text x="370" y="149" font-size="10" font-weight="500" fill="#64748b" font-family="Manrope, sans-serif">Instance Type + Region + Engine</text>
+                                    <text x="370" y="167" font-size="11" font-weight="600" fill="#1e40af" font-family="Manrope, sans-serif">→ SKU: RDS-PG-R5-LARGE-USE1</text>
+                                </g>
+
+                                <g id="mapping-2">
+                                    <rect x="350" y="195" width="300" height="50" fill="white" stroke="#3b82f6" stroke-width="1.5" rx="4"/>
+                                    <text x="370" y="214" font-size="10" font-weight="500" fill="#64748b" font-family="Manrope, sans-serif">Storage + Region</text>
+                                    <text x="370" y="232" font-size="11" font-weight="600" fill="#1e40af" font-family="Manrope, sans-serif">→ SKU: RDS-STORAGE-GP3-USE1</text>
+                                </g>
+
+                                <g id="mapping-3">
+                                    <rect x="350" y="260" width="300" height="50" fill="white" stroke="#3b82f6" stroke-width="1.5" rx="4"/>
+                                    <text x="370" y="279" font-size="10" font-weight="500" fill="#64748b" font-family="Manrope, sans-serif">Multi-AZ Deployment</text>
+                                    <text x="370" y="297" font-size="11" font-weight="600" fill="#1e40af" font-family="Manrope, sans-serif">→ SKU: RDS-MULTIAZ-USE1</text>
+                                </g>
+
+                                <!-- API Call Representation -->
+                                <rect x="350" y="335" width="300" height="130" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" rx="4"/>
+                                <text x="500" y="357" font-size="12" font-weight="600" fill="#92400e" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    API Request Payload
+                                </text>
+                                <text x="370" y="380" font-size="10" font-weight="400" fill="#78350f" font-family="Courier New, monospace">{</text>
+                                <text x="385" y="395" font-size="10" font-weight="400" fill="#78350f" font-family="Courier New, monospace">"SKUs": [</text>
+                                <text x="400" y="410" font-size="10" font-weight="400" fill="#78350f" font-family="Courier New, monospace">"RDS-PG-R5-LARGE-USE1",</text>
+                                <text x="400" y="425" font-size="10" font-weight="400" fill="#78350f" font-family="Courier New, monospace">"RDS-STORAGE-GP3-USE1",</text>
+                                <text x="400" y="440" font-size="10" font-weight="400" fill="#78350f" font-family="Courier New, monospace">"RDS-MULTIAZ-USE1"</text>
+                                <text x="385" y="455" font-size="10" font-weight="400" fill="#78350f" font-family="Courier New, monospace">]</text>
+                                <text x="370" y="455" font-size="10" font-weight="400" fill="#78350f" font-family="Courier New, monospace">}</text>
+                            </g>
+
+                            <!-- AWS Pricing API (Right) -->
+                            <g id="api">
+                                <rect x="750" y="180" width="200" height="200" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2" rx="8"/>
+                                <text x="850" y="210" font-size="14" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    AWS Pricing API
+                                </text>
+
+                                <!-- API Icon -->
+                                <circle cx="850" cy="255" r="30" fill="#3b82f6" opacity="0.1"/>
+                                <circle cx="850" cy="255" r="20" fill="#3b82f6" opacity="0.2"/>
+                                <circle cx="850" cy="255" r="10" fill="#3b82f6"/>
+
+                                <text x="850" y="310" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Returns Current
+                                </text>
+                                <text x="850" y="326" font-size="11" font-weight="500" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Pricing Rates
+                                </text>
+
+                                <!-- Response Data -->
+                                <rect x="760" y="340" width="180" height="30" fill="white" stroke="#10b981" stroke-width="1.5" rx="4"/>
+                                <text x="850" y="362" font-size="11" font-weight="600" fill="#059669" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    $0.29/hour + $0.115/GB
+                                </text>
+                            </g>
+
+                            <!-- Real-time Display (Bottom) -->
+                            <g id="display">
+                                <rect x="250" y="510" width="500" height="70" fill="#dcfce7" stroke="#10b981" stroke-width="2" rx="8"/>
+                                <text x="500" y="535" font-size="13" font-weight="500" fill="#065f46" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Real-Time Price Display
+                                </text>
+                                <text x="500" y="560" font-size="20" font-weight="700" fill="#047857" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Estimated Monthly Cost: $221.50
+                                </text>
+                            </g>
+
+                            <!-- Arrows -->
+                            <!-- Input to Mapping -->
+                            <defs>
+                                <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L0,6 L9,3 z" fill="#3b82f6" />
+                                </marker>
+                            </defs>
+
+                            <path d="M 250 155 L 330 155" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowblue)"/>
+                            <path d="M 250 220 L 330 220" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowblue)"/>
+                            <path d="M 250 285 L 330 285" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowblue)"/>
+
+                            <!-- Mapping to API -->
+                            <path d="M 670 400 Q 710 400 750 350" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowblue)"/>
+
+                            <!-- API to Display -->
+                            <path d="M 850 380 L 850 450 Q 850 480 820 500 L 680 510" stroke="#10b981" stroke-width="2" fill="none" marker-end="url(#arrowblue)">
+                                <animate attributeName="stroke-dashoffset" from="20" to="0" dur="1s" repeatCount="indefinite"/>
+                            </path>
+
+                            <!-- Labels on arrows -->
+                            <text x="290" y="145" font-size="9" font-weight="500" fill="#64748b" font-family="Manrope, sans-serif">maps to</text>
+                            <text x="710" y="370" font-size="9" font-weight="500" fill="#64748b" font-family="Manrope, sans-serif">query</text>
+                            <text x="860" y="445" font-size="9" font-weight="500" fill="#059669" font-family="Manrope, sans-serif">live data</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">3. Reusable Component Architecture</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Built with flexibility in mind, the widget was designed and architected to be easily implemented by any AWS service team, reducing development overhead and ensuring consistency across the console. The modular design allows for service-specific customization without requiring significant re-engineering.
+                    </p>
+                    <!-- Reusable Architecture Diagram -->
+                    <div class="w-full bg-white p-8 border border-slate-950/[0.06] rounded-lg">
+                        <svg viewBox="0 0 1200 800" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Title -->
+                            <text x="600" y="35" font-size="18" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">
+                                Reusable Component Architecture
+                            </text>
+
+                            <!-- Core Widget Component (Center) -->
+                            <g id="core-component">
+                                <!-- Outer glow -->
+                                <ellipse cx="600" cy="400" rx="145" ry="145" fill="#3b82f6" opacity="0.05"/>
+                                <ellipse cx="600" cy="400" rx="135" ry="135" fill="#3b82f6" opacity="0.08"/>
+
+                                <!-- Main circle -->
+                                <circle cx="600" cy="400" r="120" fill="#3b82f6" stroke="#2563eb" stroke-width="3"/>
+
+                                <!-- Core label -->
+                                <text x="600" y="380" font-size="16" font-weight="700" fill="white" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Core Pricing Widget
+                                </text>
+                                <text x="600" y="405" font-size="11" font-weight="500" fill="white" text-anchor="middle" font-family="Manrope, sans-serif" opacity="0.9">
+                                    • Modular Architecture
+                                </text>
+                                <text x="600" y="423" font-size="11" font-weight="500" fill="white" text-anchor="middle" font-family="Manrope, sans-serif" opacity="0.9">
+                                    • Shared Pricing Logic
+                                </text>
+                                <text x="600" y="441" font-size="11" font-weight="500" fill="white" text-anchor="middle" font-family="Manrope, sans-serif" opacity="0.9">
+                                    • AWS API Integration
+                                </text>
+                            </g>
+
+                            <!-- Service Implementation: RDS (Bottom Center) -->
+                            <g id="rds-implementation">
+                                <rect x="450" y="590" width="300" height="140" fill="#eff6ff" stroke="#3b82f6" stroke-width="2" rx="8"/>
+
+                                <!-- Service Header -->
+                                <rect x="450" y="590" width="300" height="40" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" rx="8"/>
+                                <text x="600" y="616" font-size="14" font-weight="700" fill="#1e40af" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Amazon RDS
+                                </text>
+
+                                <!-- Config section -->
+                                <text x="470" y="655" font-size="11" font-weight="600" fill="#64748b" font-family="Manrope, sans-serif">
+                                    Service-Specific Config:
+                                </text>
+                                <text x="480" y="675" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • instanceTypes: [db.t3, db.r5, db.m5]
+                                </text>
+                                <text x="480" y="692" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • engines: [PostgreSQL, MySQL, Oracle]
+                                </text>
+                                <text x="480" y="709" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • storageTypes: [gp3, io1, io2]
+                                </text>
+                            </g>
+
+                            <!-- Service Implementation: DynamoDB (Bottom Left) -->
+                            <g id="dynamodb-implementation">
+                                <rect x="120" y="590" width="300" height="140" fill="#f0fdf4" stroke="#10b981" stroke-width="2" rx="8"/>
+
+                                <!-- Service Header -->
+                                <rect x="120" y="590" width="300" height="40" fill="#d1fae5" stroke="#10b981" stroke-width="2" rx="8"/>
+                                <text x="270" y="616" font-size="14" font-weight="700" fill="#065f46" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Amazon DynamoDB
+                                </text>
+
+                                <!-- Config section -->
+                                <text x="140" y="655" font-size="11" font-weight="600" fill="#64748b" font-family="Manrope, sans-serif">
+                                    Service-Specific Config:
+                                </text>
+                                <text x="150" y="675" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • capacityModes: [on-demand, provisioned]
+                                </text>
+                                <text x="150" y="692" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • storageClass: [standard, IA]
+                                </text>
+                                <text x="150" y="709" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • globalTables: [enabled, disabled]
+                                </text>
+                            </g>
+
+                            <!-- Service Implementation: ElastiCache (Bottom Right) -->
+                            <g id="elasticache-implementation">
+                                <rect x="780" y="590" width="300" height="140" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" rx="8"/>
+
+                                <!-- Service Header -->
+                                <rect x="780" y="590" width="300" height="40" fill="#fde68a" stroke="#f59e0b" stroke-width="2" rx="8"/>
+                                <text x="930" y="616" font-size="14" font-weight="700" fill="#92400e" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Amazon ElastiCache
+                                </text>
+
+                                <!-- Config section -->
+                                <text x="800" y="655" font-size="11" font-weight="600" fill="#64748b" font-family="Manrope, sans-serif">
+                                    Service-Specific Config:
+                                </text>
+                                <text x="810" y="675" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • nodeTypes: [cache.t3, cache.r6g]
+                                </text>
+                                <text x="810" y="692" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • engines: [Redis, Memcached]
+                                </text>
+                                <text x="810" y="709" font-size="10" font-weight="400" fill="#475569" font-family="Courier New, monospace">
+                                    • clusterMode: [enabled, disabled]
+                                </text>
+                            </g>
+
+                            <!-- Connection Lines with Arrows -->
+                            <defs>
+                                <marker id="arrowblue2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L0,6 L9,3 z" fill="#3b82f6" />
+                                </marker>
+                                <marker id="arrowgreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+                                </marker>
+                                <marker id="arroworange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                    <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b" />
+                                </marker>
+                            </defs>
+
+                            <!-- Core to RDS -->
+                            <path d="M 600 520 L 600 590" stroke="#3b82f6" stroke-width="3" fill="none" marker-end="url(#arrowblue2)"/>
+
+                            <!-- Core to DynamoDB -->
+                            <path d="M 520 470 Q 400 530 310 590" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowgreen)"/>
+
+                            <!-- Core to ElastiCache -->
+                            <path d="M 680 470 Q 800 530 890 590" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arroworange)"/>
+
+                            <!-- UI/UX Benefit to Core (dotted line) -->
+                            <path d="M 400 150 L 540 330" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+
+                            <!-- Reduced Overhead Benefit to Core (dotted line) -->
+                            <path d="M 800 150 L 660 330" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4" fill="none" opacity="0.6"/>
+
+                            <!-- Benefits Callouts -->
+                            <g id="benefit-1">
+                                <rect x="300" y="80" width="200" height="70" fill="white" stroke="#cbd5e1" stroke-width="1.5" rx="6"/>
+                                <text x="400" y="103" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Consistent UI/UX
+                                </text>
+                                <text x="400" y="120" font-size="9" font-weight="400" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Same user experience
+                                </text>
+                                <text x="400" y="134" font-size="9" font-weight="400" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    across all services
+                                </text>
+                            </g>
+
+                            <g id="benefit-2">
+                                <rect x="700" y="80" width="200" height="70" fill="white" stroke="#cbd5e1" stroke-width="1.5" rx="6"/>
+                                <text x="800" y="103" font-size="10" font-weight="600" fill="#0f172a" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Reduced Overhead
+                                </text>
+                                <text x="800" y="120" font-size="9" font-weight="400" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    Minimal re-engineering
+                                </text>
+                                <text x="800" y="134" font-size="9" font-weight="400" fill="#64748b" text-anchor="middle" font-family="Manrope, sans-serif">
+                                    for new implementations
+                                </text>
+                            </g>
+
+                            <!-- Legend -->
+                            <g id="legend">
+                                <text x="50" y="770" font-size="10" font-weight="600" fill="#64748b" font-family="Manrope, sans-serif">
+                                    Implementation Flow:
+                                </text>
+                                <line x1="180" y1="765" x2="210" y2="765" stroke="#3b82f6" stroke-width="3"/>
+                                <text x="220" y="770" font-size="9" font-weight="400" fill="#64748b" font-family="Manrope, sans-serif">
+                                    Service configures widget
+                                </text>
+
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Design Impact:</strong> By providing real-time pricing visibility at the point of resource creation, the widget empowers customers to make educated decisions with confidence, directly addressing the pain point of pricing transparency.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         5. IMPACT SECTION
+         =================================== -->
+    <section id="impact" class="py-24 bg-gradient-to-br from-slate-950 to-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,rgba(59,130,246,0.3)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(168,85,247,0.3)_0%,transparent_50%)]"></div>
+
+        <div class="max-w-6xl mx-auto px-8 md:px-16 relative z-10">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-400 font-semibold mb-6 pb-2 border-b-2 border-white/10">Impact</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-white mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Live and Actively Improving Customer Experience
+            </h2>
+
+            <p class="text-lg text-slate-300 leading-relaxed mb-12 max-w-3xl">
+                The pricing widget is currently live and actively being used by AWS customers in the database creation workflow, providing immediate value through improved pricing transparency.
+            </p>
+
+            <!-- Impact Categories -->
+            <div class="space-y-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Customer Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Directly addressed customer feedback regarding pricing transparency at the point of resource creation</li>
+                        <li>Reduced confusion and uncertainty around AWS database pricing</li>
+                        <li>Enabled customers to make educated pricing decisions with real-time visibility</li>
+                        <li>Eliminated workflow interruptions from needing to visit external pricing calculators</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Technical Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Successfully deployed a reusable component that can be implemented across multiple AWS services</li>
+                        <li>Established accurate API integration ensuring pricing calculations remain current and reliable</li>
+                        <li>Created a scalable architecture that maintains performance with real-time updates</li>
+                        <li>Built foundation for improved pricing visibility throughout the AWS Console</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Business Results</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Established a precedent for pricing transparency in the AWS Console</li>
+                        <li>Created a scalable solution that can be adopted by other service teams</li>
+                        <li>Reduced development overhead through reusable component architecture</li>
+                        <li>Improved customer trust through transparent cost visibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-300 leading-relaxed mt-12 max-w-3xl">
+                <strong class="text-white">Bottom Line:</strong> This project demonstrates how design solutions that prioritize transparency and usability can directly address customer pain points while creating technical infrastructure that scales across an organization.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         6. KEY TAKEAWAYS SECTION
+         =================================== -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Key Takeaways</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-12 max-w-4xl" style="letter-spacing: -0.025em;">
+                Lessons That Scale
+            </h2>
+
+            <div class="space-y-8 mb-12">
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Research Accelerates Design</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Leveraging existing research data can significantly accelerate the design process and ensure customer needs are addressed from the start. Understanding pain points early allowed us to focus on solutions that directly addressed real customer challenges.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Build for Reusability from Day One</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Building for reusability from the beginning, even with tight timelines, pays dividends when the component needs to scale across multiple services. The initial investment in flexible architecture reduces long-term development costs and ensures consistency.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Design-Engineering Collaboration is Critical</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Close collaboration between design and engineering is essential when defining complex component logic and API integrations, particularly for accuracy-critical features like pricing. Working together from the start ensured both technical feasibility and design quality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         7. CLOSING SECTION
+         =================================== -->
+    <section class="py-24 bg-white border-t border-slate-950/[0.08]">
+        <div class="max-w-4xl mx-auto px-8 md:px-16 text-center">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Conclusion</span>
+
+            <p class="text-xl text-slate-600 leading-relaxed mb-12">
+                This project demonstrates how addressing customer pain points with thoughtful design and technical solutions that prioritize both usability and accuracy can create lasting value. Future enhancements could include cost comparison features, savings recommendations, and historical pricing trends to further empower customers in making informed decisions.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
+                    See More Projects →
+                </a>
+                <a href="mailto:your.email@example.com" class="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-slate-950 text-base font-semibold tracking-tight border-2 border-slate-950/[0.08] hover:border-slate-950 transition-all">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        const navHeight = 100;
+                        const targetPosition = targetSection.offsetTop - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
