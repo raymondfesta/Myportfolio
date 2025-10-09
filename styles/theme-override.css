@@ -85,7 +85,7 @@ body.bg-white {
 /* Navigation specific overrides */
 nav.bg-white\/95,
 .bg-white\/95 {
-    background-color: rgba(0, 0, 0, 0.95) !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 /* Card backgrounds */
@@ -171,4 +171,61 @@ span.bg-blue-500\/\[0\.08\] {
 /* Ensure readability on primary colored backgrounds */
 .bg-blue-500 * {
     color: var(--color-text-inverse) !important;
+}
+
+/* ===================================
+   DARK SECTIONS SUPPORT
+   Keep intentionally dark sections dark for visual impact
+   =================================== */
+
+/* Dark backgrounds - these are intentional design elements */
+.bg-slate-950,
+.bg-slate-900,
+.bg-slate-800 {
+    /* Keep these dark for visual contrast and impact */
+    background-color: #0f172a !important;
+}
+
+/* Dark gradient backgrounds */
+.bg-gradient-to-br.from-slate-950 {
+    background-image: linear-gradient(to bottom right, #0f172a, #1e293b) !important;
+}
+
+/* Phase number circles and other dark elements with white text */
+.bg-slate-950.text-white,
+.bg-slate-900.text-white,
+.bg-slate-800.text-white {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+}
+
+/* Text colors on dark section backgrounds - keep them light for readability */
+section.bg-gradient-to-br .text-white,
+section.from-slate-950 .text-white,
+.bg-slate-950 .text-white,
+.bg-slate-900 .text-white {
+    color: #ffffff !important;
+}
+
+section.bg-gradient-to-br .text-slate-300,
+section.from-slate-950 .text-slate-300,
+.bg-slate-950 .text-slate-300 {
+    color: #cbd5e1 !important;
+}
+
+section.bg-gradient-to-br .text-slate-400,
+section.from-slate-950 .text-slate-400,
+.bg-slate-950 .text-slate-400 {
+    color: #94a3b8 !important;
+}
+
+/* Border colors on dark sections */
+section.from-slate-950 .border-white\/10,
+.bg-slate-950 .border-white\/10 {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+section.from-slate-950 .border-white\/20,
+.bg-slate-950 .border-white\/20 {
+    border-color: rgba(255, 255, 255, 0.2) !important;
 }
