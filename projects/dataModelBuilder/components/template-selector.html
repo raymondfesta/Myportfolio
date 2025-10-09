@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Selector</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* Template Selector Component Styles */
+        .template-card.active > div {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+
+        .template-card.active .w-10 {
+            background-color: #3b82f6;
+        }
+
+        .template-card.active .w-10 svg {
+            color: white;
+        }
+
+        #templatePreview.show {
+            display: block;
+        }
+
+        .schema-item {
+            font-size: 11px;
+            padding: 4px 8px;
+            background-color: #f1f5f9;
+            border-radius: 4px;
+            color: #475569;
+            font-family: 'Manrope', monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Interactive Template Selection Component -->
+    <div id="templateSelector" class="w-full bg-white border border-slate-950/[0.06] rounded-lg overflow-hidden">
+        <!-- Template Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+            <!-- IoT Template -->
+            <div class="template-card cursor-pointer group h-full" data-template="iot">
+                <div class="p-5 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+                    <div class="flex items-start gap-3 mb-3 flex-1">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="text-sm font-semibold text-slate-950 mb-1">IoT Sensor Data</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">For device telemetry and sensor readings with multiple metrics per device</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Multi-measure</span>
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Device ID</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DevOps Template -->
+            <div class="template-card cursor-pointer group h-full" data-template="devops">
+                <div class="p-5 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+                    <div class="flex items-start gap-3 mb-3 flex-1">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="text-sm font-semibold text-slate-950 mb-1">DevOps Monitoring</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">Track infrastructure metrics across servers, containers, and services</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Hostname</span>
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Region</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Metrics Template -->
+            <div class="template-card cursor-pointer group h-full" data-template="app-metrics">
+                <div class="p-5 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+                    <div class="flex items-start gap-3 mb-3 flex-1">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="text-sm font-semibold text-slate-950 mb-1">Application Metrics</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">Monitor application performance, response times, and error rates</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Endpoint</span>
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Version</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Industrial Template -->
+            <div class="template-card cursor-pointer group h-full" data-template="industrial">
+                <div class="p-5 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+                    <div class="flex items-start gap-3 mb-3 flex-1">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="text-sm font-semibold text-slate-950 mb-1">Industrial Equipment</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">Track machine performance, maintenance cycles, and production metrics</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Machine ID</span>
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Location</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Template -->
+            <div class="template-card cursor-pointer group h-full" data-template="financial">
+                <div class="p-5 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+                    <div class="flex items-start gap-3 mb-3 flex-1">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="text-sm font-semibold text-slate-950 mb-1">Financial Markets</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">Store trading data, market prices, and transaction records</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Symbol</span>
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Exchange</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Healthcare Template -->
+            <div class="template-card cursor-pointer group h-full" data-template="healthcare">
+                <div class="p-5 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200 h-full flex flex-col">
+                    <div class="flex items-start gap-3 mb-3 flex-1">
+                        <div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h5 class="text-sm font-semibold text-slate-950 mb-1">Healthcare Monitoring</h5>
+                            <p class="text-xs text-slate-600 leading-relaxed">Patient vitals, medical device readings, and health tracking</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5">
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Patient ID</span>
+                        <span class="text-[10px] px-2 py-1 bg-slate-100 text-slate-600 rounded-full font-medium">Device Type</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Panel -->
+        <div id="templatePreview" class="hidden border-t border-slate-200 bg-white p-6">
+            <div class="flex items-start gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <h6 class="text-sm font-semibold text-slate-950">Schema Preview</h6>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 text-xs">
+                        <div>
+                            <div class="text-slate-500 font-medium mb-2 uppercase text-[10px] tracking-wider">Dimensions</div>
+                            <div id="previewDimensions" class="space-y-1"></div>
+                        </div>
+                        <div>
+                            <div class="text-slate-500 font-medium mb-2 uppercase text-[10px] tracking-wider">Measures</div>
+                            <div id="previewMeasures" class="space-y-1"></div>
+                        </div>
+                        <div>
+                            <div class="text-slate-500 font-medium mb-2 uppercase text-[10px] tracking-wider">Time Column</div>
+                            <div id="previewTime" class="space-y-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <button id="closePreview" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Template Selector Component
+        const templateData = {
+            iot: {
+                dimensions: ['device_id', 'sensor_type', 'location', 'manufacturer'],
+                measures: ['temperature', 'humidity', 'pressure', 'battery_level'],
+                time: ['timestamp']
+            },
+            devops: {
+                dimensions: ['hostname', 'region', 'availability_zone', 'instance_type'],
+                measures: ['cpu_utilization', 'memory_usage', 'disk_io', 'network_throughput'],
+                time: ['timestamp']
+            },
+            'app-metrics': {
+                dimensions: ['endpoint', 'version', 'environment', 'user_agent'],
+                measures: ['response_time', 'error_rate', 'request_count', 'latency_p95'],
+                time: ['timestamp']
+            },
+            industrial: {
+                dimensions: ['machine_id', 'location', 'product_line', 'shift'],
+                measures: ['temperature', 'vibration', 'production_rate', 'energy_consumption'],
+                time: ['timestamp']
+            },
+            financial: {
+                dimensions: ['symbol', 'exchange', 'asset_class', 'currency'],
+                measures: ['price', 'volume', 'bid', 'ask'],
+                time: ['timestamp']
+            },
+            healthcare: {
+                dimensions: ['patient_id', 'device_type', 'location', 'provider_id'],
+                measures: ['heart_rate', 'blood_pressure', 'oxygen_level', 'temperature'],
+                time: ['timestamp']
+            }
+        };
+
+        const templateCards = document.querySelectorAll('.template-card');
+        const templatePreview = document.getElementById('templatePreview');
+        const closePreviewBtn = document.getElementById('closePreview');
+        const previewDimensions = document.getElementById('previewDimensions');
+        const previewMeasures = document.getElementById('previewMeasures');
+        const previewTime = document.getElementById('previewTime');
+
+        function showPreview(templateId) {
+            const data = templateData[templateId];
+
+            // Clear previous content
+            previewDimensions.innerHTML = '';
+            previewMeasures.innerHTML = '';
+            previewTime.innerHTML = '';
+
+            // Populate dimensions
+            data.dimensions.forEach(dim => {
+                const item = document.createElement('div');
+                item.className = 'schema-item';
+                item.textContent = dim;
+                previewDimensions.appendChild(item);
+            });
+
+            // Populate measures
+            data.measures.forEach(measure => {
+                const item = document.createElement('div');
+                item.className = 'schema-item';
+                item.textContent = measure;
+                previewMeasures.appendChild(item);
+            });
+
+            // Populate time
+            data.time.forEach(time => {
+                const item = document.createElement('div');
+                item.className = 'schema-item';
+                item.textContent = time;
+                previewTime.appendChild(item);
+            });
+
+            // Show preview with animation
+            templatePreview.classList.remove('hidden');
+            setTimeout(() => {
+                templatePreview.classList.add('show');
+            }, 10);
+        }
+
+        function hidePreview() {
+            templatePreview.classList.remove('show');
+            setTimeout(() => {
+                templatePreview.classList.add('hidden');
+            }, 200);
+        }
+
+        templateCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const templateId = this.getAttribute('data-template');
+
+                // Remove active class from all cards
+                templateCards.forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked card
+                this.classList.add('active');
+
+                // Show preview
+                showPreview(templateId);
+            });
+        });
+
+        closePreviewBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            hidePreview();
+
+            // Remove active class from all cards
+            templateCards.forEach(c => c.classList.remove('active'));
+        });
+    </script>
+</body>
+</html>

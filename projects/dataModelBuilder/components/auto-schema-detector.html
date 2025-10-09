@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Schema Detector</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        /* Sample Data Button Styles */
+        .sample-data-btn.active span {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        .sample-data-btn:not(.active) span:hover {
+            background-color: #cbd5e1;
+        }
+
+        /* Field Item Styles */
+        .field-item {
+            font-size: 11px;
+            padding: 6px 10px;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            color: #475569;
+            font-family: 'Manrope', sans-serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Confidence Badge Styles */
+        .confidence-badge {
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .confidence-high {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .confidence-medium {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body class="bg-transparent">
+    <!-- Auto Schema Detection Interactive Component -->
+    <div id="schemaDetector" class="w-full bg-white border border-slate-950/[0.06] rounded-lg overflow-hidden">
+        <!-- Sample Data Selection -->
+        <div class="border-b border-slate-200 bg-slate-50 px-6 py-4">
+            <div class="flex items-center justify-between mb-3">
+                <h5 class="text-sm font-semibold text-slate-950">Sample Data</h5>
+                <div class="flex gap-2">
+                    <button class="sample-data-btn active" data-sample="iot">
+                        <span class="text-xs font-medium px-3 py-1.5 bg-blue-500 text-white rounded transition-all">IoT Sensors</span>
+                    </button>
+                    <button class="sample-data-btn" data-sample="devops">
+                        <span class="text-xs font-medium px-3 py-1.5 bg-slate-200 text-slate-600 rounded hover:bg-slate-300 transition-all">DevOps Metrics</span>
+                    </button>
+                    <button class="sample-data-btn" data-sample="app">
+                        <span class="text-xs font-medium px-3 py-1.5 bg-slate-200 text-slate-600 rounded hover:bg-slate-300 transition-all">App Logs</span>
+                    </button>
+                </div>
+            </div>
+            <div id="sampleDataDisplay" class="bg-white border border-slate-200 rounded p-4 font-mono text-xs text-slate-700 overflow-x-auto max-h-32">
+                <!-- Sample data will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Analysis Controls -->
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+            <div class="text-sm text-slate-600">
+                <span id="recordCount">3</span> records detected
+            </div>
+            <button id="analyzeBtn" class="px-6 py-2 bg-blue-500 text-white text-sm font-semibold rounded hover:bg-blue-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                Analyze Structure
+            </button>
+        </div>
+
+        <!-- Analysis Progress (hidden by default) -->
+        <div id="analysisProgress" class="hidden px-6 py-8 bg-slate-50 border-b border-slate-200">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                <span class="text-sm font-medium text-slate-700">Analyzing data structure...</span>
+            </div>
+            <div class="w-full bg-slate-200 rounded-full h-1.5">
+                <div id="progressBar" class="bg-blue-500 h-1.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Detection Results (hidden by default) -->
+        <div id="detectionResults" class="hidden p-6">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <h6 class="text-sm font-semibold text-slate-950">Schema Detected</h6>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+                <!-- Dimensions -->
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-3 h-3 bg-blue-500 rounded"></div>
+                        <div class="text-slate-500 font-semibold text-xs uppercase tracking-wider">Dimensions</div>
+                    </div>
+                    <div id="detectedDimensions" class="space-y-2">
+                        <!-- Dimension fields will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Measures -->
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-3 h-3 bg-green-500 rounded"></div>
+                        <div class="text-slate-500 font-semibold text-xs uppercase tracking-wider">Measures</div>
+                    </div>
+                    <div id="detectedMeasures" class="space-y-2">
+                        <!-- Measure fields will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Time Column -->
+                <div>
+                    <div class="flex items-center gap-2 mb-3">
+                        <div class="w-3 h-3 bg-purple-500 rounded"></div>
+                        <div class="text-slate-500 font-semibold text-xs uppercase tracking-wider">Time Column</div>
+                    </div>
+                    <div id="detectedTime" class="space-y-2">
+                        <!-- Time field will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-slate-200 flex items-center justify-between">
+                <div class="text-xs text-slate-500">
+                    All fields categorized with confidence scores
+                </div>
+                <button id="resetBtn" class="text-xs font-medium text-blue-500 hover:text-blue-600 transition-colors">
+                    Try Another Dataset →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample datasets with schema definitions
+        const sampleDatasets = {
+            iot: {
+                name: 'IoT Sensors',
+                data: `{"device_id": "sensor_001", "location": "warehouse_A", "timestamp": "2024-01-15T10:30:00Z", "temperature": 72.5, "humidity": 45.2, "pressure": 1013.25}
+{"device_id": "sensor_002", "location": "warehouse_B", "timestamp": "2024-01-15T10:30:05Z", "temperature": 68.3, "humidity": 52.1, "pressure": 1012.80}
+{"device_id": "sensor_001", "location": "warehouse_A", "timestamp": "2024-01-15T10:30:10Z", "temperature": 72.7, "humidity": 45.0, "pressure": 1013.20}`,
+                schema: {
+                    dimensions: [
+                        { name: 'device_id', type: 'string', confidence: 98 },
+                        { name: 'location', type: 'string', confidence: 95 }
+                    ],
+                    measures: [
+                        { name: 'temperature', type: 'double', confidence: 99 },
+                        { name: 'humidity', type: 'double', confidence: 99 },
+                        { name: 'pressure', type: 'double', confidence: 99 }
+                    ],
+                    time: [
+                        { name: 'timestamp', type: 'timestamp', confidence: 100 }
+                    ]
+                }
+            },
+            devops: {
+                name: 'DevOps Metrics',
+                data: `{"hostname": "web-server-01", "region": "us-east-1", "timestamp": "2024-01-15T10:30:00Z", "cpu_utilization": 45.2, "memory_usage": 62.8, "disk_io": 1250}
+{"hostname": "web-server-02", "region": "us-west-2", "timestamp": "2024-01-15T10:30:00Z", "cpu_utilization": 38.7, "memory_usage": 58.3, "disk_io": 980}
+{"hostname": "web-server-01", "region": "us-east-1", "timestamp": "2024-01-15T10:30:30Z", "cpu_utilization": 47.1, "memory_usage": 63.2, "disk_io": 1320}`,
+                schema: {
+                    dimensions: [
+                        { name: 'hostname', type: 'string', confidence: 97 },
+                        { name: 'region', type: 'string', confidence: 96 }
+                    ],
+                    measures: [
+                        { name: 'cpu_utilization', type: 'double', confidence: 99 },
+                        { name: 'memory_usage', type: 'double', confidence: 99 },
+                        { name: 'disk_io', type: 'bigint', confidence: 98 }
+                    ],
+                    time: [
+                        { name: 'timestamp', type: 'timestamp', confidence: 100 }
+                    ]
+                }
+            },
+            app: {
+                name: 'App Logs',
+                data: `{"endpoint": "/api/users", "version": "v2", "timestamp": "2024-01-15T10:30:00.123Z", "response_time": 145.3, "status_code": 200, "error_count": 0}
+{"endpoint": "/api/products", "version": "v2", "timestamp": "2024-01-15T10:30:00.456Z", "response_time": 89.7, "status_code": 200, "error_count": 0}
+{"endpoint": "/api/users", "version": "v2", "timestamp": "2024-01-15T10:30:01.789Z", "response_time": 152.1, "status_code": 200, "error_count": 0}`,
+                schema: {
+                    dimensions: [
+                        { name: 'endpoint', type: 'string', confidence: 98 },
+                        { name: 'version', type: 'string', confidence: 94 }
+                    ],
+                    measures: [
+                        { name: 'response_time', type: 'double', confidence: 99 },
+                        { name: 'status_code', type: 'int', confidence: 97 },
+                        { name: 'error_count', type: 'int', confidence: 98 }
+                    ],
+                    time: [
+                        { name: 'timestamp', type: 'timestamp', confidence: 100 }
+                    ]
+                }
+            }
+        };
+
+        let currentDataset = 'iot';
+        let isAnalyzed = false;
+
+        // Initialize with first dataset
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('sampleDataDisplay').textContent = sampleDatasets.iot.data;
+
+            // Sample data button handlers
+            document.querySelectorAll('.sample-data-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (isAnalyzed) {
+                        resetAnalysis();
+                    }
+
+                    const sample = this.getAttribute('data-sample');
+                    currentDataset = sample;
+
+                    // Update button states
+                    document.querySelectorAll('.sample-data-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Update display
+                    document.getElementById('sampleDataDisplay').textContent = sampleDatasets[sample].data;
+                    const recordCount = sampleDatasets[sample].data.split('\n').length;
+                    document.getElementById('recordCount').textContent = recordCount;
+                });
+            });
+
+            // Analyze button handler
+            document.getElementById('analyzeBtn').addEventListener('click', function() {
+                startAnalysis();
+            });
+
+            // Reset button handler
+            document.getElementById('resetBtn').addEventListener('click', function() {
+                resetAnalysis();
+            });
+        });
+
+        function startAnalysis() {
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const analysisProgress = document.getElementById('analysisProgress');
+            const detectionResults = document.getElementById('detectionResults');
+            const progressBar = document.getElementById('progressBar');
+
+            // Disable analyze button
+            analyzeBtn.disabled = true;
+
+            // Show progress
+            analysisProgress.classList.remove('hidden');
+            detectionResults.classList.add('hidden');
+
+            // Animate progress bar
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 10;
+                progressBar.style.width = progress + '%';
+
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        showResults();
+                    }, 300);
+                }
+            }, 150);
+
+            isAnalyzed = true;
+        }
+
+        function showResults() {
+            const analysisProgress = document.getElementById('analysisProgress');
+            const detectionResults = document.getElementById('detectionResults');
+            const schema = sampleDatasets[currentDataset].schema;
+
+            // Hide progress
+            analysisProgress.classList.add('hidden');
+
+            // Populate results
+            populateFields('detectedDimensions', schema.dimensions, 'blue');
+            populateFields('detectedMeasures', schema.measures, 'green');
+            populateFields('detectedTime', schema.time, 'purple');
+
+            // Show results
+            detectionResults.classList.remove('hidden');
+        }
+
+        function populateFields(containerId, fields, color) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            fields.forEach(field => {
+                const fieldDiv = document.createElement('div');
+                fieldDiv.className = 'field-item';
+
+                const nameSpan = document.createElement('span');
+                nameSpan.textContent = field.name;
+                nameSpan.className = 'font-medium';
+
+                const confidenceBadge = document.createElement('span');
+                confidenceBadge.textContent = field.confidence + '%';
+                confidenceBadge.className = `confidence-badge ${field.confidence >= 95 ? 'confidence-high' : 'confidence-medium'}`;
+
+                fieldDiv.appendChild(nameSpan);
+                fieldDiv.appendChild(confidenceBadge);
+                container.appendChild(fieldDiv);
+            });
+        }
+
+        function resetAnalysis() {
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const analysisProgress = document.getElementById('analysisProgress');
+            const detectionResults = document.getElementById('detectionResults');
+            const progressBar = document.getElementById('progressBar');
+
+            // Reset state
+            isAnalyzed = false;
+            analyzeBtn.disabled = false;
+
+            // Hide all result panels
+            analysisProgress.classList.add('hidden');
+            detectionResults.classList.add('hidden');
+
+            // Reset progress bar
+            progressBar.style.width = '0%';
+        }
+    </script>
+</body>
+</html>

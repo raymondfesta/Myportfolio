@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Relationship Mapper</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            950: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        /* Source Tab Styles */
+        .source-tab {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .source-tab.active {
+            color: #3b82f6;
+        }
+
+        .source-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #3b82f6;
+        }
+
+        .source-tab:not(.active):hover {
+            color: #64748b;
+        }
+
+        /* Node Styles */
+        .node {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .node:hover .node-circle {
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+        }
+
+        .node.active .node-circle {
+            filter: drop-shadow(0 0 16px rgba(59, 130, 246, 0.7));
+        }
+
+        .node.dimmed {
+            opacity: 0.3;
+        }
+
+        /* Connection Line Styles */
+        .connection-line {
+            stroke-dasharray: 6, 4;
+            animation: dash 20s linear infinite;
+            opacity: 0.25;
+            transition: all 0.3s ease;
+        }
+
+        .connection-line.active {
+            opacity: 1;
+            stroke-width: 3;
+            animation: dash 1.5s linear infinite;
+            filter: drop-shadow(0 0 4px currentColor);
+        }
+
+        .connection-line.dimmed {
+            opacity: 0.1;
+        }
+
+        @keyframes dash {
+            to {
+                stroke-dashoffset: -100;
+            }
+        }
+
+        /* Validation Badge Styles */
+        .validation-item {
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .validation-item.success {
+            background-color: #dcfce7;
+            border-left: 3px solid #16a34a;
+        }
+
+        .validation-item.warning {
+            background-color: #fef3c7;
+            border-left: 3px solid #f59e0b;
+        }
+
+        .validation-item.info {
+            background-color: #dbeafe;
+            border-left: 3px solid #3b82f6;
+        }
+
+        .validation-icon {
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            margin-top: 1px;
+        }
+
+        /* Slide-in animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-in {
+            animation: slideIn 0.4s ease-out;
+        }
+
+        /* Detail Panel */
+        .detail-panel {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 12px;
+            margin-top: 12px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="bg-transparent">
+    <!-- Visual Relationship Mapper Component -->
+    <div id="relationshipMapper" class="w-full bg-white border border-slate-950/[0.06] rounded-lg overflow-hidden">
+
+        <!-- Schema Source Selection -->
+        <div class="border-b border-slate-200 bg-slate-50 px-6 py-4">
+            <div class="flex items-center justify-between mb-4">
+                <h5 class="text-sm font-semibold text-slate-950">Schema Source</h5>
+                <div id="schemaStatus" class="text-xs text-slate-600">
+                    <!-- Status will be updated dynamically -->
+                </div>
+            </div>
+            <div class="flex gap-6 border-b border-slate-200 -mb-4">
+                <button class="source-tab active pb-3 text-sm font-medium text-slate-600" data-source="template">
+                    From Template
+                </button>
+                <button class="source-tab pb-3 text-sm font-medium text-slate-600" data-source="auto">
+                    Auto-Detected
+                </button>
+                <button class="source-tab pb-3 text-sm font-medium text-slate-600" data-source="manual">
+                    Manual Creation
+                </button>
+            </div>
+        </div>
+
+        <!-- Source Context Banner -->
+        <div id="sourceContext" class="bg-blue-50 border-b border-blue-100 px-6 py-3">
+            <div class="flex items-center gap-2 text-xs">
+                <svg class="w-4 h-4 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-blue-700 font-medium" id="contextText">IoT Sensors template selected</span>
+                <span class="text-blue-600">→ Schema structure visualized below</span>
+            </div>
+        </div>
+
+        <!-- Visualization Canvas -->
+        <div class="p-8 relative" style="min-height: 420px;">
+            <svg id="relationshipCanvas" width="100%" height="420" class="overflow-visible">
+                <!-- Connections will be drawn here -->
+                <g id="connectionsGroup"></g>
+                <!-- Nodes will be drawn here -->
+                <g id="nodesGroup"></g>
+            </svg>
+
+            <!-- Interactive Hint -->
+            <div id="interactionHint" class="absolute top-4 right-4 text-xs text-slate-500 bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm">
+                💡 Click any node to explore relationships
+            </div>
+        </div>
+
+        <!-- Validation Panel -->
+        <div class="border-t border-slate-200 bg-white px-6 py-5">
+            <div class="flex items-center gap-2 mb-4">
+                <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                </svg>
+                <h6 class="text-sm font-semibold text-slate-950">Schema Validation</h6>
+            </div>
+
+            <div id="validationResults" class="space-y-3">
+                <!-- Validation items will be inserted here -->
+            </div>
+
+            <!-- Active Node Details (hidden by default) -->
+            <div id="nodeDetails" class="hidden">
+                <!-- Will be populated when node is clicked -->
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="border-t border-slate-200 bg-slate-50 px-6 py-3">
+            <div class="flex items-center justify-between text-xs">
+                <div class="flex gap-5">
+                    <div class="flex items-center gap-2">
+                        <div class="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+                        <span class="text-slate-600">Dimensions</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                        <span class="text-slate-600">Measures</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2.5 h-2.5 rounded-full bg-purple-500"></div>
+                        <span class="text-slate-600">Time Column</span>
+                    </div>
+                </div>
+                <span class="text-slate-500">3 dimensions • 3 measures • 1 time column</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Schema data for IoT Sensors
+        const schemaData = {
+            dimensions: [
+                {
+                    id: 'device_id',
+                    label: 'device_id',
+                    type: 'dimension',
+                    color: '#3b82f6',
+                    description: 'Unique identifier for each IoT device',
+                    cardinality: 'High (10,000+ unique values)',
+                    validation: 'warning',
+                    validationMsg: 'High cardinality dimension - may impact query performance on large datasets'
+                },
+                {
+                    id: 'location',
+                    label: 'location',
+                    type: 'dimension',
+                    color: '#3b82f6',
+                    description: 'Physical location or zone where device is deployed',
+                    cardinality: 'Low (5 unique values)',
+                    validation: 'success',
+                    validationMsg: 'Good grouping dimension - optimal for aggregation queries'
+                },
+                {
+                    id: 'sensor_type',
+                    label: 'sensor_type',
+                    type: 'dimension',
+                    color: '#3b82f6',
+                    description: 'Type or model classification of the sensor',
+                    cardinality: 'Medium (50 unique values)',
+                    validation: 'success',
+                    validationMsg: 'Well-suited for filtering and categorization'
+                }
+            ],
+            measures: [
+                {
+                    id: 'temperature',
+                    label: 'temperature',
+                    type: 'measure',
+                    color: '#10b981',
+                    description: 'Temperature reading in degrees Celsius',
+                    dataType: 'double',
+                    aggregations: 'AVG, MIN, MAX, SUM'
+                },
+                {
+                    id: 'humidity',
+                    label: 'humidity',
+                    type: 'measure',
+                    color: '#10b981',
+                    description: 'Relative humidity percentage (0-100%)',
+                    dataType: 'double',
+                    aggregations: 'AVG, MIN, MAX'
+                },
+                {
+                    id: 'pressure',
+                    label: 'pressure',
+                    type: 'measure',
+                    color: '#10b981',
+                    description: 'Atmospheric pressure in hectopascals',
+                    dataType: 'double',
+                    aggregations: 'AVG, MIN, MAX'
+                }
+            ],
+            time: {
+                id: 'timestamp',
+                label: 'timestamp',
+                type: 'time',
+                color: '#8b5cf6',
+                description: 'Event timestamp when measurement was recorded',
+                granularity: 'Millisecond precision',
+                indexed: 'Automatically indexed for time-range queries'
+            }
+        };
+
+        // Schema source configurations
+        const sourceConfigs = {
+            template: {
+                contextText: 'IoT Sensors template selected',
+                status: '✓ Template applied'
+            },
+            auto: {
+                contextText: 'Schema auto-detected from 3 sample records',
+                status: '✓ Analysis complete'
+            },
+            manual: {
+                contextText: 'Schema manually defined with 7 fields',
+                status: '✓ Schema created'
+            }
+        };
+
+        let currentSource = 'template';
+        let activeNodeId = null;
+        let svg, nodesGroup, connectionsGroup;
+        let nodePositions = new Map();
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            svg = document.getElementById('relationshipCanvas');
+            nodesGroup = document.getElementById('nodesGroup');
+            connectionsGroup = document.getElementById('connectionsGroup');
+
+            // Source tab handlers
+            document.querySelectorAll('.source-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const source = this.getAttribute('data-source');
+                    switchSource(source);
+                });
+            });
+
+            // Initial render
+            updateSourceContext();
+            drawVisualization();
+            showValidation();
+        });
+
+        function switchSource(source) {
+            currentSource = source;
+            activeNodeId = null;
+
+            // Update tab states
+            document.querySelectorAll('.source-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`[data-source="${source}"]`).classList.add('active');
+
+            // Update context
+            updateSourceContext();
+
+            // Reset node highlights
+            document.querySelectorAll('.node').forEach(n => {
+                n.classList.remove('active', 'dimmed');
+            });
+            document.querySelectorAll('.connection-line').forEach(l => {
+                l.classList.remove('active', 'dimmed');
+            });
+
+            // Hide node details
+            document.getElementById('nodeDetails').classList.add('hidden');
+
+            // Re-show general validation
+            showValidation();
+        }
+
+        function updateSourceContext() {
+            const config = sourceConfigs[currentSource];
+            document.getElementById('contextText').textContent = config.contextText;
+            document.getElementById('schemaStatus').textContent = config.status;
+        }
+
+        function drawVisualization() {
+            const svgWidth = svg.clientWidth;
+            const svgHeight = 420;
+
+            // Clear previous
+            nodesGroup.innerHTML = '';
+            connectionsGroup.innerHTML = '';
+            nodePositions.clear();
+
+            // Layout parameters
+            const centerX = svgWidth / 2;
+            const centerY = svgHeight / 2;
+            const sideOffset = 180;
+            const verticalSpacing = 80;
+
+            // Draw time node (center)
+            const timeX = centerX;
+            const timeY = centerY;
+            drawNode(schemaData.time, timeX, timeY, 45);
+            nodePositions.set(schemaData.time.id, { x: timeX, y: timeY });
+
+            // Draw dimensions (left side)
+            const dimStartY = centerY - (schemaData.dimensions.length - 1) * verticalSpacing / 2;
+            schemaData.dimensions.forEach((dim, i) => {
+                const x = centerX - sideOffset;
+                const y = dimStartY + i * verticalSpacing;
+                drawNode(dim, x, y, 36);
+                drawConnection(x, y, centerX, centerY, dim.id, dim.color);
+                nodePositions.set(dim.id, { x, y });
+            });
+
+            // Draw measures (right side)
+            const measStartY = centerY - (schemaData.measures.length - 1) * verticalSpacing / 2;
+            schemaData.measures.forEach((measure, i) => {
+                const x = centerX + sideOffset;
+                const y = measStartY + i * verticalSpacing;
+                drawNode(measure, x, y, 36);
+                drawConnection(x, y, centerX, centerY, measure.id, measure.color);
+                nodePositions.set(measure.id, { x, y });
+            });
+        }
+
+        function drawNode(node, x, y, radius) {
+            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            g.classList.add('node');
+            g.setAttribute('data-id', node.id);
+            g.setAttribute('data-type', node.type);
+
+            // Outer circle (glow)
+            const outerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            outerCircle.setAttribute('cx', x);
+            outerCircle.setAttribute('cy', y);
+            outerCircle.setAttribute('r', radius + 6);
+            outerCircle.setAttribute('fill', node.color);
+            outerCircle.setAttribute('opacity', '0.12');
+            outerCircle.classList.add('node-circle');
+
+            // Main circle
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.setAttribute('r', radius);
+            circle.setAttribute('fill', 'white');
+            circle.setAttribute('stroke', node.color);
+            circle.setAttribute('stroke-width', '2.5');
+            circle.classList.add('node-circle');
+
+            // Label
+            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', x);
+            text.setAttribute('y', y);
+            text.setAttribute('text-anchor', 'middle');
+            text.setAttribute('dominant-baseline', 'middle');
+            text.setAttribute('fill', node.color);
+            text.setAttribute('font-size', node.type === 'time' ? '12' : '11');
+            text.setAttribute('font-weight', '600');
+            text.setAttribute('font-family', 'Manrope, sans-serif');
+            text.textContent = node.label;
+
+            g.appendChild(outerCircle);
+            g.appendChild(circle);
+            g.appendChild(text);
+            nodesGroup.appendChild(g);
+
+            // Event listeners
+            g.addEventListener('click', () => handleNodeClick(node.id));
+        }
+
+        function drawConnection(x1, y1, x2, y2, nodeId, color) {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x1);
+            line.setAttribute('y1', y1);
+            line.setAttribute('x2', x2);
+            line.setAttribute('y2', y2);
+            line.setAttribute('stroke', color);
+            line.setAttribute('stroke-width', '2');
+            line.classList.add('connection-line');
+            line.setAttribute('data-node-id', nodeId);
+            connectionsGroup.appendChild(line);
+        }
+
+        function handleNodeClick(nodeId) {
+            // Toggle selection
+            if (activeNodeId === nodeId) {
+                // Deselect
+                activeNodeId = null;
+                document.querySelectorAll('.node').forEach(n => {
+                    n.classList.remove('active', 'dimmed');
+                });
+                document.querySelectorAll('.connection-line').forEach(l => {
+                    l.classList.remove('active', 'dimmed');
+                });
+                document.getElementById('nodeDetails').classList.add('hidden');
+                document.getElementById('interactionHint').style.display = 'block';
+                showValidation();
+            } else {
+                // Select new node
+                activeNodeId = nodeId;
+
+                // Dim everything first
+                document.querySelectorAll('.node').forEach(n => {
+                    n.classList.remove('active');
+                    n.classList.add('dimmed');
+                });
+                document.querySelectorAll('.connection-line').forEach(l => {
+                    l.classList.remove('active');
+                    l.classList.add('dimmed');
+                });
+
+                // Highlight active node and its connections
+                const activeNode = document.querySelector(`.node[data-id="${nodeId}"]`);
+                if (activeNode) {
+                    activeNode.classList.remove('dimmed');
+                    activeNode.classList.add('active');
+                }
+
+                // Highlight connected lines
+                document.querySelectorAll(`.connection-line[data-node-id="${nodeId}"]`).forEach(l => {
+                    l.classList.remove('dimmed');
+                    l.classList.add('active');
+                });
+
+                // If dimension or measure, also highlight time node
+                if (nodeId !== 'timestamp') {
+                    const timeNode = document.querySelector(`.node[data-id="timestamp"]`);
+                    if (timeNode) {
+                        timeNode.classList.remove('dimmed');
+                    }
+                }
+
+                // Hide hint
+                document.getElementById('interactionHint').style.display = 'none';
+
+                // Show node details
+                showNodeDetails(nodeId);
+            }
+        }
+
+        function showValidation() {
+            const container = document.getElementById('validationResults');
+            container.innerHTML = `
+                <div class="validation-item success slide-in">
+                    <svg class="validation-icon text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                        <strong class="text-green-800">Schema structure validated</strong>
+                        <div class="text-green-700 mt-0.5">3 dimensions, 3 measures, 1 time column detected and properly categorized</div>
+                    </div>
+                </div>
+                <div class="validation-item warning slide-in" style="animation-delay: 0.1s;">
+                    <svg class="validation-icon text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                        <strong class="text-amber-800">High cardinality detected</strong>
+                        <div class="text-amber-700 mt-0.5">device_id has 10,000+ unique values - consider filtering by location first to optimize queries</div>
+                    </div>
+                </div>
+                <div class="validation-item info slide-in" style="animation-delay: 0.2s;">
+                    <svg class="validation-icon text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div>
+                        <strong class="text-blue-800">Query optimization tip</strong>
+                        <div class="text-blue-700 mt-0.5">Group by location before device_id for better performance on aggregate queries</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showNodeDetails(nodeId) {
+            // Find node data
+            let nodeData = null;
+            if (nodeId === 'timestamp') {
+                nodeData = schemaData.time;
+            } else {
+                nodeData = [...schemaData.dimensions, ...schemaData.measures].find(n => n.id === nodeId);
+            }
+
+            if (!nodeData) return;
+
+            const detailsContainer = document.getElementById('nodeDetails');
+            let detailsHTML = `
+                <div class="detail-panel slide-in">
+                    <div class="font-semibold text-slate-900 mb-2" style="color: ${nodeData.color};">
+                        ${nodeData.label} <span class="text-slate-500 font-normal text-xs uppercase">(${nodeData.type})</span>
+                    </div>
+                    <div class="text-slate-700 mb-3">${nodeData.description}</div>
+            `;
+
+            if (nodeData.type === 'dimension') {
+                detailsHTML += `
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Cardinality:</span>
+                            <span class="font-medium text-slate-900">${nodeData.cardinality}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Relationship:</span>
+                            <span class="font-medium text-slate-900">Linked to all measures via time</span>
+                        </div>
+                `;
+                if (nodeData.validation === 'warning') {
+                    detailsHTML += `
+                        <div class="mt-3 pt-3 border-t border-slate-200 text-amber-700 text-xs">
+                            ⚠️ ${nodeData.validationMsg}
+                        </div>
+                    `;
+                }
+                detailsHTML += `</div>`;
+            } else if (nodeData.type === 'measure') {
+                detailsHTML += `
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Data Type:</span>
+                            <span class="font-medium text-slate-900">${nodeData.dataType}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Aggregations:</span>
+                            <span class="font-medium text-slate-900">${nodeData.aggregations}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Relationship:</span>
+                            <span class="font-medium text-slate-900">Values grouped by dimensions</span>
+                        </div>
+                    </div>
+                `;
+            } else if (nodeData.type === 'time') {
+                detailsHTML += `
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Granularity:</span>
+                            <span class="font-medium text-slate-900">${nodeData.granularity}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Indexing:</span>
+                            <span class="font-medium text-slate-900">${nodeData.indexed}</span>
+                        </div>
+                        <div class="mt-2 pt-2 border-t border-slate-200 text-purple-700 text-xs">
+                            💡 Central to all time-series queries - connects dimensions to measures over time
+                        </div>
+                    </div>
+                `;
+            }
+
+            detailsHTML += `</div>`;
+
+            detailsContainer.innerHTML = detailsHTML;
+            detailsContainer.classList.remove('hidden');
+
+            // Hide general validation when showing node details
+            document.getElementById('validationResults').style.opacity = '0.4';
+        }
+
+        // Reset validation visibility when node is deselected
+        function resetValidationVisibility() {
+            document.getElementById('validationResults').style.opacity = '1';
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            drawVisualization();
+        });
+    </script>
+</body>
+</html>

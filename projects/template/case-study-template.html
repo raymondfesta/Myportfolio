@@ -9,7 +9,12 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Portfolio Theme System -->
+    <link rel="stylesheet" href="../../styles/theme.css">
+    <link rel="stylesheet" href="../../styles/common.css">
+    <link rel="stylesheet" href="../../styles/theme-override.css">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,11 +23,24 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
                     },
                     colors: {
+                        // Theme colors from CSS variables
+                        'theme-primary': 'var(--color-primary)',
+                        'theme-primary-dark': 'var(--color-primary-dark)',
+                        'theme-primary-light': 'var(--color-primary-light)',
+                        'theme-bg-primary': 'var(--color-bg-primary)',
+                        'theme-bg-secondary': 'var(--color-bg-secondary)',
+                        'theme-text-primary': 'var(--color-text-primary)',
+                        'theme-text-secondary': 'var(--color-text-secondary)',
+                        // Keep original colors for compatibility
                         slate: {
                             950: '#0f172a',
+                        },
+                        blue: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
                         }
                     }
                 }
@@ -61,7 +79,7 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-950/[0.06] z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-8 md:px-16 py-7 flex justify-between items-center">
-            <a href="../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
+            <a href="../../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
                 ← Back to Portfolio
             </a>
             <ul class="flex gap-10 list-none m-0 p-0">
@@ -503,7 +521,7 @@
 
             <!-- CTA Buttons -->
             <div class="flex gap-4 justify-center flex-wrap mb-24">
-                <a href="../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
+                <a href="../../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
                     See More Projects →
                 </a>
                 <a href="mailto:your.email@example.com" class="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-slate-950 text-base font-semibold tracking-tight border-2 border-slate-950/[0.08] hover:border-slate-950 transition-all">

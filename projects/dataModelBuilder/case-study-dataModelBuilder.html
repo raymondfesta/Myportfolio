@@ -9,7 +9,12 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Portfolio Theme System -->
+    <link rel="stylesheet" href="../../styles/theme.css">
+    <link rel="stylesheet" href="../../styles/common.css">
+    <link rel="stylesheet" href="../../styles/theme-override.css">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,11 +23,24 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
                     },
                     colors: {
+                        // Theme colors from CSS variables
+                        'theme-primary': 'var(--color-primary)',
+                        'theme-primary-dark': 'var(--color-primary-dark)',
+                        'theme-primary-light': 'var(--color-primary-light)',
+                        'theme-bg-primary': 'var(--color-bg-primary)',
+                        'theme-bg-secondary': 'var(--color-bg-secondary)',
+                        'theme-text-primary': 'var(--color-text-primary)',
+                        'theme-text-secondary': 'var(--color-text-secondary)',
+                        // Keep original colors for compatibility
                         slate: {
                             950: '#0f172a',
+                        },
+                        blue: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
                         }
                     }
                 }
@@ -61,7 +79,7 @@
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-950/[0.06] z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-8 md:px-16 py-7 flex justify-between items-center">
-            <a href="../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
+            <a href="../../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
                 ← Back to Portfolio
             </a>
             <ul class="flex gap-10 list-none m-0 p-0">
@@ -296,9 +314,11 @@
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         Pre-configured templates based on common time-series use cases and supported data model formats. These templates, previously hidden deep in documentation, provide developers with validated starting points that follow Timestream best practices. Templates are organized by use case (IoT, DevOps monitoring, application metrics, etc.) with contextual guidance about when to use each approach.
                     </p>
-                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm border border-slate-950/[0.06]">
-                        [Screenshot: Template selection interface showing common use-case templates]
-                    </div>
+                    <iframe src="components/template-selector.html"
+                            class="w-full border-0 rounded-lg"
+                            style="height: 600px;"
+                            title="Template Selector Interactive Demo">
+                    </iframe>
                 </div>
 
                 <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
@@ -306,9 +326,11 @@
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         Customers can upload sample data or records, and the system automatically analyzes the structure and populates the correct data model fields. This removes guesswork and ensures proper dimensional vs. measure field categorization. The auto-detection handles various data formats and provides confidence scores for its suggestions, allowing customers to validate the analysis.
                     </p>
-                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm border border-slate-950/[0.06]">
-                        [Screenshot: Auto schema detection analyzing sample data]
-                    </div>
+                    <iframe src="components/auto-schema-detector.html"
+                            class="w-full border-0 rounded-lg"
+                            style="height: 520px;"
+                            title="Auto Schema Detection Interactive Demo">
+                    </iframe>
                 </div>
 
                 <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
@@ -316,9 +338,11 @@
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         An interactive diagram that shows how dimensions (attributes), measures (metrics), and time columns relate within the schemaless structure. This visualization bridges the mental model gap for SQL-background developers by making abstract time-series concepts tangible and understandable. For complex schemas, progressive disclosure patterns and grouping mechanisms prevent clutter. Real-time validation warnings alert users when their structure might lead to query inefficiencies.
                     </p>
-                    <div class="w-full aspect-video bg-slate-100 flex items-center justify-center text-slate-400 text-sm border border-slate-950/[0.06]">
-                        [Screenshot: Visual relationship mapping showing dimensions, measures, and time columns]
-                    </div>
+                    <iframe src="components/visual-relationship-mapper.html"
+                            class="w-full border-0 rounded-lg"
+                            style="height: 900px;"
+                            title="Visual Relationship Mapper Interactive Demo">
+                    </iframe>
                 </div>
             </div>
 
@@ -456,7 +480,7 @@
 
             <!-- CTA Buttons -->
             <div class="flex gap-4 justify-center flex-wrap">
-                <a href="../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
+                <a href="../../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
                     See More Projects →
                 </a>
                 <a href="mailto:your.email@example.com" class="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-slate-950 text-base font-semibold tracking-tight border-2 border-slate-950/[0.08] hover:border-slate-950 transition-all">

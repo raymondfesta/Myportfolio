@@ -12,6 +12,7 @@
     <!-- Portfolio Theme System -->
     <link rel="stylesheet" href="styles/theme.css">
     <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/theme-override.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -130,25 +131,6 @@
         html {
             scroll-behavior: smooth;
         }
-
-        /* THEME OVERRIDE - Apply CSS variables over Tailwind classes */
-        html, body { background-color: var(--color-bg-primary) !important; color: var(--color-text-primary) !important; }
-        nav { background-color: rgba(255, 255, 255, 0.95) !important; }
-        .bg-white { background-color: var(--color-bg-primary) !important; }
-        .bg-slate-50 { background-color: var(--color-bg-secondary) !important; }
-        .bg-slate-100 { background-color: var(--color-bg-tertiary) !important; }
-        .text-slate-900, .text-slate-950 { color: var(--color-text-primary) !important; }
-        .text-slate-600 { color: var(--color-text-secondary) !important; }
-        .text-slate-500 { color: var(--color-text-tertiary) !important; }
-        .text-blue-500, .text-blue-600 { color: var(--color-primary) !important; }
-        .bg-blue-500 { background-color: var(--color-primary) !important; }
-        .bg-blue-600, .hover\:bg-blue-600:hover { background-color: var(--color-primary-dark) !important; }
-        .hover\:text-blue-500:hover, .hover\:text-blue-700:hover { color: var(--color-primary) !important; }
-        .border-slate-200 { border-color: var(--color-border-secondary) !important; }
-        .border-blue-500 { border-color: var(--color-border-accent) !important; }
-        .hover\:border-blue-200:hover { border-color: var(--color-primary) !important; }
-        svg path, svg rect { stroke: var(--color-primary) !important; }
-        h1, h2, h3, h4, h5, h6 { color: var(--color-text-primary) !important; }
     </style>
 </head>
 <body class="font-sans antialiased bg-white text-slate-900">
@@ -199,6 +181,22 @@
         </div>
     </section>
 
+    <!-- About Me Section -->
+    <section id="about" class="relative py-32 bg-white border-t border-slate-200">
+        <div class="container max-w-7xl mx-auto px-8">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-6 text-slate-950 opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">About Me</h2>
+                <div class="space-y-6 text-lg text-slate-600 leading-relaxed opacity-0 animate-fadeInUp" style="animation-delay: 0.3s;">
+                    <p>I'm a product designer who specializes in transforming complex enterprise workflows into intuitive, user-centered experiences. With a focus on systematic design solutions, I help businesses build products that truly empower their customers.</p>
+
+                    <p>My approach combines deep user research with clean, functional design principles. I believe that great design shouldn't just look good—it should solve real problems and make complex tasks feel effortless.</p>
+
+                    <p>Over the years, I've worked with teams across various industries to create scalable design systems, streamline complicated processes, and ship features that users actually want to use. I'm passionate about bridging the gap between technical complexity and human simplicity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- My Work Section -->
     <section id="work" class="relative py-32 bg-slate-50 border-t border-slate-200">
         <div class="container max-w-7xl mx-auto px-8">
@@ -216,7 +214,7 @@
                             <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Database Design Tool</span>
                             <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">Amazon Timestream Data Model Builder</h3>
                             <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Visual tool that reduced database setup time from 90+ days to hours, achieving 51% completion rate for new users.</p>
-                            <a href="projects/case-study-dataModelBuilder.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                            <a href="projects/dataModelBuilder/case-study-dataModelBuilder.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
                                 View Case Study
                                 <span class="transition-transform group-hover:translate-x-1">→</span>
                             </a>
@@ -280,7 +278,7 @@
                             <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Scalable component design</span>
                             <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">AWS Database Pricing Widget</h3>
                             <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Interactive pricing configurator providing real-time cost estimates for AWS database resource configuration.</p>
-                            <a href="projects/case-study-aws-pricing-widget.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                            <a href="projects/awsPricingWidget/case-study-aws-pricing-widget.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
                                 View Case Study
                                 <span class="transition-transform group-hover:translate-x-1">→</span>
                             </a>
@@ -298,7 +296,7 @@
                             <span class="inline-block text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4">Enterprise</span>
                             <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">Design System</h3>
                             <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal">Built scalable design system from ground up, enabling consistent experiences across 15+ product teams.</p>
-                            <a href="projects/case-study-template.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                            <a href="projects/template/case-study-template.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
                                 View Case Study
                                 <span class="transition-transform group-hover:translate-x-1">→</span>
                             </a>
