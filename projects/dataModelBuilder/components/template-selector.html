@@ -10,6 +10,63 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* AWS Console Header Styles */
+        .aws-header {
+            background: linear-gradient(to bottom, #232f3e 0%, #1a242f 100%);
+            border-bottom: 2px solid #ff9900;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 8px;
+            color: #687078;
+        }
+
+        /* Progress Stepper */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            border: 2px solid #d1d5db;
+            background: white;
+            color: #9ca3af;
+        }
+
+        .step-circle.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        .step-circle.completed {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .step-line {
+            width: 40px;
+            height: 2px;
+            background: #d1d5db;
         }
 
         /* Template Selector Component Styles */
@@ -38,13 +95,82 @@
             color: #475569;
             font-family: 'Manrope', monospace;
         }
+
+        /* Help Panel */
+        .help-panel {
+            background: #f8fafc;
+            border-left: 3px solid #3b82f6;
+        }
     </style>
 </head>
 <body>
-    <!-- Interactive Template Selection Component -->
-    <div id="templateSelector" class="w-full bg-white border border-slate-950/[0.06] rounded-lg overflow-hidden">
-        <!-- Template Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+    <!-- AWS Console Header -->
+    <div class="aws-header px-6 py-3">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="text-white font-semibold text-sm">Amazon Timestream</div>
+                <div class="text-slate-400 text-xs">
+                    <span>us-east-1</span>
+                </div>
+            </div>
+            <div class="text-slate-400 text-xs">Demo User</div>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-white border-b border-slate-200 px-6 py-3">
+        <div class="flex items-center text-xs">
+            <a href="#" class="text-blue-600 hover:underline">Timestream</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="#" class="text-blue-600 hover:underline">Databases</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="#" class="text-blue-600 hover:underline">iot-production-db</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="text-slate-600">Create data model</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        <!-- Page Header -->
+        <div class="mb-6">
+            <h1 class="text-2xl font-semibold text-slate-900 mb-2">Create data model</h1>
+            <p class="text-sm text-slate-600">Define the structure for your time-series data using a template or custom configuration.</p>
+        </div>
+
+        <!-- Progress Stepper -->
+        <div class="bg-white border border-slate-200 rounded-lg px-6 py-4 mb-6">
+            <div class="step-indicator">
+                <div class="step">
+                    <div class="step-circle active">1</div>
+                    <span class="text-sm font-medium text-slate-900">Choose template</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-circle">2</div>
+                    <span class="text-sm text-slate-500">Configure schema</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <span class="text-sm text-slate-500">Review & create</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+            <!-- Main Content (2/3 width) -->
+            <div class="col-span-2">
+                <!-- Interactive Template Selection Component -->
+                <div id="templateSelector" class="w-full bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
+                    <!-- Section Header -->
+                    <div class="border-b border-slate-200 px-6 py-4 bg-slate-50">
+                        <h2 class="text-base font-semibold text-slate-900">Select a template</h2>
+                        <p class="text-xs text-slate-600 mt-1">Choose a pre-configured data model that matches your use case</p>
+                    </div>
+
+                    <!-- Template Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
             <!-- IoT Template -->
             <div class="template-card cursor-pointer group h-full" data-template="iot">
                 <div class="p-5 border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-md transition-all duration-200 h-full flex flex-col">
@@ -203,6 +329,80 @@
                 </button>
             </div>
         </div>
+                </div>
+            </div>
+
+            <!-- Help Panel Sidebar (1/3 width) -->
+            <div class="col-span-1">
+                <div class="bg-white border border-slate-200 rounded-lg shadow-sm p-5 help-panel">
+                    <div class="flex items-start gap-2 mb-4">
+                        <svg class="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-sm font-semibold text-slate-900 mb-1">About templates</h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">Templates provide pre-configured data models based on common use cases. Each template includes recommended dimensions, measures, and best practices.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs">
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-1">When to use templates</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li>Starting a new project</li>
+                                <li>Following industry patterns</li>
+                                <li>Learning Timestream structure</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-semibold text-slate-900 mb-1">Template customization</h4>
+                            <p class="text-slate-600">After selecting a template, you can customize all fields, add new dimensions and measures, or remove unnecessary ones.</p>
+                        </div>
+
+                        <div class="pt-3 border-t border-slate-200">
+                            <a href="#" class="text-blue-600 hover:underline text-xs font-medium">View documentation →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database Context Card -->
+                <div class="bg-white border border-slate-200 rounded-lg shadow-sm p-5 mt-4">
+                    <h3 class="text-sm font-semibold text-slate-900 mb-3">Database info</h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Database:</span>
+                            <span class="font-medium text-slate-900">iot-production-db</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Region:</span>
+                            <span class="font-medium text-slate-900">us-east-1</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-600">Created:</span>
+                            <span class="font-medium text-slate-900">2024-10-01</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="bg-white border border-slate-200 rounded-lg shadow-sm px-6 py-4 mt-6">
+            <div class="flex items-center justify-between">
+                <div class="flex gap-3">
+                    <button id="cancelBtn" class="px-5 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition-colors">
+                        Cancel
+                    </button>
+                    <button id="saveDraftBtn" class="px-5 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition-colors">
+                        Save as draft
+                    </button>
+                </div>
+                <button id="nextBtn" class="px-6 py-2 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Next: Configure schema →
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -246,8 +446,13 @@
         const previewDimensions = document.getElementById('previewDimensions');
         const previewMeasures = document.getElementById('previewMeasures');
         const previewTime = document.getElementById('previewTime');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let selectedTemplate = null;
 
         function showPreview(templateId) {
+            selectedTemplate = templateId;
+            nextBtn.disabled = false;
             const data = templateData[templateId];
 
             // Clear previous content
@@ -287,6 +492,8 @@
         }
 
         function hidePreview() {
+            selectedTemplate = null;
+            nextBtn.disabled = true;
             templatePreview.classList.remove('show');
             setTimeout(() => {
                 templatePreview.classList.add('hidden');

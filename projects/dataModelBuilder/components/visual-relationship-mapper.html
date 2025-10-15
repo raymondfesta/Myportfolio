@@ -34,6 +34,67 @@
             margin: 0;
             padding: 0;
             font-family: 'Manrope', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* AWS Console Header Styles */
+        .aws-header {
+            background: linear-gradient(to bottom, #232f3e 0%, #1a242f 100%);
+            border-bottom: 2px solid #ff9900;
+        }
+
+        .breadcrumb-separator {
+            margin: 0 8px;
+            color: #687078;
+        }
+
+        /* Progress Stepper */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            border: 2px solid #d1d5db;
+            background: white;
+            color: #9ca3af;
+        }
+
+        .step-circle.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        .step-circle.completed {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+
+        .step-line {
+            width: 40px;
+            height: 2px;
+            background: #d1d5db;
+        }
+
+        .step-line.completed {
+            background: #10b981;
         }
 
         /* Source Tab Styles */
@@ -165,9 +226,102 @@
         }
     </style>
 </head>
-<body class="bg-transparent">
-    <!-- Visual Relationship Mapper Component -->
-    <div id="relationshipMapper" class="w-full bg-white border border-slate-950/[0.06] rounded-lg overflow-hidden">
+<body>
+    <!-- AWS Console Header -->
+    <div class="aws-header px-6 py-3">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="text-white font-semibold text-sm">Amazon Timestream</div>
+                <div class="text-slate-400 text-xs">
+                    <span>us-east-1</span>
+                </div>
+            </div>
+            <div class="text-slate-400 text-xs">Demo User</div>
+        </div>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-white border-b border-slate-200 px-6 py-3">
+        <div class="flex items-center text-xs">
+            <a href="#" class="text-blue-600 hover:underline">Timestream</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="#" class="text-blue-600 hover:underline">Databases</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="#" class="text-blue-600 hover:underline">iot-production-db</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="text-slate-600">Create data model</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-6 py-6">
+        <!-- Page Header -->
+        <div class="mb-6">
+            <h1 class="text-2xl font-semibold text-slate-900 mb-2">Review & visualize schema</h1>
+            <p class="text-sm text-slate-600">Explore the relationships between your dimensions, measures, and time columns. Click any node to see details.</p>
+        </div>
+
+        <!-- Progress Stepper -->
+        <div class="bg-white border border-slate-200 rounded-lg px-6 py-4 mb-6">
+            <div class="step-indicator">
+                <div class="step">
+                    <div class="step-circle completed">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm text-slate-600">Choose template</span>
+                </div>
+                <div class="step-line completed"></div>
+                <div class="step">
+                    <div class="step-circle completed">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm text-slate-600">Configure schema</span>
+                </div>
+                <div class="step-line completed"></div>
+                <div class="step">
+                    <div class="step-circle active">3</div>
+                    <span class="text-sm font-medium text-slate-900">Review & create</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schema Editing Toolbar -->
+        <div class="bg-white border border-slate-200 rounded-lg shadow-sm px-6 py-3 mb-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 text-sm">
+                    <span class="font-medium text-slate-900">Schema tools:</span>
+                    <button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition-colors flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Add field
+                    </button>
+                    <button class="px-3 py-1.5 text-xs font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition-colors flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                        </svg>
+                        Edit
+                    </button>
+                    <button class="px-3 py-1.5 text-xs font-medium text-red-700 bg-white border border-slate-300 rounded hover:bg-red-50 transition-colors flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                        Remove
+                    </button>
+                </div>
+                <button class="text-xs text-blue-600 hover:text-blue-700 font-medium">Export schema</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6">
+            <!-- Main Content (2/3 width) -->
+            <div class="col-span-2">
+                <!-- Visual Relationship Mapper Component -->
+                <div id="relationshipMapper" class="w-full bg-white border border-slate-200 rounded-lg shadow-sm overflow-hidden">
 
         <!-- Schema Source Selection -->
         <div class="border-b border-slate-200 bg-slate-50 px-6 py-4">
@@ -253,6 +407,93 @@
                     </div>
                 </div>
                 <span class="text-slate-500">3 dimensions • 3 measures • 1 time column</span>
+            </div>
+                </div>
+            </div>
+
+            <!-- Summary Sidebar (1/3 width) -->
+            <div class="col-span-1">
+                <!-- Schema Summary Card -->
+                <div class="bg-white border border-slate-200 rounded-lg shadow-sm p-5 mb-4">
+                    <h3 class="text-sm font-semibold text-slate-900 mb-4">Schema summary</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                                <span class="text-slate-700">Dimensions</span>
+                            </div>
+                            <span class="font-semibold text-slate-900">3</span>
+                        </div>
+                        <div class="flex items-center justify-between py-2 border-b border-slate-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span class="text-slate-700">Measures</span>
+                            </div>
+                            <span class="font-semibold text-slate-900">3</span>
+                        </div>
+                        <div class="flex items-center justify-between py-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-purple-500"></div>
+                                <span class="text-slate-700">Time columns</span>
+                            </div>
+                            <span class="font-semibold text-slate-900">1</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-4 border-t border-slate-200">
+                        <div class="flex items-center gap-2 text-xs text-green-700 bg-green-50 px-3 py-2 rounded">
+                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>All validations passed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Field List Card -->
+                <div class="bg-white border border-slate-200 rounded-lg shadow-sm p-5">
+                    <h3 class="text-sm font-semibold text-slate-900 mb-3">All fields</h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="font-medium text-slate-700 text-[10px] uppercase tracking-wider mb-2">Dimensions</div>
+                        <div class="pl-2 space-y-1.5">
+                            <div class="text-slate-600">• device_id</div>
+                            <div class="text-slate-600">• location</div>
+                            <div class="text-slate-600">• sensor_type</div>
+                        </div>
+
+                        <div class="font-medium text-slate-700 text-[10px] uppercase tracking-wider mb-2 mt-3">Measures</div>
+                        <div class="pl-2 space-y-1.5">
+                            <div class="text-slate-600">• temperature</div>
+                            <div class="text-slate-600">• humidity</div>
+                            <div class="text-slate-600">• pressure</div>
+                        </div>
+
+                        <div class="font-medium text-slate-700 text-[10px] uppercase tracking-wider mb-2 mt-3">Time</div>
+                        <div class="pl-2">
+                            <div class="text-slate-600">• timestamp</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="bg-white border border-slate-200 rounded-lg shadow-sm px-6 py-4 mt-6">
+            <div class="flex items-center justify-between">
+                <button class="px-5 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition-colors">
+                    ← Back
+                </button>
+                <div class="flex gap-3">
+                    <button class="px-5 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded hover:bg-slate-50 transition-colors">
+                        Save as draft
+                    </button>
+                    <button id="createBtn" class="px-6 py-2 text-sm font-semibold text-white bg-green-600 rounded hover:bg-green-700 transition-colors flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Create data model
+                    </button>
+                </div>
             </div>
         </div>
     </div>

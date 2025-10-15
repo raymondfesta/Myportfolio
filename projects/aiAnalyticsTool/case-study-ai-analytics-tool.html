@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Data Analytics Tool - An AI-powered analytics tool that democratizes data access by converting natural language queries into SQL, eliminating technical barriers for non-technical team members.">
+    <title>AI Data Analytics Tool — Case Study</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Portfolio Theme System -->
+    <link rel="stylesheet" href="../../styles/theme.css">
+    <link rel="stylesheet" href="../../styles/common.css">
+    <link rel="stylesheet" href="../../styles/theme-override.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        // Theme colors from CSS variables
+                        'theme-primary': 'var(--color-primary)',
+                        'theme-primary-dark': 'var(--color-primary-dark)',
+                        'theme-primary-light': 'var(--color-primary-light)',
+                        'theme-bg-primary': 'var(--color-bg-primary)',
+                        'theme-bg-secondary': 'var(--color-bg-secondary)',
+                        'theme-text-primary': 'var(--color-text-primary)',
+                        'theme-text-secondary': 'var(--color-text-secondary)',
+                        // Keep original colors for compatibility
+                        slate: {
+                            950: '#0f172a',
+                        },
+                        blue: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-slate-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-950/[0.06] z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-8 md:px-16 py-7 flex justify-between items-center">
+            <a href="../../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
+                ← Back to Portfolio
+            </a>
+            <ul class="flex gap-10 list-none m-0 p-0">
+                <li><a href="#challenge" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Challenge</a></li>
+                <li><a href="#approach" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Approach</a></li>
+                <li><a href="#solution" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Solution</a></li>
+                <li><a href="#impact" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Impact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===================================
+         1. INTRODUCTION SECTION
+         Sets the stage for the project
+         =================================== -->
+    <section class="pt-40 pb-32 bg-gradient-to-br from-slate-50 to-white border-b border-slate-950/[0.08]">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <!-- Project Category -->
+            <span class="inline-block text-sm uppercase tracking-wider text-blue-500 font-semibold mb-6 px-5 py-2.5 bg-blue-500/[0.08] rounded-md opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
+                AI-Powered Product Design
+            </span>
+
+            <!-- Project Title -->
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-slate-950 mb-8 max-w-5xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s; letter-spacing: -0.03em;">
+                Democratizing Data Analytics Through AI-Powered Natural Language Queries
+            </h1>
+
+            <!-- Client/Product Context -->
+            <p class="text-xl text-slate-600 leading-relaxed mb-6 max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
+                Internal teams needed advanced insights from console usage data, but existing tools created significant barriers. Accessing analytics required technical knowledge of SQL, data engineering, and complex query construction. This bottleneck prevented product managers, designers, and leadership from independently tracking feature usage and making data-driven decisions.
+            </p>
+
+            <!-- Engagement Goal -->
+            <p class="text-xl text-slate-600 leading-relaxed max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
+                <strong class="text-slate-950">Goal:</strong> Build an AI-powered analytics tool that converts natural language questions into accurate SQL queries, eliminating technical barriers and democratizing access to console usage insights for all team members.
+            </p>
+
+            <!-- Project Meta -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-slate-950/[0.08] opacity-0 animate-fadeInUp" style="animation-delay: 0.6s;">
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Role</span>
+                    <span class="text-base text-slate-950 font-medium">Lead Product Designer</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Timeline</span>
+                    <span class="text-base text-slate-950 font-medium">6 weeks</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Team</span>
+                    <span class="text-base text-slate-950 font-medium">Solo Project</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Platform</span>
+                    <span class="text-base text-slate-950 font-medium">Internal Web Application</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         2. THE CHALLENGE SECTION
+         =================================== -->
+    <section id="challenge" class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Challenge</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Technical Barriers Blocking Data-Driven Decision Making
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                Product managers, design leadership, and designers needed specific console usage insights to track feature performance and validate product decisions. However, the existing analysis tools created insurmountable barriers that prevented non-technical team members from accessing the data they needed.
+            </p>
+
+            <!-- Challenge Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Technical Knowledge Required</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Accessing console usage data required proficiency in SQL query writing, understanding of database schemas, and knowledge of data engineering principles. Non-technical team members were completely blocked from independent analysis.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Limited Analysis Capabilities</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        The legacy tool was restrictive and couldn't support complex analysis requiring advanced SQL queries or sophisticated data aggregations. Even simple questions required technical workarounds or engineering support.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Resource Bottlenecks</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Teams depended on data engineering resources for routine analysis requests. This created delays in getting critical insights and slowed down product iteration cycles, particularly when tracking post-launch feature usage.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Inaccessible Insights</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Critical console usage patterns and feature performance metrics remained locked behind technical barriers. Teams couldn't quickly validate hypotheses or make data-informed decisions without extensive support.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Why it mattered:</strong> Data-driven decision making requires democratized access to insights. When only technical specialists can access analytics, product teams lose agility and rely on intuition rather than evidence. The lack of self-service capabilities created a fundamental barrier to informed product development.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         3. APPROACH SECTION
+         =================================== -->
+    <section id="approach" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Our Approach</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                End-to-End Design and Development
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                As a solo project with full ownership from concept to implementation, I approached this challenge by first deeply understanding the user friction, then designing an intuitive interface that leverages AI to eliminate technical barriers entirely.
+            </p>
+
+            <!-- Approach Phases -->
+            <div class="space-y-12 relative before:content-[''] before:absolute before:left-6 before:top-0 before:bottom-0 before:w-0.5 before:bg-slate-200">
+                <!-- Phase 1 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">1</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Research & Discovery</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            I conducted a self-study by documenting my own attempts to use the available data analysis tools. This hands-on approach allowed me to map out the complete process required to obtain advanced analysis, identifying exact pain points at each step and determining which types of analysis were impossible with existing tools.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Mapped the end-to-end workflow for obtaining data insights using current tools</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Identified specific friction points preventing non-technical users from accessing data</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Documented types of analysis that were completely blocked by existing tool limitations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">2</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Ideation & Design</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            The design approach centered on removing all technical barriers between users and their data questions. I focused on creating an intuitive natural language interface that would feel conversational rather than technical. The key challenge was ensuring the system could accurately interpret user intent and translate it into precise SQL queries while presenting results in an easily digestible format.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Designed conversational interface prioritizing natural language over technical syntax</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Architected query interpretation system to ensure accuracy and intent preservation</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Planned result presentation format to automatically highlight patterns and insights</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">3</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Development & Implementation</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Built using React for the front-end interface, Amazon Bedrock for AI-powered natural language processing and query generation, and Amazon Redshift as the data warehouse. The architecture handles the critical translation layer between natural language inputs and SQL queries, with careful mapping of the database schema to ensure query accuracy.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Implemented React-based conversational interface with real-time query processing</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Integrated Amazon Bedrock for natural language understanding and SQL generation</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created comprehensive database schema mappings to ensure query accuracy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">4</div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Testing & Refinement</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Testing focused on validating query accuracy across different types of questions and ensuring the AI-generated summaries correctly interpreted the data. I tested various natural language phrasings for similar questions to improve the system's understanding of user intent and refined the summary output format based on readability and actionability of insights.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Validated query accuracy across diverse question types and phrasings</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Tuned AI interpretation to handle various natural language formulations</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Optimized summary format for maximum readability and actionable insights</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         4. SOLUTION SECTION
+         =================================== -->
+    <section id="solution" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Solution</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                AI-Powered Natural Language Analytics
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                The tool transforms how teams access console usage insights by allowing anyone to ask questions in plain English and receive accurate, AI-analyzed results. By eliminating the need for SQL knowledge and technical expertise, the system democratizes data access across the entire organization.
+            </p>
+
+            <!-- Design Principles -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Conversational Interface</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Ask questions naturally without worrying about technical syntax or query structure.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Accurate Translation</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">AI precisely converts natural language into sophisticated SQL with proper aggregations and joins.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Intelligent Insights</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Automatic summarization highlights patterns, trends, and key findings from raw data.</p>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <h3 class="text-3xl font-semibold text-slate-950 mb-8 tracking-tight">Key Features</h3>
+
+            <div class="space-y-8 mb-16">
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">1. Natural Language Query Interface</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Users can ask questions about console usage data in plain English without needing to know SQL syntax or database structure. The interface feels conversational and intuitive, removing all technical barriers to data access.
+                    </p>
+                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 500px;">
+                        <div id="demo1-interface" class="p-8">
+                            <!-- Query Input Area -->
+                            <div class="mb-6">
+                                <label class="block text-sm font-semibold text-slate-950 mb-3">Ask a question about console usage data</label>
+                                <div class="relative">
+                                    <textarea
+                                        id="demo1-input"
+                                        class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors resize-none text-slate-900"
+                                        rows="3"
+                                        placeholder="e.g., What are the top 5 most used features in the last 30 days?"
+                                        style="font-size: 15px; line-height: 1.6;"
+                                    ></textarea>
+                                    <button
+                                        id="demo1-submit"
+                                        class="absolute bottom-3 right-3 px-6 py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-600 transition-colors text-sm"
+                                    >
+                                        Ask
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Example Queries -->
+                            <div class="mb-6">
+                                <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-3">Try these examples:</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <button class="demo1-example px-4 py-2 bg-slate-50 text-slate-700 rounded-md text-sm hover:bg-slate-100 transition-colors border border-slate-200">
+                                        Top 5 most used features last 30 days
+                                    </button>
+                                    <button class="demo1-example px-4 py-2 bg-slate-50 text-slate-700 rounded-md text-sm hover:bg-slate-100 transition-colors border border-slate-200">
+                                        Compare feature usage by region
+                                    </button>
+                                    <button class="demo1-example px-4 py-2 bg-slate-50 text-slate-700 rounded-md text-sm hover:bg-slate-100 transition-colors border border-slate-200">
+                                        User retention rate this quarter
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Response Area -->
+                            <div id="demo1-response" class="hidden">
+                                <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-6">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                        <span class="text-sm font-semibold text-slate-950">Query understood</span>
+                                    </div>
+                                    <p class="text-slate-700 leading-relaxed">
+                                        I'll analyze the console usage data to find <span class="font-semibold text-slate-950">the top 5 most frequently used features over the last 30 days</span>. This will include aggregating feature interaction events, filtering by date range, and ranking by usage frequency.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                    (function() {
+                        const input = document.getElementById('demo1-input');
+                        const submitBtn = document.getElementById('demo1-submit');
+                        const response = document.getElementById('demo1-response');
+                        const examples = document.querySelectorAll('.demo1-example');
+
+                        const responses = {
+                            'top 5 most used features': 'I\'ll analyze the console usage data to find <span class="font-semibold text-slate-950">the top 5 most frequently used features over the last 30 days</span>. This will include aggregating feature interaction events, filtering by date range, and ranking by usage frequency.',
+                            'compare feature usage by region': 'I\'ll compare <span class="font-semibold text-slate-950">feature usage patterns across different geographic regions</span>. This analysis will break down usage by region, identify regional preferences, and highlight any significant differences in adoption.',
+                            'user retention rate': 'I\'ll calculate the <span class="font-semibold text-slate-950">user retention rate for this quarter</span> by analyzing repeat user activity. This will show what percentage of users who started using the console continue to actively engage over time.'
+                        };
+
+                        function showResponse(query) {
+                            const lowerQuery = query.toLowerCase();
+                            let responseText = responses['top 5 most used features'];
+
+                            for (const [key, value] of Object.entries(responses)) {
+                                if (lowerQuery.includes(key)) {
+                                    responseText = value;
+                                    break;
+                                }
+                            }
+
+                            response.classList.remove('hidden');
+                            response.querySelector('p').innerHTML = responseText;
+                            response.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+
+                        submitBtn.addEventListener('click', () => {
+                            if (input.value.trim()) {
+                                showResponse(input.value);
+                            }
+                        });
+
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' && !e.shiftKey) {
+                                e.preventDefault();
+                                if (input.value.trim()) {
+                                    showResponse(input.value);
+                                }
+                            }
+                        });
+
+                        examples.forEach(btn => {
+                            btn.addEventListener('click', () => {
+                                input.value = btn.textContent.trim();
+                                showResponse(input.value);
+                            });
+                        });
+                    })();
+                    </script>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">2. Advanced Query Generation</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        The AI accurately translates complex analytical questions into sophisticated SQL queries with proper data aggregations, joins, and filtering. Even advanced analysis that would require expert SQL knowledge is accessible through simple conversational requests.
+                    </p>
+                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 600px;">
+                        <div id="demo2-interface" class="p-8">
+                            <!-- Input Section -->
+                            <div class="mb-6 pb-6 border-b border-slate-200">
+                                <div class="flex items-start gap-3 mb-3">
+                                    <svg class="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                                    </svg>
+                                    <div class="flex-1">
+                                        <p class="text-sm font-semibold text-slate-950 mb-1">Your Question</p>
+                                        <p class="text-slate-700 leading-relaxed" id="demo2-question">Show me feature adoption rates by user segment with month-over-month growth for the past quarter</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI Processing -->
+                            <div class="mb-6">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div id="demo2-spinner" class="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+                                    <span class="text-sm font-semibold text-slate-950">Generating SQL query...</span>
+                                </div>
+                            </div>
+
+                            <!-- Generated SQL -->
+                            <div class="mb-6">
+                                <div class="flex items-center justify-between mb-3">
+                                    <p class="text-sm font-semibold text-slate-950">Generated SQL Query</p>
+                                    <button id="demo2-toggle" class="text-xs text-blue-500 font-semibold hover:text-blue-600">
+                                        Expand ↓
+                                    </button>
+                                </div>
+                                <div id="demo2-sql" class="bg-slate-950 rounded-lg p-4 overflow-x-auto" style="max-height: 200px; transition: max-height 0.3s;">
+                                    <pre class="text-xs text-slate-300 leading-relaxed" style="font-family: 'JetBrains Mono', monospace;"><code><span class="text-purple-400">SELECT</span>
+    u.segment <span class="text-purple-400">AS</span> user_segment,
+    f.feature_name,
+    <span class="text-blue-400">DATE_TRUNC</span>(<span class="text-green-400">'month'</span>, e.event_timestamp) <span class="text-purple-400">AS</span> month,
+    <span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id) <span class="text-purple-400">AS</span> unique_users,
+    <span class="text-blue-400">COUNT</span>(e.event_id) <span class="text-purple-400">AS</span> total_interactions,
+    <span class="text-blue-400">LAG</span>(<span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id)) <span class="text-purple-400">OVER</span> (
+        <span class="text-purple-400">PARTITION BY</span> u.segment, f.feature_name
+        <span class="text-purple-400">ORDER BY</span> <span class="text-blue-400">DATE_TRUNC</span>(<span class="text-green-400">'month'</span>, e.event_timestamp)
+    ) <span class="text-purple-400">AS</span> prev_month_users,
+    <span class="text-blue-400">ROUND</span>((
+        (<span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id) - <span class="text-blue-400">LAG</span>(<span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id))
+            <span class="text-purple-400">OVER</span> (<span class="text-purple-400">PARTITION BY</span> u.segment, f.feature_name
+                   <span class="text-purple-400">ORDER BY</span> <span class="text-blue-400">DATE_TRUNC</span>(<span class="text-green-400">'month'</span>, e.event_timestamp))
+        ) / <span class="text-blue-400">NULLIF</span>(<span class="text-blue-400">LAG</span>(<span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id))
+            <span class="text-purple-400">OVER</span> (<span class="text-purple-400">PARTITION BY</span> u.segment, f.feature_name
+                   <span class="text-purple-400">ORDER BY</span> <span class="text-blue-400">DATE_TRUNC</span>(<span class="text-green-400">'month'</span>, e.event_timestamp)), <span class="text-yellow-400">0</span>)
+    ) * <span class="text-yellow-400">100</span>, <span class="text-yellow-400">2</span>) <span class="text-purple-400">AS</span> mom_growth_pct
+<span class="text-purple-400">FROM</span>
+    console_events e
+<span class="text-purple-400">INNER JOIN</span> users u <span class="text-purple-400">ON</span> e.user_id = u.user_id
+<span class="text-purple-400">INNER JOIN</span> features f <span class="text-purple-400">ON</span> e.feature_id = f.feature_id
+<span class="text-purple-400">WHERE</span>
+    e.event_timestamp >= <span class="text-blue-400">DATEADD</span>(<span class="text-green-400">'month'</span>, -<span class="text-yellow-400">3</span>, <span class="text-blue-400">CURRENT_DATE</span>)
+    <span class="text-purple-400">AND</span> e.event_type = <span class="text-green-400">'feature_interaction'</span>
+<span class="text-purple-400">GROUP BY</span>
+    u.segment, f.feature_name, month
+<span class="text-purple-400">ORDER BY</span>
+    month <span class="text-purple-400">DESC</span>, user_segment, total_interactions <span class="text-purple-400">DESC</span>;</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Query Complexity Analysis -->
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-slate-950 mb-1">3</div>
+                                    <div class="text-xs text-slate-600 font-semibold uppercase tracking-wider">Table Joins</div>
+                                </div>
+                                <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-slate-950 mb-1">5</div>
+                                    <div class="text-xs text-slate-600 font-semibold uppercase tracking-wider">Aggregations</div>
+                                </div>
+                                <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
+                                    <div class="text-2xl font-bold text-slate-950 mb-1">2</div>
+                                    <div class="text-xs text-slate-600 font-semibold uppercase tracking-wider">Window Functions</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                    (function() {
+                        const toggleBtn = document.getElementById('demo2-toggle');
+                        const sqlContainer = document.getElementById('demo2-sql');
+                        let isExpanded = false;
+
+                        toggleBtn.addEventListener('click', () => {
+                            isExpanded = !isExpanded;
+                            if (isExpanded) {
+                                sqlContainer.style.maxHeight = '800px';
+                                toggleBtn.textContent = 'Collapse ↑';
+                            } else {
+                                sqlContainer.style.maxHeight = '200px';
+                                toggleBtn.textContent = 'Expand ↓';
+                            }
+                        });
+
+                        // Stop spinner after 2 seconds to show completion
+                        setTimeout(() => {
+                            const spinner = document.getElementById('demo2-spinner');
+                            spinner.classList.remove('animate-spin');
+                            spinner.classList.add('bg-green-500', 'border-0');
+                            spinner.previousElementSibling.textContent = '✓';
+                            spinner.parentElement.querySelector('span').textContent = 'Query generated successfully';
+                        }, 2000);
+                    })();
+                    </script>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">3. Intelligent Data Summarization</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Raw query results are automatically analyzed and transformed into human-readable reports that highlight key patterns, trends, and insights relevant to the user's question. The system identifies what matters and presents it clearly, eliminating the need for manual data interpretation.
+                    </p>
+                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 700px;">
+                        <div id="demo3-interface" class="p-8">
+                            <!-- Tab Navigation -->
+                            <div class="flex gap-1 mb-6 border-b border-slate-200">
+                                <button id="demo3-tab-summary" class="demo3-tab px-6 py-3 text-sm font-semibold text-blue-500 border-b-2 border-blue-500 transition-colors">
+                                    AI Summary
+                                </button>
+                                <button id="demo3-tab-raw" class="demo3-tab px-6 py-3 text-sm font-semibold text-slate-500 hover:text-slate-950 border-b-2 border-transparent transition-colors">
+                                    Raw Data
+                                </button>
+                            </div>
+
+                            <!-- AI Summary View -->
+                            <div id="demo3-summary-view">
+                                <!-- Key Insights -->
+                                <div class="mb-8">
+                                    <h5 class="text-lg font-semibold text-slate-950 mb-4 flex items-center gap-2">
+                                        <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                        </svg>
+                                        Key Insights
+                                    </h5>
+                                    <div class="space-y-3">
+                                        <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                                            <p class="text-sm text-slate-950 leading-relaxed">
+                                                <strong class="font-semibold">Strong Growth in Enterprise Segment:</strong> Enterprise users show 42% month-over-month increase in feature adoption, significantly outpacing other segments.
+                                            </p>
+                                        </div>
+                                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                                            <p class="text-sm text-slate-950 leading-relaxed">
+                                                <strong class="font-semibold">Data Explorer Most Popular:</strong> The Data Explorer feature accounts for 34% of all interactions across all segments, making it the clear leader in usage.
+                                            </p>
+                                        </div>
+                                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
+                                            <p class="text-sm text-slate-950 leading-relaxed">
+                                                <strong class="font-semibold">Startup Segment Declining:</strong> Startup users decreased by 12% in the latest month, suggesting potential onboarding or retention issues.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Metrics Summary -->
+                                <div class="mb-8">
+                                    <h5 class="text-lg font-semibold text-slate-950 mb-4">Summary Metrics</h5>
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                        <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
+                                            <div class="text-2xl font-bold text-slate-950 mb-1">847K</div>
+                                            <div class="text-xs text-slate-600 font-medium">Total Interactions</div>
+                                            <div class="text-xs text-green-600 font-semibold mt-1">↑ 28% vs prev month</div>
+                                        </div>
+                                        <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
+                                            <div class="text-2xl font-bold text-slate-950 mb-1">12.4K</div>
+                                            <div class="text-xs text-slate-600 font-medium">Unique Users</div>
+                                            <div class="text-xs text-green-600 font-semibold mt-1">↑ 15% vs prev month</div>
+                                        </div>
+                                        <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
+                                            <div class="text-2xl font-bold text-slate-950 mb-1">5</div>
+                                            <div class="text-xs text-slate-600 font-medium">Top Features</div>
+                                            <div class="text-xs text-slate-600 font-medium mt-1">across 3 segments</div>
+                                        </div>
+                                        <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
+                                            <div class="text-2xl font-bold text-slate-950 mb-1">92%</div>
+                                            <div class="text-xs text-slate-600 font-medium">Data Coverage</div>
+                                            <div class="text-xs text-slate-600 font-medium mt-1">Q4 2024</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Trend Analysis -->
+                                <div>
+                                    <h5 class="text-lg font-semibold text-slate-950 mb-4">Trend Analysis</h5>
+                                    <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-6">
+                                        <p class="text-slate-700 leading-relaxed mb-4">
+                                            Over the past quarter, feature adoption has shown consistent upward momentum driven primarily by the Enterprise segment. The Data Explorer and Query Builder features dominate usage patterns, while newer features like Advanced Filters are showing promising early adoption curves.
+                                        </p>
+                                        <p class="text-slate-700 leading-relaxed">
+                                            <strong class="text-slate-950">Recommendation:</strong> Focus retention efforts on the Startup segment to address the recent decline. Consider targeted onboarding improvements and feature education campaigns to reverse the downward trend.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Raw Data View (Hidden by default) -->
+                            <div id="demo3-raw-view" class="hidden">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-sm">
+                                        <thead>
+                                            <tr class="border-b-2 border-slate-200">
+                                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Segment</th>
+                                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Feature</th>
+                                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Month</th>
+                                                <th class="text-right py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Users</th>
+                                                <th class="text-right py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Interactions</th>
+                                                <th class="text-right py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">MoM Growth</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-slate-700">
+                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
+                                                <td class="py-3 px-4">Enterprise</td>
+                                                <td class="py-3 px-4">Data Explorer</td>
+                                                <td class="py-3 px-4">Dec 2024</td>
+                                                <td class="py-3 px-4 text-right font-mono">4,231</td>
+                                                <td class="py-3 px-4 text-right font-mono">287,456</td>
+                                                <td class="py-3 px-4 text-right font-semibold text-green-600">+42.3%</td>
+                                            </tr>
+                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
+                                                <td class="py-3 px-4">Enterprise</td>
+                                                <td class="py-3 px-4">Query Builder</td>
+                                                <td class="py-3 px-4">Dec 2024</td>
+                                                <td class="py-3 px-4 text-right font-mono">3,892</td>
+                                                <td class="py-3 px-4 text-right font-mono">198,234</td>
+                                                <td class="py-3 px-4 text-right font-semibold text-green-600">+38.7%</td>
+                                            </tr>
+                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
+                                                <td class="py-3 px-4">SMB</td>
+                                                <td class="py-3 px-4">Data Explorer</td>
+                                                <td class="py-3 px-4">Dec 2024</td>
+                                                <td class="py-3 px-4 text-right font-mono">2,156</td>
+                                                <td class="py-3 px-4 text-right font-mono">143,567</td>
+                                                <td class="py-3 px-4 text-right font-semibold text-green-600">+24.1%</td>
+                                            </tr>
+                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
+                                                <td class="py-3 px-4">SMB</td>
+                                                <td class="py-3 px-4">Reports</td>
+                                                <td class="py-3 px-4">Dec 2024</td>
+                                                <td class="py-3 px-4 text-right font-mono">1,987</td>
+                                                <td class="py-3 px-4 text-right font-mono">89,432</td>
+                                                <td class="py-3 px-4 text-right font-semibold text-green-600">+18.3%</td>
+                                            </tr>
+                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
+                                                <td class="py-3 px-4">Startup</td>
+                                                <td class="py-3 px-4">Data Explorer</td>
+                                                <td class="py-3 px-4">Dec 2024</td>
+                                                <td class="py-3 px-4 text-right font-mono">1,432</td>
+                                                <td class="py-3 px-4 text-right font-mono">76,234</td>
+                                                <td class="py-3 px-4 text-right font-semibold text-red-600">-12.4%</td>
+                                            </tr>
+                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
+                                                <td class="py-3 px-4">Startup</td>
+                                                <td class="py-3 px-4">Quick Views</td>
+                                                <td class="py-3 px-4">Dec 2024</td>
+                                                <td class="py-3 px-4 text-right font-mono">892</td>
+                                                <td class="py-3 px-4 text-right font-mono">34,567</td>
+                                                <td class="py-3 px-4 text-right font-semibold text-red-600">-8.9%</td>
+                                            </tr>
+                                            <tr class="border-b border-slate-100 hover:bg-slate-50 bg-slate-50">
+                                                <td class="py-3 px-4 text-slate-400" colspan="6">
+                                                    <span class="text-xs italic">... 247 more rows</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                    (function() {
+                        const summaryTab = document.getElementById('demo3-tab-summary');
+                        const rawTab = document.getElementById('demo3-tab-raw');
+                        const summaryView = document.getElementById('demo3-summary-view');
+                        const rawView = document.getElementById('demo3-raw-view');
+                        const tabs = document.querySelectorAll('.demo3-tab');
+
+                        function switchTab(showSummary) {
+                            if (showSummary) {
+                                summaryView.classList.remove('hidden');
+                                rawView.classList.add('hidden');
+                                summaryTab.classList.add('text-blue-500', 'border-blue-500');
+                                summaryTab.classList.remove('text-slate-500', 'border-transparent');
+                                rawTab.classList.add('text-slate-500', 'border-transparent');
+                                rawTab.classList.remove('text-blue-500', 'border-blue-500');
+                            } else {
+                                summaryView.classList.add('hidden');
+                                rawView.classList.remove('hidden');
+                                rawTab.classList.add('text-blue-500', 'border-blue-500');
+                                rawTab.classList.remove('text-slate-500', 'border-transparent');
+                                summaryTab.classList.add('text-slate-500', 'border-transparent');
+                                summaryTab.classList.remove('text-blue-500', 'border-blue-500');
+                            }
+                        }
+
+                        summaryTab.addEventListener('click', () => switchTab(true));
+                        rawTab.addEventListener('click', () => switchTab(false));
+                    })();
+                    </script>
+                </div>
+            </div>
+
+            <!-- Technical Architecture -->
+            <h3 class="text-3xl font-semibold text-slate-950 mb-8 tracking-tight">Technical Architecture</h3>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-slate-50 p-6 border border-slate-950/[0.08]">
+                    <h4 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Frontend</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">React-based interface with conversational UX and real-time query processing</p>
+                </div>
+                <div class="bg-slate-50 p-6 border border-slate-950/[0.08]">
+                    <h4 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">AI Layer</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Amazon Bedrock for natural language processing, intent detection, and SQL generation</p>
+                </div>
+                <div class="bg-slate-50 p-6 border border-slate-950/[0.08]">
+                    <h4 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Data Warehouse</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Amazon Redshift with comprehensive schema mapping for accurate query execution</p>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Design Impact:</strong> By combining AI-powered natural language understanding with intelligent data summarization, the tool eliminates every technical barrier that previously prevented non-technical team members from accessing console usage insights. The result is true democratization of data analytics.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         5. IMPACT SECTION
+         =================================== -->
+    <section id="impact" class="py-24 bg-gradient-to-br from-slate-950 to-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,rgba(59,130,246,0.3)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(168,85,247,0.3)_0%,transparent_50%)]"></div>
+
+        <div class="max-w-6xl mx-auto px-8 md:px-16 relative z-10">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-400 font-semibold mb-6 pb-2 border-b-2 border-white/10">Impact</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-white mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Unlocking Previously Impossible Capabilities
+            </h2>
+
+            <p class="text-lg text-slate-300 leading-relaxed mb-12 max-w-3xl">
+                The AI analytics tool fundamentally transformed how teams access and use console usage data, eliminating technical barriers and enabling data-driven decision making across the organization.
+            </p>
+
+            <!-- Impact Categories -->
+            <div class="space-y-12 mb-16">
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Capability Unlock</h3>
+                    <div class="bg-white/5 p-8 border border-white/10">
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            Made previously impossible or extremely difficult advanced analysis accessible to all team members, removing technical barriers entirely. Analyses that would have required data engineering support or were simply infeasible with legacy tools became routine self-service tasks.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Democratized Data Access</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Product managers can now independently explore console usage patterns and track feature performance post-launch</li>
+                        <li>Design leaders access real usage data to validate design decisions and identify opportunities</li>
+                        <li>Designers explore user behavior patterns without requiring technical support or SQL knowledge</li>
+                        <li>Cross-functional teams make data-informed decisions without engineering dependencies</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Operational Efficiency</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Eliminated dependency on technical resources for routine data analysis requests</li>
+                        <li>Reduced time from question to insight from days (with engineering support) to minutes (self-service)</li>
+                        <li>Accelerated product iteration cycles through immediate access to post-launch usage metrics</li>
+                        <li>Freed data engineering resources to focus on strategic initiatives rather than routine queries</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Improved Decision Making</h3>
+                    <div class="bg-white/5 p-8 border border-white/10">
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            Teams can now quickly validate hypotheses and track feature usage post-launch, enabling evidence-based product decisions. The ability to instantly explore data patterns and test assumptions fundamentally changed how product teams approach iteration and optimization.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-300 leading-relaxed max-w-3xl">
+                <strong class="text-white">Bottom Line:</strong> By eliminating technical barriers through AI-powered natural language queries, the tool transformed data from an exclusive resource requiring specialized skills into a universally accessible foundation for informed decision making. The democratization of analytics capabilities has compounding benefits across the organization.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         6. CHALLENGES & SOLUTIONS SECTION
+         =================================== -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Challenges & Solutions</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-12 max-w-4xl" style="letter-spacing: -0.025em;">
+                Overcoming Technical Complexity
+            </h2>
+
+            <div class="space-y-8">
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Database Schema Understanding</h3>
+                    <div class="mb-6">
+                        <h4 class="text-base font-semibold text-slate-950 mb-2">Problem:</h4>
+                        <p class="text-base text-slate-600 leading-relaxed">
+                            Understanding the database schema and how data was stored was critical to ensure the system created queries that would return correct results. The complexity of the data structure meant that incorrect schema interpretation would lead to inaccurate insights, undermining trust in the entire system.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-semibold text-slate-950 mb-2">Solution:</h4>
+                        <p class="text-base text-slate-600 leading-relaxed">
+                            I created comprehensive documentation of the database schema and established clear mappings between natural language concepts and database tables/fields. This involved working closely with the data structure to understand relationships, creating a knowledge base that the AI could reference, and implementing validation checks to ensure generated queries aligned with the actual data architecture.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Natural Language Interpretation</h3>
+                    <div class="mb-6">
+                        <h4 class="text-base font-semibold text-slate-950 mb-2">Problem:</h4>
+                        <p class="text-base text-slate-600 leading-relaxed">
+                            Translating ambiguous natural language requests into precise SQL queries without losing the user's intended meaning or over-constraining the analysis. Users phrase the same question in many different ways, and the system needed to understand intent despite linguistic variations.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-semibold text-slate-950 mb-2">Solution:</h4>
+                        <p class="text-base text-slate-600 leading-relaxed">
+                            Developed a multi-step interpretation process where the system first identifies the key entities and metrics in the user's question, maps them to database elements, and constructs queries with appropriate flexibility. The AI-generated summary layer also helps clarify what was actually analyzed, providing transparency into how the question was interpreted.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         7. KEY TAKEAWAYS SECTION
+         =================================== -->
+    <section class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Key Takeaways</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-12 max-w-4xl" style="letter-spacing: -0.025em;">
+                Lessons in AI-Powered Design
+            </h2>
+
+            <div class="space-y-8 mb-12">
+                <div class="bg-slate-50 p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Schema Understanding is Critical for AI Query Tools</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        The accuracy of an AI-powered analytics tool fundamentally depends on proper schema mapping and validation. Without deep understanding of the underlying data architecture, even sophisticated AI models will generate queries that return misleading or incorrect results. Investing time in comprehensive schema documentation and validation mechanisms is non-negotiable.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Democratizing Data Has Compounding Benefits</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Making data accessible to non-technical team members creates value that extends far beyond the immediate use case. When product managers, designers, and leadership can independently explore usage patterns and validate hypotheses, it enables data-driven decision making across previously excluded teams. This cultural shift toward evidence-based product development compounds over time.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Retrieval + Interpretation = Value</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        The combination of accurate data retrieval and intelligent summarization is essential—raw data alone doesn't provide value without interpretation and pattern identification. Users ask questions because they want answers and insights, not because they want to manually analyze query results. The AI summarization layer transforms data into actionable intelligence.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="bg-gradient-to-br from-slate-950 to-slate-900 p-12 border-l-2 border-white">
+                <p class="text-xl text-white leading-relaxed">
+                    True democratization of analytics means removing every technical barrier between a user's question and a data-driven answer. When asking becomes as simple as conversing, data transforms from an exclusive resource into a universal foundation for informed decisions.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         8. CLOSING / NEXT STEPS SECTION
+         =================================== -->
+    <section class="py-24 bg-white border-t border-slate-950/[0.08]">
+        <div class="max-w-4xl mx-auto px-8 md:px-16 text-center">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Conclusion</span>
+
+            <p class="text-xl text-slate-600 leading-relaxed mb-12">
+                This project demonstrates the powerful impact of combining AI capabilities with thoughtful UX design to break down technical barriers. By building a tool that understands natural language questions and generates accurate analytics, I enabled data-driven decision making for teams that were previously excluded from accessing console usage insights.
+            </p>
+
+            <!-- Future Improvements -->
+            <div class="text-left mb-16 bg-slate-50 p-10 border border-slate-950/[0.08]">
+                <h3 class="text-2xl font-semibold text-slate-950 mb-6 tracking-tight">Future Enhancements</h3>
+                <ul class="space-y-3 text-base text-slate-600">
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Saved query templates for common analysis patterns</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Automated scheduling for recurring reports and trend tracking</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Collaborative features for sharing insights across teams</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Extensible architecture to support additional data sources beyond console usage</li>
+                </ul>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex gap-4 justify-center flex-wrap">
+                <a href="../../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
+                    See More Projects →
+                </a>
+                <a href="mailto:your.email@example.com" class="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-slate-950 text-base font-semibold tracking-tight border-2 border-slate-950/[0.08] hover:border-slate-950 transition-all">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        const navHeight = 100;
+                        const targetPosition = targetSection.offsetTop - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
