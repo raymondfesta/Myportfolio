@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Selection Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .template-card {
+            transition: all 0.2s ease;
+        }
+        .template-card:hover {
+            transform: translateY(-2px);
+        }
+        .template-card.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+    </style>
+</head>
+<body class="bg-white p-8">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-semibold text-slate-900 mb-6">Select a Template</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" id="templates">
+            <div class="template-card bg-white border-2 border-slate-200 p-6 rounded-lg cursor-pointer" data-template="iot">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-1">IoT Sensor Data</h3>
+                        <p class="text-sm text-slate-600">Time-series data from connected devices with multiple sensors</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card bg-white border-2 border-slate-200 p-6 rounded-lg cursor-pointer" data-template="devops">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-1">DevOps Monitoring</h3>
+                        <p class="text-sm text-slate-600">Infrastructure metrics and application performance data</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card bg-white border-2 border-slate-200 p-6 rounded-lg cursor-pointer" data-template="metrics">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-1">Application Metrics</h3>
+                        <p class="text-sm text-slate-600">User behavior, API calls, and custom business metrics</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card bg-white border-2 border-slate-200 p-6 rounded-lg cursor-pointer" data-template="custom">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-900 mb-1">Start from Scratch</h3>
+                        <p class="text-sm text-slate-600">Build a custom data model for your specific use case</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schema Preview -->
+        <div id="schema-preview" class="hidden">
+            <div class="bg-slate-50 border-2 border-blue-500 rounded-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900">Template Schema Preview</h3>
+                        <p class="text-sm text-slate-600 mt-1"><span id="template-name-display"></span></p>
+                    </div>
+                    <button id="close-preview" class="text-slate-400 hover:text-slate-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Schema Table -->
+                <div class="bg-white border border-slate-300 rounded-lg overflow-hidden">
+                    <div class="bg-slate-800 px-4 py-3">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                            </svg>
+                            <span class="text-white font-semibold text-sm" id="table-name"></span>
+                            <span class="text-slate-400 text-xs ml-2">Timestream Table</span>
+                        </div>
+                    </div>
+
+                    <table class="w-full text-xs font-mono">
+                        <thead>
+                            <tr class="bg-slate-100 border-b-2 border-slate-300">
+                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Field Name</th>
+                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Data Type</th>
+                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Attribute Type</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schema-fields">
+                            <!-- Fields will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const templateSchemas = {
+            iot: {
+                tableName: 'IoTSensorData',
+                fields: [
+                    { name: 'timestamp', type: 'TIMESTAMP', category: 'TIME', color: 'blue' },
+                    { name: 'device_id', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'location', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'sensor_type', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'temperature', type: 'DOUBLE', category: 'MEASURE', color: 'green' },
+                    { name: 'humidity', type: 'DOUBLE', category: 'MEASURE', color: 'green' },
+                    { name: 'pressure', type: 'DOUBLE', category: 'MEASURE', color: 'green' }
+                ]
+            },
+            devops: {
+                tableName: 'InfrastructureMetrics',
+                fields: [
+                    { name: 'timestamp', type: 'TIMESTAMP', category: 'TIME', color: 'blue' },
+                    { name: 'hostname', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'region', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'service', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'cpu_utilization', type: 'DOUBLE', category: 'MEASURE', color: 'green' },
+                    { name: 'memory_usage', type: 'DOUBLE', category: 'MEASURE', color: 'green' },
+                    { name: 'disk_io', type: 'BIGINT', category: 'MEASURE', color: 'green' },
+                    { name: 'network_throughput', type: 'DOUBLE', category: 'MEASURE', color: 'green' }
+                ]
+            },
+            metrics: {
+                tableName: 'ApplicationMetrics',
+                fields: [
+                    { name: 'timestamp', type: 'TIMESTAMP', category: 'TIME', color: 'blue' },
+                    { name: 'endpoint', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'user_id', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'version', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'response_time', type: 'DOUBLE', category: 'MEASURE', color: 'green' },
+                    { name: 'request_count', type: 'BIGINT', category: 'MEASURE', color: 'green' },
+                    { name: 'error_count', type: 'BIGINT', category: 'MEASURE', color: 'green' }
+                ]
+            },
+            custom: {
+                tableName: 'CustomTable',
+                fields: [
+                    { name: 'timestamp', type: 'TIMESTAMP', category: 'TIME', color: 'blue' },
+                    { name: 'dimension_1', type: 'VARCHAR', category: 'DIMENSION', color: 'purple' },
+                    { name: 'measure_1', type: 'DOUBLE', category: 'MEASURE', color: 'green' }
+                ]
+            }
+        };
+
+        const cards = document.querySelectorAll('.template-card');
+        const schemaPreview = document.getElementById('schema-preview');
+        const schemaFields = document.getElementById('schema-fields');
+        const templateNameDisplay = document.getElementById('template-name-display');
+        const tableNameDisplay = document.getElementById('table-name');
+        const closeBtn = document.getElementById('close-preview');
+
+        function displaySchema(template) {
+            const schema = templateSchemas[template];
+
+            // Update table name
+            tableNameDisplay.textContent = schema.tableName;
+            templateNameDisplay.textContent = document.querySelector(`[data-template="${template}"] h3`).textContent;
+
+            // Clear and populate fields
+            schemaFields.innerHTML = '';
+            schema.fields.forEach(field => {
+                const colorMap = {
+                    blue: { bg: 'bg-blue-50', hover: 'hover:bg-blue-100', badge: 'bg-blue-500' },
+                    purple: { bg: 'bg-purple-50', hover: 'hover:bg-purple-100', badge: 'bg-purple-500' },
+                    green: { bg: 'bg-green-50', hover: 'hover:bg-green-100', badge: 'bg-green-500' }
+                };
+
+                const colors = colorMap[field.color];
+                const row = document.createElement('tr');
+                row.className = `border-b border-slate-200 ${colors.bg} ${colors.hover}`;
+                row.innerHTML = `
+                    <td class="px-3 py-3 font-semibold text-slate-900">${field.name}</td>
+                    <td class="px-3 py-3 text-slate-600">${field.type}</td>
+                    <td class="px-3 py-3">
+                        <span class="inline-flex items-center px-2 py-1 rounded text-[10px] font-semibold ${colors.badge} text-white">${field.category}</span>
+                    </td>
+                `;
+                schemaFields.appendChild(row);
+            });
+
+            // Show preview
+            schemaPreview.classList.remove('hidden');
+        }
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                cards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+
+                const template = card.getAttribute('data-template');
+                displaySchema(template);
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            schemaPreview.classList.add('hidden');
+            cards.forEach(c => c.classList.remove('selected'));
+        });
+    </script>
+</body>
+</html>

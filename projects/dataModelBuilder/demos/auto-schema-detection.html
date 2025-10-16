@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Schema Detection Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .analyze-pulse {
+            animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-white p-8">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-2xl font-semibold text-slate-900 mb-6">Auto Schema Detection</h2>
+
+        <div class="bg-white border border-slate-200 rounded-lg p-6 mb-6">
+            <label class="block text-sm font-medium text-slate-700 mb-3">Paste Sample Data (JSON)</label>
+            <textarea
+                id="sample-data"
+                class="w-full h-48 p-4 border border-slate-300 rounded-lg font-mono text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder='[
+  {
+    "timestamp": "2024-01-15T10:30:00Z",
+    "device_id": "sensor-001",
+    "location": "warehouse-a",
+    "temperature": 22.5,
+    "humidity": 65.3,
+    "pressure": 1013.25
+  }
+]'></textarea>
+            <button
+                id="analyze-btn"
+                class="mt-4 px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                Analyze Structure
+            </button>
+        </div>
+
+        <div id="loading" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+            <div class="flex items-center gap-3">
+                <div class="analyze-pulse w-5 h-5 bg-blue-600 rounded-full"></div>
+                <p class="text-blue-800">Analyzing data structure...</p>
+            </div>
+        </div>
+
+        <div id="results" class="hidden">
+            <div class="bg-slate-50 border-2 border-green-500 rounded-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-900">Schema Generated from Sample Data</h3>
+                        <p class="text-sm text-green-600 mt-1">✓ Analysis complete — Schema ready for review</p>
+                    </div>
+                </div>
+
+                <!-- Schema Table -->
+                <div class="bg-white border border-slate-300 rounded-lg overflow-hidden">
+                    <div class="bg-slate-800 px-4 py-3">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                            </svg>
+                            <span class="text-white font-semibold text-sm" id="generated-table-name">DetectedSchema</span>
+                            <span class="text-slate-400 text-xs ml-2">Timestream Table</span>
+                        </div>
+                    </div>
+
+                    <table class="w-full text-xs font-mono">
+                        <thead>
+                            <tr class="bg-slate-100 border-b-2 border-slate-300">
+                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Field Name</th>
+                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Data Type</th>
+                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Category</th>
+                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Confidence</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schema-table-body">
+                            <!-- Fields will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const sampleData = document.getElementById('sample-data');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+
+        analyzeBtn.addEventListener('click', async () => {
+            const data = sampleData.value.trim();
+            if (!data) return;
+
+            results.classList.add('hidden');
+            loading.classList.remove('hidden');
+
+            // Simulate analysis
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            try {
+                const parsed = JSON.parse(data);
+                const firstRecord = Array.isArray(parsed) ? parsed[0] : parsed;
+
+                // Detect schema
+                const timeField = Object.keys(firstRecord).find(key =>
+                    key.toLowerCase().includes('time') || key.toLowerCase().includes('date')
+                );
+
+                const fields = [];
+
+                // Add time field first
+                if (timeField) {
+                    fields.push({
+                        name: timeField,
+                        type: 'TIMESTAMP',
+                        category: 'TIME',
+                        confidence: 100,
+                        color: 'blue'
+                    });
+                }
+
+                // Add dimensions and measures
+                Object.entries(firstRecord).forEach(([key, value]) => {
+                    if (key === timeField) return;
+                    if (typeof value === 'number') {
+                        fields.push({
+                            name: key,
+                            type: Number.isInteger(value) ? 'BIGINT' : 'DOUBLE',
+                            category: 'MEASURE',
+                            confidence: 95,
+                            color: 'green'
+                        });
+                    } else {
+                        fields.push({
+                            name: key,
+                            type: 'VARCHAR',
+                            category: 'DIMENSION',
+                            confidence: 98,
+                            color: 'purple'
+                        });
+                    }
+                });
+
+                // Display results in table format
+                const tableBody = document.getElementById('schema-table-body');
+                tableBody.innerHTML = '';
+
+                fields.forEach(field => {
+                    const colorMap = {
+                        blue: { bg: 'bg-blue-50', hover: 'hover:bg-blue-100', badge: 'bg-blue-500' },
+                        purple: { bg: 'bg-purple-50', hover: 'hover:bg-purple-100', badge: 'bg-purple-500' },
+                        green: { bg: 'bg-green-50', hover: 'hover:bg-green-100', badge: 'bg-green-500' }
+                    };
+
+                    const colors = colorMap[field.color];
+                    const row = document.createElement('tr');
+                    row.className = `border-b border-slate-200 ${colors.bg} ${colors.hover}`;
+                    row.innerHTML = `
+                        <td class="px-3 py-3 font-semibold text-slate-900">${field.name}</td>
+                        <td class="px-3 py-3 text-slate-600">${field.type}</td>
+                        <td class="px-3 py-3">
+                            <span class="inline-flex items-center px-2 py-1 rounded text-[10px] font-semibold ${colors.badge} text-white">${field.category}</span>
+                        </td>
+                        <td class="px-3 py-3">
+                            <span class="text-xs ${field.confidence >= 95 ? 'text-green-600 font-semibold' : 'text-yellow-600'}">${field.confidence}%</span>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+
+                loading.classList.add('hidden');
+                results.classList.remove('hidden');
+            } catch (e) {
+                loading.classList.add('hidden');
+                alert('Invalid JSON format. Please check your data.');
+            }
+        });
+    </script>
+</body>
+</html>
