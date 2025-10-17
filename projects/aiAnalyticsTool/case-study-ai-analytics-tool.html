@@ -82,11 +82,27 @@
             <a href="../../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
                 ← Back to Portfolio
             </a>
-            <ul class="flex gap-10 list-none m-0 p-0">
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex gap-10 list-none m-0 p-0">
                 <li><a href="#challenge" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Challenge</a></li>
                 <li><a href="#approach" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Approach</a></li>
                 <li><a href="#solution" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Solution</a></li>
                 <li><a href="#impact" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Impact</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-slate-950 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-950/[0.06]">
+            <ul class="list-none m-0 p-0 py-4">
+                <li><a href="#challenge" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Challenge</a></li>
+                <li><a href="#approach" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Approach</a></li>
+                <li><a href="#solution" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Solution</a></li>
+                <li><a href="#impact" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Impact</a></li>
             </ul>
         </div>
     </nav>
@@ -315,7 +331,8 @@
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         Users can ask questions about console usage data in plain English without needing to know SQL syntax or database structure. The interface feels conversational and intuitive, removing all technical barriers to data access.
                     </p>
-                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 500px;">
+                    <!-- Desktop Demo -->
+                    <div class="hidden md:block w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 500px;">
                         <div id="demo1-interface" class="p-8">
                             <!-- Query Input Area -->
                             <div class="mb-6">
@@ -421,13 +438,19 @@
                     })();
                     </script>
                 </div>
+                <!-- Mobile Placeholder -->
+                <div class="md:hidden w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50" style="min-height: 300px;">
+                    <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
+                </div>
+                </div>
 
                 <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
                     <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">2. Advanced Query Generation</h4>
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         The AI accurately translates complex analytical questions into sophisticated SQL queries with proper data aggregations, joins, and filtering. Even advanced analysis that would require expert SQL knowledge is accessible through simple conversational requests.
                     </p>
-                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 600px;">
+                    <!-- Desktop Demo -->
+                    <div class="hidden md:block w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 600px;">
                         <div id="demo2-interface" class="p-8">
                             <!-- Input Section -->
                             <div class="mb-6 pb-6 border-b border-slate-200">
@@ -537,13 +560,19 @@
                     })();
                     </script>
                 </div>
+                <!-- Mobile Placeholder -->
+                <div class="md:hidden w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50" style="min-height: 300px;">
+                    <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
+                </div>
+                </div>
 
                 <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
                     <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">3. Intelligent Data Summarization</h4>
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         Raw query results are automatically analyzed and transformed into human-readable reports that highlight key patterns, trends, and insights relevant to the user's question. The system identifies what matters and presents it clearly, eliminating the need for manual data interpretation.
                     </p>
-                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 700px;">
+                    <!-- Desktop Demo -->
+                    <div class="hidden md:block w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 700px;">
                         <div id="demo3-interface" class="p-8">
                             <!-- Tab Navigation -->
                             <div class="flex gap-1 mb-6 border-b border-slate-200">
@@ -730,6 +759,11 @@
                         rawTab.addEventListener('click', () => switchTab(false));
                     })();
                     </script>
+                </div>
+                <!-- Mobile Placeholder -->
+                <div class="md:hidden w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50" style="min-height: 300px;">
+                    <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
+                </div>
                 </div>
             </div>
 
@@ -947,6 +981,25 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close mobile menu when clicking a link
+                const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // Smooth scroll for navigation links
             const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
             navLinks.forEach(link => {

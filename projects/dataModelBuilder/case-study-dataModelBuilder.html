@@ -82,11 +82,27 @@
             <a href="../../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
                 ← Back to Portfolio
             </a>
-            <ul class="flex gap-10 list-none m-0 p-0">
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex gap-10 list-none m-0 p-0">
                 <li><a href="#challenge" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Challenge</a></li>
                 <li><a href="#approach" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Approach</a></li>
                 <li><a href="#solution" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Solution</a></li>
                 <li><a href="#impact" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Impact</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-slate-950 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-950/[0.06]">
+            <ul class="list-none m-0 p-0 py-4">
+                <li><a href="#challenge" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Challenge</a></li>
+                <li><a href="#approach" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Approach</a></li>
+                <li><a href="#solution" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Solution</a></li>
+                <li><a href="#impact" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Impact</a></li>
             </ul>
         </div>
     </nav>
@@ -314,8 +330,13 @@
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         Pre-configured templates based on common time-series use cases and supported data model formats. These templates, previously hidden deep in documentation, provide developers with validated starting points that follow Timestream best practices. Templates are organized by use case (IoT, DevOps monitoring, application metrics, etc.) with contextual guidance about when to use each approach.
                     </p>
-                    <div class="w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
+                    <!-- Desktop Demo -->
+                    <div class="hidden md:block w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
                         <iframe src="demos/template-selection.html" class="w-full h-full" title="Template Selection Demo"></iframe>
+                    </div>
+                    <!-- Mobile Placeholder -->
+                    <div class="md:hidden w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50">
+                        <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
                     </div>
                 </div>
 
@@ -324,8 +345,13 @@
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         Customers can upload sample data or records, and the system automatically analyzes the structure and populates the correct data model fields. This removes guesswork and ensures proper dimensional vs. measure field categorization. The auto-detection handles various data formats and provides confidence scores for its suggestions, allowing customers to validate the analysis.
                     </p>
-                    <div class="w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
+                    <!-- Desktop Demo -->
+                    <div class="hidden md:block w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
                         <iframe src="demos/auto-schema-detection.html" class="w-full h-full" title="Auto Schema Detection Demo"></iframe>
+                    </div>
+                    <!-- Mobile Placeholder -->
+                    <div class="md:hidden w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50">
+                        <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
                     </div>
                 </div>
 
@@ -334,8 +360,13 @@
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
                         An interactive diagram that shows how dimensions (attributes), measures (metrics), and time columns relate within the schemaless structure. This visualization bridges the mental model gap for SQL-background developers by making abstract time-series concepts tangible and understandable. For complex schemas, progressive disclosure patterns and grouping mechanisms prevent clutter. Real-time validation warnings alert users when their structure might lead to query inefficiencies.
                     </p>
-                    <div class="w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
+                    <!-- Desktop Demo -->
+                    <div class="hidden md:block w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
                         <iframe src="demos/visual-relationships.html" class="w-full h-full" title="Visual Data Relationship Mapping Demo"></iframe>
+                    </div>
+                    <!-- Mobile Placeholder -->
+                    <div class="md:hidden w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50">
+                        <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
                     </div>
                 </div>
             </div>
@@ -487,6 +518,25 @@
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close mobile menu when clicking a link
+                const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // Smooth scroll for navigation links
             const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
             navLinks.forEach(link => {

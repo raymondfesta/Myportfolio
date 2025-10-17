@@ -60,6 +60,13 @@
                 transform: translateY(0);
             }
         }
+
+        /* Ensure project cards are fully clickable */
+        article a {
+            display: block;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1);
+        }
         @keyframes logo-frame-expand {
             0% {
                 stroke-dashoffset: 180;
@@ -263,7 +270,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Project Card 1: AI Analytics Tool -->
                 <article class="group opacity-0 animate-fadeInUp flex" style="animation-delay: 0.4s;">
-                    <div class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
+                    <a href="projects/aiAnalyticsTool/case-study-ai-analytics-tool.html" class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
                         <div class="aspect-[16/10] bg-gradient-to-br from-blue-50 via-white to-slate-50 overflow-hidden relative flex items-center justify-center">
                             <!-- Minimal AI Analytics Visual -->
                             <div class="relative w-full h-full flex items-center justify-center p-8">
@@ -298,17 +305,17 @@
                             <span class="text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4 self-start">AI-Powered Product Design</span>
                             <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">AI Data Analytics Tool</h3>
                             <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal flex-grow">AI-powered analytics tool that democratizes data access by converting natural language into SQL queries.</p>
-                            <a href="projects/aiAnalyticsTool/case-study-ai-analytics-tool.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                            <span class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
                                 View Case Study
                                 <span class="transition-transform group-hover:translate-x-1">→</span>
-                            </a>
+                            </span>
                         </div>
-                    </div>
+                    </a>
                 </article>
 
                 <!-- Project Card 2: Amazon Timestream Data Model Builder -->
                 <article class="group opacity-0 animate-fadeInUp flex" style="animation-delay: 0.5s;">
-                    <div class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
+                    <a href="projects/dataModelBuilder/case-study-dataModelBuilder.html" class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
                         <div class="aspect-[16/10] bg-gradient-to-br from-slate-50 via-white to-slate-100 overflow-hidden relative flex items-center justify-center">
                             <!-- Minimal Data Model Visual -->
                             <div class="relative w-full h-full flex items-center justify-center p-8">
@@ -347,17 +354,17 @@
                             <span class="text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4 self-start">Database Design Tool</span>
                             <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">Data model builder</h3>
                             <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal flex-grow">Visual tool that reduced database setup time from 90+ days to hours, achieving 51% completion rate for new users.</p>
-                            <a href="projects/dataModelBuilder/case-study-dataModelBuilder.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                            <span class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
                                 View Case Study
                                 <span class="transition-transform group-hover:translate-x-1">→</span>
-                            </a>
+                            </span>
                         </div>
-                    </div>
+                    </a>
                 </article>
 
                 <!-- Project Card 3: AWS Pricing Widget -->
                 <article class="group opacity-0 animate-fadeInUp flex" style="animation-delay: 0.6s;">
-                    <div class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
+                    <a href="projects/awsPricingWidget/case-study-aws-pricing-widget.html" class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
                         <div class="aspect-[16/10] bg-gradient-to-br from-slate-50 via-white to-blue-50 overflow-hidden relative flex items-center justify-center">
                             <!-- Minimal Pricing Widget Visual -->
                             <div class="relative w-full h-full flex items-center justify-center p-8">
@@ -404,12 +411,12 @@
                             <span class="text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4 self-start">Scalable component design</span>
                             <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">AWS Database Pricing Widget</h3>
                             <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal flex-grow">Interactive pricing configurator providing real-time cost estimates for AWS database resource configuration.</p>
-                            <a href="projects/awsPricingWidget/case-study-aws-pricing-widget.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
+                            <span class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors group-hover:gap-2 gap-1.5 transition-all">
                                 View Case Study
                                 <span class="transition-transform group-hover:translate-x-1">→</span>
-                            </a>
+                            </span>
                         </div>
-                    </div>
+                    </a>
                 </article>
             </div>
         </div>
