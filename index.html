@@ -158,10 +158,25 @@
                 </svg>
                 <span class="text-[14px] font-semibold tracking-tight text-slate-950 group-hover:text-blue-600 transition-colors">RF Design</span>
             </a>
-            <div class="flex items-center gap-8">
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-8">
                 <a href="mailto:your.email@example.com" class="text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">Contact</a>
                 <a href="https://www.linkedin.com/in/raymondcfesta/" target="_blank" rel="noopener noreferrer" class="text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">LinkedIn</a>
                 <a href="#work" class="text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">My work</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-slate-950 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+            <div class="py-4">
+                <a href="mailto:your.email@example.com" class="mobile-nav-link block px-8 py-3 text-[14px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Contact</a>
+                <a href="https://www.linkedin.com/in/raymondcfesta/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link block px-8 py-3 text-[14px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">LinkedIn</a>
+                <a href="#work" class="mobile-nav-link block px-8 py-3 text-[14px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">My work</a>
             </div>
         </div>
     </nav>
@@ -437,6 +452,25 @@
 
         // Start animation when page loads
         init();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if (mobileMenuBtn && mobileMenu) {
+            // Toggle menu when button is clicked
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close menu when a navigation link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
     </script>
     <script src="js/main.js"></script>
 </body>
