@@ -13,12 +13,139 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
+
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 280px;
+            background-color: #1e293b;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -140px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 13px;
+            line-height: 1.5;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .tooltip .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1e293b transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .sample-card {
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sample-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .sample-card.active {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
     </style>
 </head>
 <body class="bg-white p-8">
     <div class="max-w-4xl mx-auto">
-        <h2 class="text-2xl font-semibold text-slate-900 mb-6">Auto Schema Detection</h2>
+        <h2 class="text-2xl font-semibold text-slate-900 mb-2">Auto Schema Detection</h2>
+        <p class="text-sm text-slate-600 mb-6">Load a sample or paste your own JSON data to see how Timestream categorizes fields.</p>
 
+        <!-- Sample Records Section -->
+        <div class="mb-6">
+            <div class="flex items-center justify-between mb-3">
+                <label class="block text-sm font-medium text-slate-700">Try a Sample Record</label>
+                <button id="clear-btn" class="text-xs text-slate-500 hover:text-slate-700 underline hidden">Clear</button>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                <!-- IoT Sample -->
+                <div class="sample-card bg-white border-2 border-slate-200 rounded-lg p-4 hover:border-blue-400" data-sample="iot">
+                    <div class="flex flex-col items-center text-center">
+                        <svg class="w-8 h-8 text-blue-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                        <span class="text-xs font-semibold text-slate-900">IoT Sensors</span>
+                        <span class="text-[10px] text-slate-500 mt-1">Temperature & humidity</span>
+                    </div>
+                </div>
+
+                <!-- DevOps Sample -->
+                <div class="sample-card bg-white border-2 border-slate-200 rounded-lg p-4 hover:border-green-400" data-sample="devops">
+                    <div class="flex flex-col items-center text-center">
+                        <svg class="w-8 h-8 text-green-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                        </svg>
+                        <span class="text-xs font-semibold text-slate-900">DevOps</span>
+                        <span class="text-[10px] text-slate-500 mt-1">Server metrics</span>
+                    </div>
+                </div>
+
+                <!-- Application Sample -->
+                <div class="sample-card bg-white border-2 border-slate-200 rounded-lg p-4 hover:border-purple-400" data-sample="application">
+                    <div class="flex flex-col items-center text-center">
+                        <svg class="w-8 h-8 text-purple-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                        <span class="text-xs font-semibold text-slate-900">Application</span>
+                        <span class="text-[10px] text-slate-500 mt-1">User events</span>
+                    </div>
+                </div>
+
+                <!-- Financial Sample -->
+                <div class="sample-card bg-white border-2 border-slate-200 rounded-lg p-4 hover:border-orange-400" data-sample="financial">
+                    <div class="flex flex-col items-center text-center">
+                        <svg class="w-8 h-8 text-orange-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-xs font-semibold text-slate-900">Financial</span>
+                        <span class="text-[10px] text-slate-500 mt-1">Stock trading</span>
+                    </div>
+                </div>
+            </div>
+            <div id="active-sample" class="hidden text-xs text-blue-600 font-medium bg-blue-50 border border-blue-200 rounded px-3 py-2">
+                <span class="inline-flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Currently viewing: <span id="sample-name" class="font-semibold"></span></span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Data Input Section -->
         <div class="bg-white border border-slate-200 rounded-lg p-6 mb-6">
             <label class="block text-sm font-medium text-slate-700 mb-3">Paste Sample Data (JSON)</label>
             <textarea
@@ -34,11 +161,14 @@
     "pressure": 1013.25
   }
 ]'></textarea>
-            <button
-                id="analyze-btn"
-                class="mt-4 px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
-                Analyze Structure
-            </button>
+            <div class="flex items-center justify-between mt-4">
+                <button
+                    id="analyze-btn"
+                    class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors">
+                    Analyze Structure
+                </button>
+                <span id="record-count" class="text-xs text-slate-500 hidden"></span>
+            </div>
         </div>
 
         <div id="loading" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
@@ -48,17 +178,25 @@
             </div>
         </div>
 
-        <div id="results" class="hidden">
+        <div id="results" class="hidden fade-in">
             <div class="bg-slate-50 border-2 border-green-500 rounded-lg p-6">
                 <div class="flex items-center justify-between mb-4">
                     <div>
                         <h3 class="text-lg font-semibold text-slate-900">Schema Generated from Sample Data</h3>
                         <p class="text-sm text-green-600 mt-1">✓ Analysis complete — Schema ready for review</p>
                     </div>
+                    <button
+                        id="copy-schema-btn"
+                        class="px-4 py-2 bg-slate-800 text-white text-sm font-medium rounded hover:bg-slate-700 transition-colors flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Copy Schema
+                    </button>
                 </div>
 
                 <!-- Schema Table -->
-                <div class="bg-white border border-slate-300 rounded-lg overflow-hidden">
+                <div class="bg-white border border-slate-300 rounded-lg overflow-hidden mb-4">
                     <div class="bg-slate-800 px-4 py-3">
                         <div class="flex items-center gap-2">
                             <svg class="w-5 h-5 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -74,7 +212,19 @@
                             <tr class="bg-slate-100 border-b-2 border-slate-300">
                                 <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Field Name</th>
                                 <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Data Type</th>
-                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Category</th>
+                                <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">
+                                    <span class="tooltip inline-flex items-center gap-1">
+                                        Category
+                                        <svg class="w-3 h-3 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="tooltip-text">
+                                            <strong>TIME:</strong> Timestamp field for time-series data<br>
+                                            <strong>DIMENSION:</strong> Attributes that describe the data (e.g., device ID, location)<br>
+                                            <strong>MEASURE:</strong> Numeric metrics that change over time (e.g., temperature, CPU usage)
+                                        </span>
+                                    </span>
+                                </th>
                                 <th class="px-3 py-2 text-left text-slate-500 font-semibold uppercase tracking-wider text-[10px]">Confidence</th>
                             </tr>
                         </thead>
@@ -83,29 +233,229 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Educational Note -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div class="flex gap-3">
+                        <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <h4 class="text-sm font-semibold text-blue-900 mb-1">What happens next?</h4>
+                            <p class="text-xs text-blue-800 leading-relaxed">
+                                This schema will be used to configure your Timestream table. The TIME field indexes your data chronologically, DIMENSIONS let you filter and group queries, and MEASURES store the actual time-series values you'll analyze.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Sample data definitions
+        const samples = {
+            iot: {
+                name: "IoT Sensors",
+                data: [
+                    {
+                        "timestamp": "2024-01-15T10:30:00Z",
+                        "device_id": "sensor-001",
+                        "location": "warehouse-a",
+                        "device_type": "climate",
+                        "temperature": 22.5,
+                        "humidity": 65.3,
+                        "pressure": 1013.25
+                    },
+                    {
+                        "timestamp": "2024-01-15T10:31:00Z",
+                        "device_id": "sensor-002",
+                        "location": "warehouse-b",
+                        "device_type": "climate",
+                        "temperature": 23.1,
+                        "humidity": 62.8,
+                        "pressure": 1013.30
+                    }
+                ]
+            },
+            devops: {
+                name: "DevOps Metrics",
+                data: [
+                    {
+                        "timestamp": "2024-01-15T10:30:00Z",
+                        "hostname": "web-server-01",
+                        "region": "us-east-1",
+                        "environment": "production",
+                        "cpu_usage": 45.2,
+                        "memory_used_gb": 12.8,
+                        "disk_usage_percent": 67.5,
+                        "active_connections": 1243
+                    },
+                    {
+                        "timestamp": "2024-01-15T10:31:00Z",
+                        "hostname": "web-server-02",
+                        "region": "us-west-2",
+                        "environment": "production",
+                        "cpu_usage": 52.1,
+                        "memory_used_gb": 14.2,
+                        "disk_usage_percent": 71.2,
+                        "active_connections": 1567
+                    }
+                ]
+            },
+            application: {
+                name: "Application Events",
+                data: [
+                    {
+                        "event_time": "2024-01-15T10:30:15.234Z",
+                        "session_id": "sess_abc123",
+                        "user_id": "user_456",
+                        "page_path": "/products/detail",
+                        "event_type": "page_view",
+                        "load_time_ms": 342,
+                        "status_code": 200
+                    },
+                    {
+                        "event_time": "2024-01-15T10:30:18.567Z",
+                        "session_id": "sess_xyz789",
+                        "user_id": "user_789",
+                        "page_path": "/checkout",
+                        "event_type": "button_click",
+                        "load_time_ms": 156,
+                        "status_code": 200
+                    }
+                ]
+            },
+            financial: {
+                name: "Financial Trading",
+                data: [
+                    {
+                        "trade_timestamp": "2024-01-15T10:30:00.000Z",
+                        "symbol": "AAPL",
+                        "exchange": "NASDAQ",
+                        "trade_type": "buy",
+                        "price": 185.42,
+                        "volume": 15000,
+                        "market_cap_billions": 2850.5
+                    },
+                    {
+                        "trade_timestamp": "2024-01-15T10:30:01.234Z",
+                        "symbol": "GOOGL",
+                        "exchange": "NASDAQ",
+                        "trade_type": "sell",
+                        "price": 142.18,
+                        "volume": 8500,
+                        "market_cap_billions": 1780.2
+                    }
+                ]
+            }
+        };
+
         const analyzeBtn = document.getElementById('analyze-btn');
         const sampleData = document.getElementById('sample-data');
         const loading = document.getElementById('loading');
         const results = document.getElementById('results');
+        const sampleCards = document.querySelectorAll('.sample-card');
+        const activeSampleDiv = document.getElementById('active-sample');
+        const sampleNameSpan = document.getElementById('sample-name');
+        const clearBtn = document.getElementById('clear-btn');
+        const recordCount = document.getElementById('record-count');
+        const copySchemaBtn = document.getElementById('copy-schema-btn');
 
-        analyzeBtn.addEventListener('click', async () => {
+        let currentSchema = null;
+        let currentSample = null;
+
+        // Sample card click handlers
+        sampleCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const sampleType = this.dataset.sample;
+                loadSample(sampleType);
+            });
+        });
+
+        // Clear button handler
+        clearBtn.addEventListener('click', () => {
+            sampleData.value = '';
+            results.classList.add('hidden');
+            activeSampleDiv.classList.add('hidden');
+            clearBtn.classList.add('hidden');
+            recordCount.classList.add('hidden');
+            sampleCards.forEach(card => card.classList.remove('active'));
+            currentSample = null;
+            currentSchema = null;
+        });
+
+        // Copy schema button handler
+        copySchemaBtn.addEventListener('click', () => {
+            if (currentSchema) {
+                const schemaText = JSON.stringify(currentSchema, null, 2);
+                navigator.clipboard.writeText(schemaText).then(() => {
+                    // Visual feedback
+                    const originalText = copySchemaBtn.innerHTML;
+                    copySchemaBtn.innerHTML = `
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        Copied!
+                    `;
+                    setTimeout(() => {
+                        copySchemaBtn.innerHTML = originalText;
+                    }, 2000);
+                });
+            }
+        });
+
+        function loadSample(sampleType) {
+            const sample = samples[sampleType];
+            if (!sample) return;
+
+            currentSample = sampleType;
+
+            // Update UI
+            sampleCards.forEach(card => {
+                if (card.dataset.sample === sampleType) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+
+            // Load data into textarea
+            sampleData.value = JSON.stringify(sample.data, null, 2);
+
+            // Show active sample indicator
+            sampleNameSpan.textContent = sample.name;
+            activeSampleDiv.classList.remove('hidden');
+            clearBtn.classList.remove('hidden');
+
+            // Auto-analyze
+            analyzeData();
+        }
+
+        analyzeBtn.addEventListener('click', analyzeData);
+
+        async function analyzeData() {
             const data = sampleData.value.trim();
-            if (!data) return;
+            if (!data) {
+                alert('Please enter some sample data or select a sample above.');
+                return;
+            }
 
             results.classList.add('hidden');
             loading.classList.remove('hidden');
+            recordCount.classList.add('hidden');
 
             // Simulate analysis
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             try {
                 const parsed = JSON.parse(data);
-                const firstRecord = Array.isArray(parsed) ? parsed[0] : parsed;
+                const records = Array.isArray(parsed) ? parsed : [parsed];
+                const firstRecord = records[0];
+
+                // Show record count
+                recordCount.textContent = `Analyzed ${records.length} record${records.length > 1 ? 's' : ''}`;
+                recordCount.classList.remove('hidden');
 
                 // Detect schema
                 const timeField = Object.keys(firstRecord).find(key =>
@@ -113,39 +463,60 @@
                 );
 
                 const fields = [];
+                const schemaObj = {
+                    table_name: "DetectedSchema",
+                    fields: []
+                };
 
                 // Add time field first
                 if (timeField) {
-                    fields.push({
+                    const field = {
                         name: timeField,
                         type: 'TIMESTAMP',
                         category: 'TIME',
                         confidence: 100,
                         color: 'blue'
+                    };
+                    fields.push(field);
+                    schemaObj.fields.push({
+                        name: field.name,
+                        type: field.type,
+                        category: field.category
                     });
                 }
 
                 // Add dimensions and measures
                 Object.entries(firstRecord).forEach(([key, value]) => {
                     if (key === timeField) return;
+
+                    let field;
                     if (typeof value === 'number') {
-                        fields.push({
+                        field = {
                             name: key,
                             type: Number.isInteger(value) ? 'BIGINT' : 'DOUBLE',
                             category: 'MEASURE',
                             confidence: 95,
                             color: 'green'
-                        });
+                        };
                     } else {
-                        fields.push({
+                        field = {
                             name: key,
                             type: 'VARCHAR',
                             category: 'DIMENSION',
                             confidence: 98,
                             color: 'purple'
-                        });
+                        };
                     }
+
+                    fields.push(field);
+                    schemaObj.fields.push({
+                        name: field.name,
+                        type: field.type,
+                        category: field.category
+                    });
                 });
+
+                currentSchema = schemaObj;
 
                 // Display results in table format
                 const tableBody = document.getElementById('schema-table-body');
@@ -176,11 +547,17 @@
 
                 loading.classList.add('hidden');
                 results.classList.remove('hidden');
+
+                // Scroll to results
+                setTimeout(() => {
+                    results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+
             } catch (e) {
                 loading.classList.add('hidden');
-                alert('Invalid JSON format. Please check your data.');
+                alert('Invalid JSON format. Please check your data and try again.\n\nError: ' + e.message);
             }
-        });
+        }
     </script>
 </body>
 </html>
