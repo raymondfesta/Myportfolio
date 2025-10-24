@@ -59,20 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===================================
     // Navigation Background on Scroll
     // ===================================
-    const nav = document.querySelector('.nav');
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > 60) {
-            nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.04)';
-        } else {
-            nav.style.boxShadow = 'none';
-        }
-
-        lastScroll = currentScroll;
-    });
+    // Note: Navigation scroll behavior now handled in index.html
+    // with floating nav and auto-hide functionality
 
 
     // ===================================

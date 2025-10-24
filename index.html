@@ -138,14 +138,95 @@
         html {
             scroll-behavior: smooth;
         }
+
+        /* Scroll Progress Indicator */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.1s ease-out;
+            z-index: 9999;
+        }
+
+        /* 3D Tilt Effect for Project Cards */
+        article.group > a {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Full-Width Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: white;
+            border-bottom: 1px solid rgb(226, 232, 240);
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        nav.nav-scrolled {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Desktop nav links */
+        .desktop-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgb(71, 85, 105);
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: rgb(59, 130, 246);
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+            .desktop-nav-links {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-white text-slate-900">
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+    <nav>
+        <div class="nav-container">
+            <!-- Logo -->
             <a href="#home" class="flex items-center gap-3 group">
-                <svg class="logo-container" width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <!-- Minimal frame -->
                     <rect class="logo-frame" x="2" y="2" width="36" height="36" rx="8"
                           stroke="#3b82f6" stroke-width="1.5" fill="none"/>
@@ -158,28 +239,31 @@
                 </svg>
                 <span class="text-[14px] font-semibold tracking-tight text-slate-950 group-hover:text-blue-600 transition-colors">RF Design</span>
             </a>
-            <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center gap-8">
-                <a href="https://calendly.com/raymond-festa/30min" target="_blank" rel="noopener noreferrer" class="text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">Contact</a>
-                <a href="https://www.linkedin.com/in/raymondcfesta/" target="_blank" rel="noopener noreferrer" class="text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">LinkedIn</a>
-                <a href="#work" class="text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">My work</a>
+
+            <!-- Desktop Nav Links -->
+            <div class="desktop-nav-links hidden md:flex">
+                <a href="https://calendly.com/raymond-festa/30min" target="_blank" rel="noopener noreferrer" class="nav-link">Contact</a>
+                <a href="https://www.linkedin.com/in/raymondcfesta/" target="_blank" rel="noopener noreferrer" class="nav-link">LinkedIn</a>
+                <a href="#work" class="nav-link">My work</a>
             </div>
+
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-slate-950 transition-colors">
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-slate-950 transition-colors" aria-label="Toggle mobile menu">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
         </div>
-        <!-- Mobile Navigation Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
-            <div class="py-4">
-                <a href="https://calendly.com/raymond-festa/30min" target="_blank" rel="noopener noreferrer" class="mobile-nav-link block px-8 py-3 text-[14px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Contact</a>
-                <a href="https://www.linkedin.com/in/raymondcfesta/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link block px-8 py-3 text-[14px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">LinkedIn</a>
-                <a href="#work" class="mobile-nav-link block px-8 py-3 text-[14px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">My work</a>
-            </div>
-        </div>
     </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 space-y-2">
+            <a href="https://calendly.com/raymond-festa/30min" target="_blank" rel="noopener noreferrer" class="mobile-nav-link block py-2 text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">Contact</a>
+            <a href="https://www.linkedin.com/in/raymondcfesta/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link block py-2 text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">LinkedIn</a>
+            <a href="#work" class="mobile-nav-link block py-2 text-[14px] font-medium text-slate-600 hover:text-slate-950 transition-colors">My work</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="relative min-h-screen flex items-center overflow-hidden pt-32 pb-20 bg-gradient-to-br from-blue-50/30 via-white to-slate-50/20">
@@ -338,6 +422,9 @@
         const maxDistance = 150;
         const nodeCount = window.innerWidth < 768 ? 30 : 50;
 
+        // Mouse tracking for interactive nodes
+        let mouse = { x: null, y: null };
+
         function setCanvasSize() {
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
@@ -350,9 +437,30 @@
                 this.vx = (Math.random() - 0.5) * 0.5;
                 this.vy = (Math.random() - 0.5) * 0.5;
                 this.radius = Math.random() * 2 + 1;
+                this.originalVx = this.vx;
+                this.originalVy = this.vy;
             }
 
             update() {
+                // Interactive repel effect
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const repelRadius = 100;
+
+                    if (distance < repelRadius) {
+                        const force = (1 - distance / repelRadius) * 2;
+                        const angle = Math.atan2(dy, dx);
+                        this.vx += Math.cos(angle) * force * 0.2;
+                        this.vy += Math.sin(angle) * force * 0.2;
+                    } else {
+                        // Gradually return to original velocity
+                        this.vx += (this.originalVx - this.vx) * 0.05;
+                        this.vy += (this.originalVy - this.vy) * 0.05;
+                    }
+                }
+
                 this.x += this.vx;
                 this.y += this.vy;
 
@@ -419,6 +527,18 @@
             initNodes();
         });
 
+        // Mouse event listeners for interactive nodes
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
         // Start animation when page loads
         init();
 
@@ -440,6 +560,111 @@
                 });
             });
         }
+
+        // ===================================
+        // Scroll Progress Indicator
+        // ===================================
+        const scrollProgress = document.getElementById('scroll-progress');
+
+        function updateScrollProgress() {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercentage = window.scrollY / scrollHeight;
+            scrollProgress.style.transform = `scaleX(${scrollPercentage})`;
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+        updateScrollProgress(); // Initial call
+
+        // ===================================
+        // 3D Tilt Effect on Project Cards
+        // ===================================
+        const projectCards = document.querySelectorAll('article.group > a');
+        const isTouchDevice = 'ontouchstart' in window;
+
+        if (!isTouchDevice) {
+            projectCards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+
+                    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    card.style.transform = 'rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+                });
+            });
+        }
+
+        // ===================================
+        // Magnetic Button Effect
+        // ===================================
+        const magneticButtons = document.querySelectorAll('a[href="#work"], a[href*="calendly"]');
+
+        magneticButtons.forEach(button => {
+            let rafId = null;
+
+            button.style.transition = 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)';
+
+            button.addEventListener('mousemove', function(e) {
+                if (rafId) cancelAnimationFrame(rafId);
+
+                rafId = requestAnimationFrame(() => {
+                    const rect = button.getBoundingClientRect();
+                    const buttonCenterX = rect.left + rect.width / 2;
+                    const buttonCenterY = rect.top + rect.height / 2;
+
+                    const deltaX = e.clientX - buttonCenterX;
+                    const deltaY = e.clientY - buttonCenterY;
+                    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                    const maxDistance = 150;
+                    const maxMovement = 10;
+
+                    if (distance < maxDistance) {
+                        const strength = Math.pow(1 - distance / maxDistance, 2);
+                        const moveX = (deltaX / distance) * maxMovement * strength;
+                        const moveY = (deltaY / distance) * maxMovement * strength;
+
+                        button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    }
+                });
+            });
+
+            button.addEventListener('mouseleave', function() {
+                if (rafId) cancelAnimationFrame(rafId);
+                button.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // ===================================
+        // Full-Width Navigation Scroll Effects
+        // ===================================
+        const nav = document.querySelector('nav');
+        const scrollThreshold = 50;
+
+        function handleNavScroll() {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > scrollThreshold) {
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.remove('nav-scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(handleNavScroll);
+        });
+
+        handleNavScroll();
     </script>
     <script src="js/main.js"></script>
 </body>
