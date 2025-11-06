@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Coding Agent Prompt Generator - A web-based tool designed to help non-technical users create optimized prompts for coding agents, reducing development time by 50%.">
+    <title>Coding Agent Prompt Generator — Case Study</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Portfolio Theme System -->
+    <link rel="stylesheet" href="../../styles/theme.css">
+    <link rel="stylesheet" href="../../styles/common.css">
+    <link rel="stylesheet" href="../../styles/theme-override.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Inter', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        // Theme colors from CSS variables
+                        'theme-primary': 'var(--color-primary)',
+                        'theme-primary-dark': 'var(--color-primary-dark)',
+                        'theme-primary-light': 'var(--color-primary-light)',
+                        'theme-bg-primary': 'var(--color-bg-primary)',
+                        'theme-bg-secondary': 'var(--color-bg-secondary)',
+                        'theme-text-primary': 'var(--color-text-primary)',
+                        'theme-text-secondary': 'var(--color-text-secondary)',
+                        // Keep original colors for compatibility
+                        slate: {
+                            950: '#0f172a',
+                        },
+                        blue: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Mobile Menu Positioning and Styling */
+        nav {
+            position: relative;
+        }
+
+        #mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: calc(100vh - 100%);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #mobile-menu.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-slate-900">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-b border-slate-950/[0.06] z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-8 md:px-16 py-7 flex justify-between items-center">
+            <a href="../../index.html" class="text-[15px] font-semibold text-slate-950 tracking-tight hover:text-blue-500 transition-colors">
+                ← Back to Portfolio
+            </a>
+            <!-- Desktop Navigation -->
+            <ul class="hidden md:flex gap-10 list-none m-0 p-0">
+                <li><a href="#challenge" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Challenge</a></li>
+                <li><a href="#approach" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Approach</a></li>
+                <li><a href="#solution" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Solution</a></li>
+                <li><a href="#impact" class="text-[15px] font-medium text-slate-600 hover:text-slate-950 tracking-tight transition-colors">Impact</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-slate-950 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-950/[0.06]">
+            <ul class="list-none m-0 p-0 py-4">
+                <li><a href="#challenge" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Challenge</a></li>
+                <li><a href="#approach" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Approach</a></li>
+                <li><a href="#solution" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Solution</a></li>
+                <li><a href="#impact" class="mobile-nav-link block px-8 py-3 text-[15px] font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-50 transition-colors">Impact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===================================
+         1. INTRODUCTION SECTION
+         Sets the stage for the project
+         =================================== -->
+    <section class="pt-40 pb-32 bg-gradient-to-br from-slate-50 to-white border-b border-slate-950/[0.08]">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <!-- Project Category -->
+            <span class="inline-block text-sm uppercase tracking-wider text-blue-500 font-semibold mb-6 px-5 py-2.5 bg-blue-500/[0.08] rounded-md opacity-0 animate-fadeInUp" style="animation-delay: 0.2s;">
+                Productivity Tool
+            </span>
+
+            <!-- Project Title -->
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-slate-950 mb-8 max-w-5xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s; letter-spacing: -0.03em;">
+                Coding Agent Prompt Generator
+            </h1>
+
+            <!-- Client/Product Context -->
+            <p class="text-xl text-slate-600 leading-relaxed mb-6 max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
+                A web-based tool designed to help non-technical users create optimized prompts for coding agents. The tool bridges the gap between user intent and effective AI communication by providing structured templates, progressive guidance, and real-time prompt quality scoring to improve development outcomes when working with AI coding assistants.
+            </p>
+
+            <!-- Engagement Goal -->
+            <p class="text-xl text-slate-600 leading-relaxed max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
+                <strong class="text-slate-950">Goal:</strong> Create an intuitive tool that generates coding agent-optimized prompts without requiring technical expertise, making AI development tools more accessible and reducing development time by eliminating endless error loops.
+            </p>
+
+            <!-- Project Meta -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-slate-950/[0.08] opacity-0 animate-fadeInUp" style="animation-delay: 0.6s;">
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Role</span>
+                    <span class="text-base text-slate-950 font-medium">Lead Product Designer</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Timeline</span>
+                    <span class="text-base text-slate-950 font-medium">2 hours (rapid prototype)</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Team</span>
+                    <span class="text-base text-slate-950 font-medium">Solo project</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-sm uppercase tracking-wider text-slate-500 font-semibold mb-2">Platform</span>
+                    <span class="text-base text-slate-950 font-medium">Web Application</span>
+                </div>
+            </div>
+
+            <!-- Live Demo CTA -->
+            <div class="mt-12 opacity-0 animate-fadeInUp" style="animation-delay: 0.7s;">
+                <a href="https://prompt-gen-self.vercel.app/" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 px-8 py-4 bg-blue-500 text-white text-base font-semibold tracking-tight hover:bg-blue-600 rounded-lg transition-all duration-200">
+                    <span>View live app</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         2. THE CHALLENGE SECTION
+         =================================== -->
+    <section id="challenge" class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Challenge</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Bridging the Communication Gap Between Vision and Execution
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                As a UX designer working with coding agents, I repeatedly encountered a frustrating cycle: I could clearly envision the user experience and application flow I wanted to build, but struggled to communicate my vision effectively to AI coding tools. This communication gap led to endless error loops, bug fixes, and applications that never quite matched my original intent.
+            </p>
+
+            <!-- Challenge Cards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Communication Barriers</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Non-technical users struggle to translate UX design thinking into prompts that coding agents can execute successfully. The gap between human intent and AI interpretation creates friction and failed development attempts.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Endless Error Loops</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Inadequate prompts lead to applications that require constant bug fixes and never match the original vision. Hours are wasted debugging issues that stem from poor initial prompt construction.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Hidden Knowledge Requirements</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        Users don't know what information coding agents need to succeed. Critical context, technical constraints, and success criteria are often omitted, dooming projects from the start.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Lack of Confidence</h3>
+                    <p class="text-[15px] text-slate-600 leading-relaxed">
+                        The blank prompt box creates anxiety and uncertainty. Non-technical creators don't know where to start or how to structure their requests for optimal results.
+                    </p>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Why it mattered:</strong> The core challenge was translating UX design thinking into prompts that coding agents could execute successfully—a skill gap that many non-technical creators face when trying to leverage AI development tools. This barrier prevents talented designers and creators from fully utilizing powerful AI coding assistants.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         3. APPROACH SECTION
+         =================================== -->
+    <section id="approach" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Our Approach</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Rapid Prototyping Through Personal Experience
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                Rather than conducting formal user research, I leveraged direct observation and documentation of my own workflow challenges when interacting with coding agents. The goal was to build fast, test immediately, and iterate based on real-world usage—moving from concept to deployed product in just 2 hours.
+            </p>
+
+            <!-- Approach Phases -->
+            <div class="space-y-12 relative before:content-[''] before:absolute before:left-6 before:top-0 before:bottom-0 before:w-0.5 before:bg-slate-200">
+                <!-- Phase 1 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">1</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Discovery & Documentation</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            I catalogued specific pain points from my own workflow: where I got stuck, which prompts failed, and what information the agents needed but I hadn't provided. Additionally, I observed colleagues facing similar struggles and noted common patterns in their difficulties.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Documented personal workflow challenges with coding agents</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Identified common failure patterns in colleague interactions</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Researched prompt engineering best practices for coding agents</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">2</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Ideation & Design</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            The design approach centered on a core principle: meet users where they are in their mental model. Rather than forcing users to learn prompt engineering theory, I designed the tool to feel like a natural conversation starter. The key insight was to use scenario-based templates as entry points.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Designed scenario templates matching common use cases</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Implemented progressive disclosure to prevent cognitive overload</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created prompt quality scoring for real-time feedback</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">3</div>
+                    <div class="flex-1 pb-8">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Development & Implementation</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Built as a single-page React application using TypeScript for type safety and maintainability. Leveraged Vite for rapid development and optimized build performance. The architecture prioritizes component reusability and clean separation between template logic, prompt generation algorithms, and UI presentation.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Built with React and TypeScript for maintainability</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Styled with Tailwind CSS for responsive design</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Deployed to Vercel for instant global availability</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="flex gap-8 relative">
+                    <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">4</div>
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Testing & Refinement</h3>
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            Validation occurred through immediate dogfooding—I used the tool for my own coding agent interactions and measured whether it reduced my development friction. The prompt quality scoring feature provided real-time feedback during creation, allowing iterative refinement.
+                        </p>
+                        <ul class="space-y-3 text-base text-slate-600">
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Immediate dogfooding in real development scenarios</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Real-time quality feedback for iterative improvement</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Measured 50% reduction in development time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         4. SOLUTION SECTION
+         =================================== -->
+    <section id="solution" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Solution</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                Guided Experience That Builds User Capability
+            </h2>
+
+            <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
+                The tool transforms complex prompt engineering into an intuitive, guided experience. By providing structured templates, progressive disclosure, and real-time quality scoring, it enables non-technical users to generate optimized prompts without needing to understand the underlying theory.
+            </p>
+
+            <!-- Design Principles -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Scenario Templates</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pre-built starting points that match common use cases, eliminating the blank canvas problem.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Progressive Disclosure</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Step-by-step guidance that reveals complexity only when users are ready for it.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Quality Scoring</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Real-time calculator that evaluates prompt completeness and provides instant feedback.</p>
+                </div>
+                <div class="p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Contextual Tips</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Guidance that surfaces prompt engineering insights at the moment they're needed.</p>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <h3 class="text-3xl font-semibold text-slate-950 mb-8 tracking-tight">Key Features</h3>
+
+            <div class="space-y-8 mb-16">
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">1. Scenario-Based Templates</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Pre-built starting points that match common use cases (landing pages, dashboards, APIs, etc.), eliminating the blank canvas problem and helping users begin with confidence. Users can select a template matching their intent rather than facing an intimidating empty text box.
+                    </p>
+                    <img src="image_Scenario-Based Templates.jpg" alt="Scenario template selection interface showing Build Something, Fix/Debug, and Review/Optimize options with corresponding form fields and prompt quality scoring" class="w-full rounded-lg border border-slate-950/[0.06] shadow-lg">
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">2. Progressive Disclosure Flow</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Step-by-step guidance that reveals information fields incrementally, preventing cognitive overload while ensuring all necessary prompt components are captured. The interface guides users through a familiar pattern: "What are you trying to build? Tell me more about it."
+                    </p>
+                    <img src="image_Progressive_Disclosure.jpg" alt="Progressive disclosure flow showing Core Information, Context & Background with User Story and Error Details buttons, Technical Requirements with framework tags, and Constraints & Requirements sections with corresponding generated prompt and Quick Tips panel" class="w-full rounded-lg border border-slate-950/[0.06] shadow-lg">
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">3. Prompt Quality Calculator</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Real-time calculator that evaluates prompt completeness and optimization, providing instant feedback and encouraging users to strengthen weak areas before generating final output. The scoring creates positive reinforcement—users can see their score improve as they add more detail.
+                    </p>
+                    <img src="image_Prompt Quality Calculator.jpg" alt="Prompt quality calculator displaying three states: Basic quality with suggestion to fill in core fields, Good quality with recommendation to add acceptance criteria, and Excellent quality indicating all key sections are included" class="w-full rounded-lg border border-slate-950/[0.06] shadow-lg">
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">4. Contextual Quick Tips</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Contextual guidance that surfaces prompt engineering insights at the moment they're needed, educating users without requiring them to study documentation. Tips appear contextually, explaining "why" without interrupting flow, gradually building user mental models.
+                    </p>
+                    <div class="w-full aspect-video bg-slate-100 border border-slate-950/[0.06] rounded-lg flex items-center justify-center text-slate-400 text-sm">
+                        [Screenshot: Contextual tips appearing during prompt construction]
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">5. Optimized Output Generation</h4>
+                    <p class="text-base text-slate-600 leading-relaxed mb-4">
+                        Structured prompt formatting specifically designed for coding agent comprehension, translating user input into the technical detail and context that AI tools need to succeed. The output includes clear context, specific requirements, technical constraints, and desired outcomes.
+                    </p>
+                    <div class="w-full aspect-video bg-slate-100 border border-slate-950/[0.06] rounded-lg flex items-center justify-center text-slate-400 text-sm">
+                        [Screenshot: Final generated prompt output optimized for coding agent comprehension]
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <h3 class="text-3xl font-semibold text-slate-950 mb-8 tracking-tight">Technical Implementation</h3>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-slate-50 p-6 border border-slate-950/[0.08]">
+                    <h4 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Frontend</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">React with TypeScript for type-safe component development</p>
+                </div>
+                <div class="bg-slate-50 p-6 border border-slate-950/[0.08]">
+                    <h4 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Styling</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Tailwind CSS for consistent, responsive design across devices</p>
+                </div>
+                <div class="bg-slate-50 p-6 border border-slate-950/[0.08]">
+                    <h4 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Build & Deploy</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Vite for rapid development, Vercel for instant deployment</p>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                <strong class="text-slate-950">Design Impact:</strong> By focusing on UX principles rather than technical complexity, the design makes powerful AI tools accessible to a broader audience. The structured approach increases confidence when interacting with coding agents, removing the anxiety of "not knowing what to say."
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         5. IMPACT SECTION
+         =================================== -->
+    <section id="impact" class="py-24 bg-gradient-to-br from-slate-950 to-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_20%_50%,rgba(59,130,246,0.3)_0%,transparent_50%),radial-gradient(circle_at_80%_80%,rgba(168,85,247,0.3)_0%,transparent_50%)]"></div>
+
+        <div class="max-w-6xl mx-auto px-8 md:px-16 relative z-10">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-400 font-semibold mb-6 pb-2 border-b-2 border-white/10">Impact</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-white mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
+                From Hours of Debugging to Productive Creation
+            </h2>
+
+            <p class="text-lg text-slate-300 leading-relaxed mb-12 max-w-3xl">
+                The tool achieved its core mission: transforming how non-technical users interact with coding agents by reducing development friction and building confidence through structured guidance.
+            </p>
+
+            <!-- Metrics Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="border border-white/10 p-8">
+                    <div class="text-5xl font-bold text-white mb-2">50%</div>
+                    <div class="text-base text-slate-200 font-medium mb-3 tracking-tight">Reduction in Development Time</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Transformed hours of debugging into productive creation time</p>
+                </div>
+
+                <div class="border border-white/10 p-8">
+                    <div class="text-5xl font-bold text-white mb-2">100%</div>
+                    <div class="text-base text-slate-200 font-medium mb-3 tracking-tight">Project Completion Rate</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Applications matched original vision without error loops</p>
+                </div>
+
+                <div class="border border-white/10 p-8">
+                    <div class="text-5xl font-bold text-white mb-2">2 Hours</div>
+                    <div class="text-base text-slate-200 font-medium mb-3 tracking-tight">Concept to Deployment</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Rapid validation through immediate dogfooding</p>
+                </div>
+
+                <div class="border border-white/10 p-8">
+                    <div class="text-5xl font-bold text-white mb-2">Live</div>
+                    <div class="text-base text-slate-200 font-medium mb-3 tracking-tight">Production Tool</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">Actively used and continuously improving</p>
+                </div>
+            </div>
+
+            <!-- Impact Categories -->
+            <div class="space-y-12">
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Development Efficiency</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Reduced personal development time by 50% when using coding agents</li>
+                        <li>Eliminated endless error loops through better initial prompt construction</li>
+                        <li>Successfully delivered applications matching original vision on first attempt</li>
+                        <li>Transformed workflow from reactive debugging to productive creation</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Knowledge Transfer</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Created reusable tool that codifies prompt engineering best practices</li>
+                        <li>Made complex technical processes accessible to non-technical community</li>
+                        <li>Built capability alongside task completion through quality feedback loops</li>
+                        <li>Educated users while they work without requiring documentation study</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">User Confidence</h3>
+                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
+                        <li>Structured approach increased confidence when interacting with coding agents</li>
+                        <li>Removed anxiety of "not knowing what to say" through guided templates</li>
+                        <li>Progressive disclosure prevented overwhelm while ensuring completeness</li>
+                        <li>Real-time scoring provided positive reinforcement during creation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="text-lg text-slate-300 leading-relaxed mt-12 max-w-3xl">
+                <strong class="text-white">Bottom Line:</strong> The tool addresses a growing need as AI coding assistants become more prevalent: helping non-technical creators bridge the communication gap between human intent and machine execution. By focusing on UX principles rather than technical complexity, the design makes powerful AI tools accessible to a broader audience.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===================================
+         6. KEY TAKEAWAYS SECTION
+         =================================== -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-8 md:px-16">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Key Takeaways</span>
+
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-12 max-w-4xl" style="letter-spacing: -0.025em;">
+                Lessons in Rapid Prototyping and UX Democratization
+            </h2>
+
+            <div class="space-y-8 mb-12">
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Democratization Through Design</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Complex technical processes can be made accessible through thoughtful UX design that meets users in their existing mental models rather than forcing paradigm shifts. By designing the experience to feel natural and approachable, using scenario templates as intuitive entry points, the tool removes intimidation factors and builds confidence incrementally.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Rapid Validation Works</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Sometimes the fastest path to validating a tool is building it quickly and dogfooding it immediately—2 hours from concept to deployed product proved sufficient for a meaningful solution. When the problem is clearly defined and the solution is tightly scoped, meaningful tools don't always require extensive development cycles.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Progressive Disclosure Reduces Cognitive Load</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Breaking complex tasks into sequential steps with contextual guidance prevents overwhelm while ensuring completeness, a pattern applicable across many design challenges. The interface mirrors conversational patterns users already understand, revealing complexity only as needed and building confidence through clear feedback loops.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Quality Feedback Loops Drive Improvement</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Real-time scoring and tips create positive reinforcement that educates users while they work, building capability alongside task completion. The prompt quality scoring feature provides transparent feedback—users can see their score improve as they add more detail, creating positive reinforcement and gradually building user mental models.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="bg-gradient-to-br from-slate-950 to-slate-900 p-12 border-l-2 border-white">
+                <p class="text-xl text-white leading-relaxed">
+                    This project exemplifies the "designer as builder" approach—identifying a personal pain point, rapidly prototyping a solution, and immediately validating through real-world use. The 2-hour timeframe from concept to deployment demonstrates that meaningful tools don't always require extensive development cycles when the problem is clearly defined and the solution is tightly scoped.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================
+         7. CLOSING / NEXT STEPS SECTION
+         =================================== -->
+    <section class="py-24 bg-white border-t border-slate-950/[0.08]">
+        <div class="max-w-4xl mx-auto px-8 md:px-16 text-center">
+            <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Conclusion</span>
+
+            <p class="text-xl text-slate-600 leading-relaxed mb-12">
+                This project demonstrates how identifying personal friction points and rapidly building solutions can create tools with broader impact. By treating design as a way to democratize access to powerful technology, we can help more people leverage AI coding assistants effectively.
+            </p>
+
+            <!-- Future Improvements -->
+            <div class="text-left mb-16 bg-slate-50 p-10 border border-slate-950/[0.08]">
+                <h3 class="text-2xl font-semibold text-slate-950 mb-6 tracking-tight">Future Enhancements</h3>
+                <ul class="space-y-3 text-base text-slate-600">
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Integration with popular coding agent platforms for one-click prompt transfer</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Community-contributed scenario templates to expand use case coverage</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Prompt history and versioning to track what works best over time</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">AI-powered prompt optimization suggestions based on success patterns</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Collaborative features for teams to share and refine prompt templates</li>
+                </ul>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="flex gap-4 justify-center flex-wrap mb-24">
+                <a href="../../index.html#work" class="inline-flex items-center gap-2 px-8 py-4 bg-slate-950 text-white text-base font-semibold tracking-tight hover:bg-slate-800 transition-all">
+                    See More Projects →
+                </a>
+                <a href="https://calendly.com/raymond-festa/30min" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-4 bg-transparent text-slate-950 text-base font-semibold tracking-tight border-2 border-slate-950/[0.08] hover:border-slate-950 transition-all">
+                    Let's Connect
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+
+                // Close mobile menu when clicking a link
+                const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+
+            // Smooth scroll for navigation links
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        const navHeight = 100;
+                        const targetPosition = targetSection.offsetTop - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

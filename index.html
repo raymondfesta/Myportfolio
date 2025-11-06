@@ -215,6 +215,23 @@
                 display: none;
             }
         }
+
+        /* Mobile Menu Positioning and Styling */
+        #mobile-menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            z-index: 60;
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #mobile-menu.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-white text-slate-900">
@@ -304,7 +321,7 @@
                 <!-- Content -->
                 <div class="opacity-0 animate-fadeInUp" style="animation-delay: 0.3s;">
                     <div class="space-y-6 text-lg text-slate-600 leading-relaxed">
-                        <p class="text-slate-700">I don't just design, I architect. My diverse professional experience, product design versatility, and expertise allow me to adapt my skill set to any product sector. My expertise lies in translating complex system features into intuitive user experiences so customers can harness your product's full power.</p>
+                        <p class="text-slate-700">I solve the hardest problems in product design by making technical systems intuitive without losing their power. I specialize in complex enterprise applications like data platforms, analytical tools, and operational systems where users need sophisticated capabilities delivered simply. My approach spans the full product, from system architecture and APIs to interface design, prototyping, and engineering collaboration. I understand technical constraints as deeply as design principles.</p>
                     </div>
 
                     <!-- Let's Connect Button -->
@@ -370,8 +387,28 @@
                     </a>
                 </article>
 
-                <!-- Project Card 4: Alpine Bikes -->
+                <!-- Project Card 4: Coding Agent Prompt Generator -->
                 <article class="group opacity-0 animate-fadeInUp flex" style="animation-delay: 0.7s;">
+                    <div class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
+                        <div class="p-8 flex flex-col flex-grow">
+                            <span class="text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4 self-start">Productivity Tool</span>
+                            <h3 class="text-xl font-semibold tracking-tight mb-3 text-slate-950 leading-snug">Coding Agent Prompt Generator</h3>
+                            <p class="text-[15px] text-slate-600 leading-relaxed mb-6 font-normal flex-grow">A web-based tool that helps non-technical users create optimized prompts for coding agents, reducing development time by 50% through structured templates and real-time quality scoring.</p>
+                            <div class="flex flex-col gap-3 md:flex-row md:justify-between md:items-center">
+                                <a href="projects/codingAgentPromptGen/case-study-coding-agent-prompt-generator.html" class="inline-flex items-center text-[14px] font-semibold text-blue-600 tracking-tight hover:text-blue-700 transition-colors gap-1.5">
+                                    View Case Study
+                                    <span class="transition-transform hover:translate-x-1">→</span>
+                                </a>
+                                <a href="https://prompt-gen-self.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white text-[14px] font-semibold tracking-tight hover:bg-blue-600 rounded-lg transition-all duration-200">
+                                    Try it live
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project Card 5: Alpine Bikes -->
+                <article class="group opacity-0 animate-fadeInUp flex" style="animation-delay: 0.8s;">
                     <a href="https://alpinebikes.cc/" target="_blank" rel="noopener noreferrer" class="bg-white rounded-xl border border-slate-200 hover:shadow-xl hover:shadow-slate-200/50 hover:border-blue-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col h-full">
                         <div class="p-8 flex flex-col flex-grow">
                             <span class="text-[11px] text-slate-600 uppercase tracking-wider font-semibold bg-slate-100 px-3 py-1.5 rounded-full mb-4 self-start">Brand design</span>
