@@ -140,17 +140,17 @@
 
             <!-- Project Title -->
             <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-slate-950 mb-8 max-w-5xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s; letter-spacing: -0.03em;">
-                Democratizing Data Analytics Through AI-Powered Natural Language Queries
+                Democratizing Data Analytics Through Conversational AI and Semantic Intelligence
             </h1>
 
             <!-- Client/Product Context -->
             <p class="text-xl text-slate-600 leading-relaxed mb-6 max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
-                Internal teams needed advanced insights from console usage data, but existing tools created significant barriers. Accessing analytics required technical knowledge of SQL, data engineering, and complex query construction. This bottleneck prevented product managers, designers, and leadership from independently tracking feature usage and making data-driven decisions.
+                Internal teams needed advanced insights from console usage data, but existing tools created significant barriers. Accessing analytics required technical knowledge of SQL, data engineering, and complex query construction. The legacy tool was restrictive and couldn't support complex analysis requiring sophisticated data aggregations. This bottleneck prevented product managers, designers, and leadership from independently tracking feature usage and making data-driven decisions.
             </p>
 
             <!-- Engagement Goal -->
             <p class="text-xl text-slate-600 leading-relaxed max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
-                <strong class="text-slate-950">Goal:</strong> Build an AI-powered analytics tool that converts natural language questions into accurate SQL queries, eliminating technical barriers and democratizing access to console usage insights for all team members.
+                <strong class="text-slate-950">Goal:</strong> Build a conversational AI-powered analytics tool that enables anyone to explore console usage data through natural dialogue, progressively refining their questions and discovering insights they wouldn't have known to ask for initially—all powered by a proprietary semantic data model that achieves 90% query accuracy.
             </p>
 
             <!-- Project Meta -->
@@ -187,7 +187,7 @@
             </h2>
 
             <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
-                Product managers, design leadership, and designers needed specific console usage insights to track feature performance and validate product decisions. However, the existing analysis tools created insurmountable barriers that prevented non-technical team members from accessing the data they needed.
+                Product managers, design leadership, and designers needed specific console usage insights to track feature performance and validate product decisions. However, the existing analysis tools created insurmountable barriers that prevented non-technical team members from accessing the data they needed. Early attempts at AI-powered solutions achieved less than 20% query accuracy, making them unreliable. Even when technical barriers could be overcome, users struggled to formulate specific enough questions to get meaningful insights.
             </p>
 
             <!-- Challenge Cards -->
@@ -195,14 +195,14 @@
                 <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
                     <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Technical Knowledge Required</h3>
                     <p class="text-[15px] text-slate-600 leading-relaxed">
-                        Accessing console usage data required proficiency in SQL query writing, understanding of database schemas, and knowledge of data engineering principles. Non-technical team members were completely blocked from independent analysis.
+                        Accessing console usage data required proficiency in SQL query writing, understanding of complex database schemas with non-intuitive labeling, and knowledge of data engineering principles. The database had parent-child relationships between fields and required combining multiple fields to generate valuable insights. Non-technical team members were completely blocked from independent analysis.
                     </p>
                 </div>
 
                 <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
-                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Limited Analysis Capabilities</h3>
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Users Didn't Know What to Ask</h3>
                     <p class="text-[15px] text-slate-600 leading-relaxed">
-                        The legacy tool was restrictive and couldn't support complex analysis requiring advanced SQL queries or sophisticated data aggregations. Even simple questions required technical workarounds or engineering support.
+                        Even when AI translation was attempted, users struggled to formulate specific enough questions upfront. Most people didn't know how to describe the data they wanted with sufficient precision or weren't familiar with what data was available. This created barriers even when the technical SQL translation worked correctly.
                     </p>
                 </div>
 
@@ -214,9 +214,9 @@
                 </div>
 
                 <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
-                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Inaccessible Insights</h3>
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Low Query Accuracy</h3>
                     <p class="text-[15px] text-slate-600 leading-relaxed">
-                        Critical console usage patterns and feature performance metrics remained locked behind technical barriers. Teams couldn't quickly validate hypotheses or make data-informed decisions without extensive support.
+                        Initial attempts at AI-powered natural language to SQL translation achieved less than 20% accuracy. The complex database schema with non-obvious field relationships made it nearly impossible for AI systems to generate correct queries without deep semantic understanding of the data structure.
                     </p>
                 </div>
             </div>
@@ -250,11 +250,12 @@
                     <div class="flex-1 pb-8">
                         <h3 class="text-2xl font-semibold text-slate-950 mb-4">Research & Discovery</h3>
                         <p class="text-base text-slate-600 leading-relaxed mb-4">
-                            I conducted a self-study by documenting my own attempts to use the available data analysis tools. This hands-on approach allowed me to map out the complete process required to obtain advanced analysis, identifying exact pain points at each step and determining which types of analysis were impossible with existing tools.
+                            I conducted a self-study by documenting my own attempts to use the available data analysis tools. This hands-on approach allowed me to map out the complete process required to obtain advanced analysis, identifying exact pain points at each step and determining which types of analysis were impossible with existing tools. Through initial testing of a single-shot query approach, I discovered a critical insight: users struggled to formulate specific enough questions to get the data they needed. Most users didn't know how to describe what they wanted to see with sufficient precision.
                         </p>
                         <ul class="space-y-3 text-base text-slate-600">
                             <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Mapped the end-to-end workflow for obtaining data insights using current tools</li>
                             <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Identified specific friction points preventing non-technical users from accessing data</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Tested one-shot query approach and discovered users couldn't formulate precise questions upfront</li>
                             <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Documented types of analysis that were completely blocked by existing tool limitations</li>
                         </ul>
                     </div>
@@ -266,12 +267,13 @@
                     <div class="flex-1 pb-8">
                         <h3 class="text-2xl font-semibold text-slate-950 mb-4">Ideation & Design</h3>
                         <p class="text-base text-slate-600 leading-relaxed mb-4">
-                            The design approach centered on removing all technical barriers between users and their data questions. I focused on creating an intuitive natural language interface that would feel conversational rather than technical. The key challenge was ensuring the system could accurately interpret user intent and translate it into precise SQL queries while presenting results in an easily digestible format.
+                            Based on research findings, I made the strategic decision to design a conversational AI experience rather than a one-shot query system. This approach allows users to explore data and insights beyond their initial question, creating opportunities for discovery and deeper analysis. The conversational model addresses a fundamental user need—most people don't know exactly how to ask for data upfront, but they can recognize valuable insights when they see them and ask intelligent follow-up questions. Rather than focusing solely on query accuracy, I designed the experience around the narrative that emerges from the data—what story does this information tell?
                         </p>
                         <ul class="space-y-3 text-base text-slate-600">
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Designed conversational interface prioritizing natural language over technical syntax</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Architected query interpretation system to ensure accuracy and intent preservation</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Planned result presentation format to automatically highlight patterns and insights</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Pivoted from one-shot queries to conversational AI enabling progressive refinement</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Designed for discovery over precision—users start broad and refine through dialogue</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Shifted focus from "query accuracy" to "data storytelling" and narrative insights</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created example prompts and conversation starters to guide users</li>
                         </ul>
                     </div>
                 </div>
@@ -282,12 +284,13 @@
                     <div class="flex-1 pb-8">
                         <h3 class="text-2xl font-semibold text-slate-950 mb-4">Development & Implementation</h3>
                         <p class="text-base text-slate-600 leading-relaxed mb-4">
-                            Built using React for the front-end interface, Amazon Bedrock for AI-powered natural language processing and query generation, and Amazon Redshift as the data warehouse. The architecture handles the critical translation layer between natural language inputs and SQL queries, with careful mapping of the database schema to ensure query accuracy.
+                            Built using a three-layer architecture: (1) Conversational Interface Layer using React with multi-turn context maintenance, (2) AI Processing Layer using Amazon Bedrock with a carefully engineered system prompt containing the semantic data model, and (3) Data Layer using Amazon Redshift with optimized query execution. The breakthrough was developing a comprehensive semantic data model through a three-step process: running discovery queries against the database, creating translated semantic metadata that maps natural language concepts to database elements, and integrating this knowledge base into the system prompt.
                         </p>
                         <ul class="space-y-3 text-base text-slate-600">
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Implemented React-based conversational interface with real-time query processing</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Integrated Amazon Bedrock for natural language understanding and SQL generation</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created comprehensive database schema mappings to ensure query accuracy</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Built React chat interface maintaining conversation context across multiple turns</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Developed proprietary semantic data model mapping business terms to database schema</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Engineered system prompt with semantic metadata file and sample queries as knowledge base</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Enabled agent to reference previous queries and suggest related analyses</li>
                         </ul>
                     </div>
                 </div>
@@ -298,12 +301,13 @@
                     <div class="flex-1">
                         <h3 class="text-2xl font-semibold text-slate-950 mb-4">Testing & Refinement</h3>
                         <p class="text-base text-slate-600 leading-relaxed mb-4">
-                            Testing focused on validating query accuracy across different types of questions and ensuring the AI-generated summaries correctly interpreted the data. I tested various natural language phrasings for similar questions to improve the system's understanding of user intent and refined the summary output format based on readability and actionability of insights.
+                            Testing focused on validating query accuracy across different types of questions and ensuring the AI-generated summaries correctly interpreted the data. The iterative refinement process revealed dramatic improvements from the semantic data model implementation—query accuracy jumped from less than 20% to 90%. The agent also developed self-correction capabilities, allowing it to recognize when a query didn't return expected results and reformulate the approach. I validated the conversational flow with target users, confirming that the multi-turn interaction pattern successfully enabled discovery of insights that users wouldn't have known to ask for initially.
                         </p>
                         <ul class="space-y-3 text-base text-slate-600">
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Validated query accuracy across diverse question types and phrasings</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Tuned AI interpretation to handle various natural language formulations</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Optimized summary format for maximum readability and actionable insights</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Achieved 90% query accuracy through semantic data model iteration (from <20%)</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Validated agent's self-correction capabilities for recognizing and fixing query errors</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Confirmed conversational flow enables discovery of insights users wouldn't initially ask for</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Tested various natural language phrasings to improve intent understanding</li>
                         </ul>
                     </div>
                 </div>
@@ -319,26 +323,30 @@
             <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Solution</span>
 
             <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
-                AI-Powered Natural Language Analytics
+                Conversational AI Analytics Powered by Semantic Intelligence
             </h2>
 
             <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
-                The tool transforms how teams access console usage insights by allowing anyone to ask questions in plain English and receive accurate, AI-analyzed results. By eliminating the need for SQL knowledge and technical expertise, the system democratizes data access across the entire organization.
+                The tool transforms how teams access console usage insights through a conversational AI experience that enables multi-turn dialogue, progressive refinement, and discovery of unexpected insights. Powered by a proprietary semantic data model achieving 90% query accuracy, the system allows anyone to explore data through natural conversation, ask follow-up questions, and receive narrative summaries that tell the story of what the data reveals—all without SQL knowledge or technical expertise.
             </p>
 
             <!-- Design Principles -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12 md:mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16">
                 <div class="p-4 md:p-6 border-l-2 border-slate-950">
-                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Conversational Interface</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Ask questions naturally without worrying about technical syntax or query structure.</p>
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Multi-Turn Conversations</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Engage in natural dialogue with context maintained across questions, enabling progressive refinement.</p>
                 </div>
                 <div class="p-4 md:p-6 border-l-2 border-slate-950">
-                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Accurate Translation</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">AI precisely converts natural language into sophisticated SQL with proper aggregations and joins.</p>
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Discovery-Based Exploration</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Start broad and refine through dialogue—uncover insights you wouldn't have known to ask for initially.</p>
                 </div>
                 <div class="p-4 md:p-6 border-l-2 border-slate-950">
-                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Intelligent Insights</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Automatic summarization highlights patterns, trends, and key findings from raw data.</p>
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Semantic Intelligence</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Proprietary semantic data model achieves 90% query accuracy with self-correction capabilities.</p>
+                </div>
+                <div class="p-4 md:p-6 border-l-2 border-slate-950">
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Data Storytelling</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Narrative summaries highlight patterns, trends, and actionable insights—not just raw data.</p>
                 </div>
             </div>
 
@@ -347,443 +355,88 @@
 
             <div class="space-y-6 md:space-y-8 mb-12 md:mb-16">
                 <div class="bg-slate-50 p-4 md:p-8 border border-slate-950/[0.08]">
-                    <h4 class="text-lg md:text-xl font-semibold text-slate-950 mb-3 md:mb-4 tracking-tight">1. Natural Language Query Interface</h4>
+                    <h4 class="text-lg md:text-xl font-semibold text-slate-950 mb-3 md:mb-4 tracking-tight">1. Conversational Query Interface with Multi-Turn Dialogue</h4>
                     <p class="text-sm md:text-base text-slate-600 leading-relaxed mb-4">
-                        Users can ask questions about console usage data in plain English without needing to know SQL syntax or database structure. The interface feels conversational and intuitive, removing all technical barriers to data access.
+                        Users engage in natural conversations about console usage data, asking questions in plain English and receiving guided prompts for follow-up exploration. The interface maintains context across multiple turns, allowing progressive refinement from broad questions to specific insights. Example prompts and conversation starters guide users who don't know exactly what to ask initially, enabling discovery of insights they wouldn't have thought to request.
                     </p>
-                    <!-- Desktop Demo -->
-                    <div class="hidden md:block w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 500px;">
-                        <div id="demo1-interface" class="p-8">
-                            <!-- Query Input Area -->
-                            <div class="mb-6">
-                                <label class="block text-sm font-semibold text-slate-950 mb-3">Ask a question about console usage data</label>
-                                <div class="relative">
-                                    <textarea
-                                        id="demo1-input"
-                                        class="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors resize-none text-slate-900"
-                                        rows="3"
-                                        placeholder="e.g., What are the top 5 most used features in the last 30 days?"
-                                        style="font-size: 15px; line-height: 1.6;"
-                                    ></textarea>
-                                    <button
-                                        id="demo1-submit"
-                                        class="absolute bottom-3 right-3 px-6 py-2 bg-blue-500 text-white rounded-md font-semibold hover:bg-blue-600 transition-colors text-sm"
-                                    >
-                                        Ask
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Example Queries -->
-                            <div class="mb-6">
-                                <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-3">Try these examples:</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <button class="demo1-example px-4 py-2 bg-slate-50 text-slate-700 rounded-md text-sm hover:bg-slate-100 transition-colors border border-slate-200">
-                                        Top 5 most used features last 30 days
-                                    </button>
-                                    <button class="demo1-example px-4 py-2 bg-slate-50 text-slate-700 rounded-md text-sm hover:bg-slate-100 transition-colors border border-slate-200">
-                                        Compare feature usage by region
-                                    </button>
-                                    <button class="demo1-example px-4 py-2 bg-slate-50 text-slate-700 rounded-md text-sm hover:bg-slate-100 transition-colors border border-slate-200">
-                                        User retention rate this quarter
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Response Area -->
-                            <div id="demo1-response" class="hidden">
-                                <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-6">
-                                    <div class="flex items-center gap-3 mb-4">
-                                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                        <span class="text-sm font-semibold text-slate-950">Query understood</span>
-                                    </div>
-                                    <p class="text-slate-700 leading-relaxed">
-                                        I'll analyze the console usage data to find <span class="font-semibold text-slate-950">the top 5 most frequently used features over the last 30 days</span>. This will include aggregating feature interaction events, filtering by date range, and ranking by usage frequency.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Placeholder -->
-                    <div class="md:hidden w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50" style="min-height: 300px;">
-                        <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
-                    </div>
-
-                    <script>
-                    (function() {
-                        const input = document.getElementById('demo1-input');
-                        const submitBtn = document.getElementById('demo1-submit');
-                        const response = document.getElementById('demo1-response');
-                        const examples = document.querySelectorAll('.demo1-example');
-
-                        const responses = {
-                            'top 5 most used features': 'I\'ll analyze the console usage data to find <span class="font-semibold text-slate-950">the top 5 most frequently used features over the last 30 days</span>. This will include aggregating feature interaction events, filtering by date range, and ranking by usage frequency.',
-                            'compare feature usage by region': 'I\'ll compare <span class="font-semibold text-slate-950">feature usage patterns across different geographic regions</span>. This analysis will break down usage by region, identify regional preferences, and highlight any significant differences in adoption.',
-                            'user retention rate': 'I\'ll calculate the <span class="font-semibold text-slate-950">user retention rate for this quarter</span> by analyzing repeat user activity. This will show what percentage of users who started using the console continue to actively engage over time.'
-                        };
-
-                        function showResponse(query) {
-                            const lowerQuery = query.toLowerCase();
-                            let responseText = responses['top 5 most used features'];
-
-                            for (const [key, value] of Object.entries(responses)) {
-                                if (lowerQuery.includes(key)) {
-                                    responseText = value;
-                                    break;
-                                }
-                            }
-
-                            response.classList.remove('hidden');
-                            response.querySelector('p').innerHTML = responseText;
-                            response.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                        }
-
-                        submitBtn.addEventListener('click', () => {
-                            if (input.value.trim()) {
-                                showResponse(input.value);
-                            }
-                        });
-
-                        input.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter' && !e.shiftKey) {
-                                e.preventDefault();
-                                if (input.value.trim()) {
-                                    showResponse(input.value);
-                                }
-                            }
-                        });
-
-                        examples.forEach(btn => {
-                            btn.addEventListener('click', () => {
-                                input.value = btn.textContent.trim();
-                                showResponse(input.value);
-                            });
-                        });
-                    })();
-                    </script>
-                </div>
-
-                <div class="bg-slate-50 p-4 md:p-8 border border-slate-950/[0.08]">
-                    <h4 class="text-lg md:text-xl font-semibold text-slate-950 mb-3 md:mb-4 tracking-tight">2. Advanced Query Generation</h4>
-                    <p class="text-sm md:text-base text-slate-600 leading-relaxed mb-4">
-                        The AI accurately translates complex analytical questions into sophisticated SQL queries with proper data aggregations, joins, and filtering. Even advanced analysis that would require expert SQL knowledge is accessible through simple conversational requests.
-                    </p>
-                    <!-- Desktop Demo -->
-                    <div class="hidden md:block w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 600px;">
-                        <div id="demo2-interface" class="p-8">
-                            <!-- Input Section -->
-                            <div class="mb-6 pb-6 border-b border-slate-200">
-                                <div class="flex items-start gap-3 mb-3">
-                                    <svg class="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
-                                    </svg>
-                                    <div class="flex-1">
-                                        <p class="text-sm font-semibold text-slate-950 mb-1">Your Question</p>
-                                        <p class="text-slate-700 leading-relaxed" id="demo2-question">Show me feature adoption rates by user segment with month-over-month growth for the past quarter</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- AI Processing -->
-                            <div class="mb-6">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <div id="demo2-spinner" class="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-                                    <span class="text-sm font-semibold text-slate-950">Generating SQL query...</span>
-                                </div>
-                            </div>
-
-                            <!-- Generated SQL -->
-                            <div class="mb-6">
-                                <div class="flex items-center justify-between mb-3">
-                                    <p class="text-sm font-semibold text-slate-950">Generated SQL Query</p>
-                                    <button id="demo2-toggle" class="text-xs text-blue-500 font-semibold hover:text-blue-600">
-                                        Expand ↓
-                                    </button>
-                                </div>
-                                <div id="demo2-sql" class="bg-slate-950 rounded-lg p-4 overflow-x-auto" style="max-height: 200px; transition: max-height 0.3s;">
-                                    <pre class="text-xs text-slate-300 leading-relaxed" style="font-family: 'JetBrains Mono', monospace;"><code><span class="text-purple-400">SELECT</span>
-    u.segment <span class="text-purple-400">AS</span> user_segment,
-    f.feature_name,
-    <span class="text-blue-400">DATE_TRUNC</span>(<span class="text-green-400">'month'</span>, e.event_timestamp) <span class="text-purple-400">AS</span> month,
-    <span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id) <span class="text-purple-400">AS</span> unique_users,
-    <span class="text-blue-400">COUNT</span>(e.event_id) <span class="text-purple-400">AS</span> total_interactions,
-    <span class="text-blue-400">LAG</span>(<span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id)) <span class="text-purple-400">OVER</span> (
-        <span class="text-purple-400">PARTITION BY</span> u.segment, f.feature_name
-        <span class="text-purple-400">ORDER BY</span> <span class="text-blue-400">DATE_TRUNC</span>(<span class="text-green-400">'month'</span>, e.event_timestamp)
-    ) <span class="text-purple-400">AS</span> prev_month_users,
-    <span class="text-blue-400">ROUND</span>((
-        (<span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id) - <span class="text-blue-400">LAG</span>(<span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id))
-            <span class="text-purple-400">OVER</span> (<span class="text-purple-400">PARTITION BY</span> u.segment, f.feature_name
-                   <span class="text-purple-400">ORDER BY</span> <span class="text-blue-400">DATE_TRUNC</span>(<span class="text-green-400">'month'</span>, e.event_timestamp))
-        ) / <span class="text-blue-400">NULLIF</span>(<span class="text-blue-400">LAG</span>(<span class="text-blue-400">COUNT</span>(<span class="text-purple-400">DISTINCT</span> e.user_id))
-            <span class="text-purple-400">OVER</span> (<span class="text-purple-400">PARTITION BY</span> u.segment, f.feature_name
-                   <span class="text-purple-400">ORDER BY</span> <span class="text-blue-400">DATE_TRUNC</span>(<span class="text-green-400">'month'</span>, e.event_timestamp)), <span class="text-yellow-400">0</span>)
-    ) * <span class="text-yellow-400">100</span>, <span class="text-yellow-400">2</span>) <span class="text-purple-400">AS</span> mom_growth_pct
-<span class="text-purple-400">FROM</span>
-    console_events e
-<span class="text-purple-400">INNER JOIN</span> users u <span class="text-purple-400">ON</span> e.user_id = u.user_id
-<span class="text-purple-400">INNER JOIN</span> features f <span class="text-purple-400">ON</span> e.feature_id = f.feature_id
-<span class="text-purple-400">WHERE</span>
-    e.event_timestamp >= <span class="text-blue-400">DATEADD</span>(<span class="text-green-400">'month'</span>, -<span class="text-yellow-400">3</span>, <span class="text-blue-400">CURRENT_DATE</span>)
-    <span class="text-purple-400">AND</span> e.event_type = <span class="text-green-400">'feature_interaction'</span>
-<span class="text-purple-400">GROUP BY</span>
-    u.segment, f.feature_name, month
-<span class="text-purple-400">ORDER BY</span>
-    month <span class="text-purple-400">DESC</span>, user_segment, total_interactions <span class="text-purple-400">DESC</span>;</code></pre>
-                                </div>
-                            </div>
-
-                            <!-- Query Complexity Analysis -->
-                            <div class="grid grid-cols-3 gap-4">
-                                <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
-                                    <div class="text-2xl font-bold text-slate-950 mb-1">3</div>
-                                    <div class="text-xs text-slate-600 font-semibold uppercase tracking-wider">Table Joins</div>
-                                </div>
-                                <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
-                                    <div class="text-2xl font-bold text-slate-950 mb-1">5</div>
-                                    <div class="text-xs text-slate-600 font-semibold uppercase tracking-wider">Aggregations</div>
-                                </div>
-                                <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
-                                    <div class="text-2xl font-bold text-slate-950 mb-1">2</div>
-                                    <div class="text-xs text-slate-600 font-semibold uppercase tracking-wider">Window Functions</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <script>
-                    (function() {
-                        const toggleBtn = document.getElementById('demo2-toggle');
-                        const sqlContainer = document.getElementById('demo2-sql');
-                        let isExpanded = false;
-
-                        toggleBtn.addEventListener('click', () => {
-                            isExpanded = !isExpanded;
-                            if (isExpanded) {
-                                sqlContainer.style.maxHeight = '800px';
-                                toggleBtn.textContent = 'Collapse ↑';
-                            } else {
-                                sqlContainer.style.maxHeight = '200px';
-                                toggleBtn.textContent = 'Expand ↓';
-                            }
-                        });
-
-                        // Stop spinner after 2 seconds to show completion
-                        setTimeout(() => {
-                            const spinner = document.getElementById('demo2-spinner');
-                            spinner.classList.remove('animate-spin');
-                            spinner.classList.add('bg-green-500', 'border-0');
-                            spinner.previousElementSibling.textContent = '✓';
-                            spinner.parentElement.querySelector('span').textContent = 'Query generated successfully';
-                        }, 2000);
-                    })();
-                    </script>
-
-                    <!-- Mobile Placeholder -->
-                    <div class="md:hidden w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50" style="min-height: 300px;">
-                        <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
+                    <!-- Feature Screenshot -->
+                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden">
+                        <img
+                            src="image_Conversational_Query_Interface.jpg"
+                            alt="Conversational Query Interface showing example prompts modal and multi-turn dialogue demonstrating how the interface maintains context across questions"
+                            class="w-full h-auto"
+                        />
                     </div>
                 </div>
 
                 <div class="bg-slate-50 p-4 md:p-8 border border-slate-950/[0.08]">
-                    <h4 class="text-lg md:text-xl font-semibold text-slate-950 mb-3 md:mb-4 tracking-tight">3. Intelligent Data Summarization</h4>
+                    <h4 class="text-lg md:text-xl font-semibold text-slate-950 mb-3 md:mb-4 tracking-tight">2. Semantic Data Model with 90% Query Accuracy</h4>
                     <p class="text-sm md:text-base text-slate-600 leading-relaxed mb-4">
-                        Raw query results are automatically analyzed and transformed into human-readable reports that highlight key patterns, trends, and insights relevant to the user's question. The system identifies what matters and presents it clearly, eliminating the need for manual data interpretation.
+                        A proprietary semantic data model serves as the critical translation layer between natural language concepts and complex database schema. Through a three-step process (discovery queries, semantic metadata creation, and system prompt integration), the model maps business terms to database elements, handling non-intuitive field relationships and parent-child data structures. This breakthrough achieved 90% query accuracy (from initial <20%) and enabled self-correction capabilities—the agent can recognize when queries return unexpected results and autonomously reformulate its approach.
                     </p>
-                    <!-- Desktop Demo -->
-                    <div class="hidden md:block w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden" style="min-height: 700px;">
-                        <div id="demo3-interface" class="p-8">
-                            <!-- Tab Navigation -->
-                            <div class="flex gap-1 mb-6 border-b border-slate-200">
-                                <button id="demo3-tab-summary" class="demo3-tab px-6 py-3 text-sm font-semibold text-blue-500 border-b-2 border-blue-500 transition-colors">
-                                    AI Summary
-                                </button>
-                                <button id="demo3-tab-raw" class="demo3-tab px-6 py-3 text-sm font-semibold text-slate-500 hover:text-slate-950 border-b-2 border-transparent transition-colors">
-                                    Raw Data
-                                </button>
-                            </div>
+                    <!-- Feature Screenshot -->
+                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden">
+                        <img
+                            src="image_semantic dataModel.jpg"
+                            alt="Semantic Data Model showing the translation layer between natural language concepts and database schema with query generation process"
+                            class="w-full h-auto"
+                        />
+                    </div>
+                </div>
 
-                            <!-- AI Summary View -->
-                            <div id="demo3-summary-view">
-                                <!-- Key Insights -->
-                                <div class="mb-8">
-                                    <h5 class="text-lg font-semibold text-slate-950 mb-4 flex items-center gap-2">
-                                        <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                                        </svg>
-                                        Key Insights
-                                    </h5>
-                                    <div class="space-y-3">
-                                        <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
-                                            <p class="text-sm text-slate-950 leading-relaxed">
-                                                <strong class="font-semibold">Strong Growth in Enterprise Segment:</strong> Enterprise users show 42% month-over-month increase in feature adoption, significantly outpacing other segments.
-                                            </p>
-                                        </div>
-                                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-                                            <p class="text-sm text-slate-950 leading-relaxed">
-                                                <strong class="font-semibold">Data Explorer Most Popular:</strong> The Data Explorer feature accounts for 34% of all interactions across all segments, making it the clear leader in usage.
-                                            </p>
-                                        </div>
-                                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
-                                            <p class="text-sm text-slate-950 leading-relaxed">
-                                                <strong class="font-semibold">Startup Segment Declining:</strong> Startup users decreased by 12% in the latest month, suggesting potential onboarding or retention issues.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="bg-slate-50 p-4 md:p-8 border border-slate-950/[0.08]">
+                    <h4 class="text-lg md:text-xl font-semibold text-slate-950 mb-3 md:mb-4 tracking-tight">3. Intelligent Data Storytelling with Narrative Summaries</h4>
+                    <p class="text-sm md:text-base text-slate-600 leading-relaxed mb-4">
+                        Rather than presenting raw data tables, the system automatically transforms query results into narrative summaries that tell the story of what the data reveals. The AI identifies patterns, trends, and actionable insights relevant to the user's question, highlighting what matters most and suggesting related avenues for exploration. This approach recognizes that users ask questions because they want answers and understanding—not because they want to manually analyze spreadsheets. The combination of accurate data retrieval and intelligent interpretation creates true value.
+                    </p>
+                    <!-- Feature Screenshot -->
+                    <div class="w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden">
+                        <img
+                            src="image_Intelligent_Data_Storytelling.jpg"
+                            alt="Intelligent Data Storytelling showing AI-generated narrative summaries with key insights, metrics, and trend analysis alongside raw data view"
+                            class="w-full h-auto"
+                        />
+                    </div>
+                </div>
+            </div>
 
-                                <!-- Metrics Summary -->
-                                <div class="mb-8">
-                                    <h5 class="text-lg font-semibold text-slate-950 mb-4">Summary Metrics</h5>
-                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                        <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
-                                            <div class="text-2xl font-bold text-slate-950 mb-1">847K</div>
-                                            <div class="text-xs text-slate-600 font-medium">Total Interactions</div>
-                                            <div class="text-xs text-green-600 font-semibold mt-1">↑ 28% vs prev month</div>
-                                        </div>
-                                        <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
-                                            <div class="text-2xl font-bold text-slate-950 mb-1">12.4K</div>
-                                            <div class="text-xs text-slate-600 font-medium">Unique Users</div>
-                                            <div class="text-xs text-green-600 font-semibold mt-1">↑ 15% vs prev month</div>
-                                        </div>
-                                        <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
-                                            <div class="text-2xl font-bold text-slate-950 mb-1">5</div>
-                                            <div class="text-xs text-slate-600 font-medium">Top Features</div>
-                                            <div class="text-xs text-slate-600 font-medium mt-1">across 3 segments</div>
-                                        </div>
-                                        <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-4">
-                                            <div class="text-2xl font-bold text-slate-950 mb-1">92%</div>
-                                            <div class="text-xs text-slate-600 font-medium">Data Coverage</div>
-                                            <div class="text-xs text-slate-600 font-medium mt-1">Q4 2024</div>
-                                        </div>
-                                    </div>
-                                </div>
+            <!-- Semantic Data Model Architecture -->
+            <h3 class="text-2xl md:text-3xl font-semibold text-slate-950 mb-6 md:mb-8 tracking-tight">The Semantic Data Model Breakthrough</h3>
+            <div class="bg-gradient-to-br from-blue-50 to-slate-50 p-6 md:p-10 border-l-4 border-blue-500 mb-12 md:mb-16">
+                <h4 class="text-xl md:text-2xl font-semibold text-slate-950 mb-4 tracking-tight">From 20% to 90% Query Accuracy</h4>
+                <p class="text-base text-slate-600 leading-relaxed mb-6">
+                    The proprietary semantic data model is the core innovation that makes accurate natural language to SQL translation possible. This translation layer maps how users think about data (in business terms) to how data is actually stored (in technical database structures).
+                </p>
 
-                                <!-- Trend Analysis -->
-                                <div>
-                                    <h5 class="text-lg font-semibold text-slate-950 mb-4">Trend Analysis</h5>
-                                    <div class="bg-slate-50 border border-slate-950/[0.06] rounded-lg p-6">
-                                        <p class="text-slate-700 leading-relaxed mb-4">
-                                            Over the past quarter, feature adoption has shown consistent upward momentum driven primarily by the Enterprise segment. The Data Explorer and Query Builder features dominate usage patterns, while newer features like Advanced Filters are showing promising early adoption curves.
-                                        </p>
-                                        <p class="text-slate-700 leading-relaxed">
-                                            <strong class="text-slate-950">Recommendation:</strong> Focus retention efforts on the Startup segment to address the recent decline. Consider targeted onboarding improvements and feature education campaigns to reverse the downward trend.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Raw Data View (Hidden by default) -->
-                            <div id="demo3-raw-view" class="hidden">
-                                <div class="overflow-x-auto">
-                                    <table class="w-full text-sm">
-                                        <thead>
-                                            <tr class="border-b-2 border-slate-200">
-                                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Segment</th>
-                                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Feature</th>
-                                                <th class="text-left py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Month</th>
-                                                <th class="text-right py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Users</th>
-                                                <th class="text-right py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">Interactions</th>
-                                                <th class="text-right py-3 px-4 text-xs font-semibold text-slate-950 uppercase tracking-wider">MoM Growth</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="text-slate-700">
-                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
-                                                <td class="py-3 px-4">Enterprise</td>
-                                                <td class="py-3 px-4">Data Explorer</td>
-                                                <td class="py-3 px-4">Dec 2024</td>
-                                                <td class="py-3 px-4 text-right font-mono">4,231</td>
-                                                <td class="py-3 px-4 text-right font-mono">287,456</td>
-                                                <td class="py-3 px-4 text-right font-semibold text-green-600">+42.3%</td>
-                                            </tr>
-                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
-                                                <td class="py-3 px-4">Enterprise</td>
-                                                <td class="py-3 px-4">Query Builder</td>
-                                                <td class="py-3 px-4">Dec 2024</td>
-                                                <td class="py-3 px-4 text-right font-mono">3,892</td>
-                                                <td class="py-3 px-4 text-right font-mono">198,234</td>
-                                                <td class="py-3 px-4 text-right font-semibold text-green-600">+38.7%</td>
-                                            </tr>
-                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
-                                                <td class="py-3 px-4">SMB</td>
-                                                <td class="py-3 px-4">Data Explorer</td>
-                                                <td class="py-3 px-4">Dec 2024</td>
-                                                <td class="py-3 px-4 text-right font-mono">2,156</td>
-                                                <td class="py-3 px-4 text-right font-mono">143,567</td>
-                                                <td class="py-3 px-4 text-right font-semibold text-green-600">+24.1%</td>
-                                            </tr>
-                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
-                                                <td class="py-3 px-4">SMB</td>
-                                                <td class="py-3 px-4">Reports</td>
-                                                <td class="py-3 px-4">Dec 2024</td>
-                                                <td class="py-3 px-4 text-right font-mono">1,987</td>
-                                                <td class="py-3 px-4 text-right font-mono">89,432</td>
-                                                <td class="py-3 px-4 text-right font-semibold text-green-600">+18.3%</td>
-                                            </tr>
-                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
-                                                <td class="py-3 px-4">Startup</td>
-                                                <td class="py-3 px-4">Data Explorer</td>
-                                                <td class="py-3 px-4">Dec 2024</td>
-                                                <td class="py-3 px-4 text-right font-mono">1,432</td>
-                                                <td class="py-3 px-4 text-right font-mono">76,234</td>
-                                                <td class="py-3 px-4 text-right font-semibold text-red-600">-12.4%</td>
-                                            </tr>
-                                            <tr class="border-b border-slate-100 hover:bg-slate-50">
-                                                <td class="py-3 px-4">Startup</td>
-                                                <td class="py-3 px-4">Quick Views</td>
-                                                <td class="py-3 px-4">Dec 2024</td>
-                                                <td class="py-3 px-4 text-right font-mono">892</td>
-                                                <td class="py-3 px-4 text-right font-mono">34,567</td>
-                                                <td class="py-3 px-4 text-right font-semibold text-red-600">-8.9%</td>
-                                            </tr>
-                                            <tr class="border-b border-slate-100 hover:bg-slate-50 bg-slate-50">
-                                                <td class="py-3 px-4 text-slate-400" colspan="6">
-                                                    <span class="text-xs italic">... 247 more rows</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                <h5 class="text-lg font-semibold text-slate-950 mb-3">Three-Step Development Process:</h5>
+                <div class="space-y-4 mb-6">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+                        <div>
+                            <h6 class="font-semibold text-slate-950 mb-1">Discovery Queries</h6>
+                            <p class="text-sm text-slate-600 leading-relaxed">Generated exploratory queries against the database and exported results to understand the actual data structure, relationships, and field meanings.</p>
                         </div>
                     </div>
-
-                    <script>
-                    (function() {
-                        const summaryTab = document.getElementById('demo3-tab-summary');
-                        const rawTab = document.getElementById('demo3-tab-raw');
-                        const summaryView = document.getElementById('demo3-summary-view');
-                        const rawView = document.getElementById('demo3-raw-view');
-                        const tabs = document.querySelectorAll('.demo3-tab');
-
-                        function switchTab(showSummary) {
-                            if (showSummary) {
-                                summaryView.classList.remove('hidden');
-                                rawView.classList.add('hidden');
-                                summaryTab.classList.add('text-blue-500', 'border-blue-500');
-                                summaryTab.classList.remove('text-slate-500', 'border-transparent');
-                                rawTab.classList.add('text-slate-500', 'border-transparent');
-                                rawTab.classList.remove('text-blue-500', 'border-blue-500');
-                            } else {
-                                summaryView.classList.add('hidden');
-                                rawView.classList.remove('hidden');
-                                rawTab.classList.add('text-blue-500', 'border-blue-500');
-                                rawTab.classList.remove('text-slate-500', 'border-transparent');
-                                summaryTab.classList.add('text-slate-500', 'border-transparent');
-                                summaryTab.classList.remove('text-blue-500', 'border-blue-500');
-                            }
-                        }
-
-                        summaryTab.addEventListener('click', () => switchTab(true));
-                        rawTab.addEventListener('click', () => switchTab(false));
-                    })();
-                    </script>
-
-                    <!-- Mobile Placeholder -->
-                    <div class="md:hidden w-full bg-white border border-slate-950/[0.08] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50" style="min-height: 300px;">
-                        <p class="text-center text-slate-600 font-medium px-8">Demo available to view on desktop.</p>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+                        <div>
+                            <h6 class="font-semibold text-slate-950 mb-1">Semantic Metadata Translation</h6>
+                            <p class="text-sm text-slate-600 leading-relaxed">Created a comprehensive semantic metadata file mapping natural language concepts to database elements, including table definitions, field descriptions, parent-child relationships, and business logic rules.</p>
+                        </div>
                     </div>
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
+                        <div>
+                            <h6 class="font-semibold text-slate-950 mb-1">Knowledge Base Integration</h6>
+                            <p class="text-sm text-slate-600 leading-relaxed">Incorporated the semantic metadata file and sample queries into the system prompt powering the conversational agent, giving it robust knowledge for understanding user requests.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg border border-slate-950/[0.08]">
+                    <p class="text-base text-slate-950 leading-relaxed">
+                        <strong>Impact:</strong> Query accuracy improved from less than 20% to 90%, and the agent gained self-correction capabilities—it can now recognize when a query doesn't return expected results and autonomously reformulate its approach. This semantic layer is what enables non-technical users to access technical data.
+                    </p>
                 </div>
             </div>
 
@@ -791,21 +444,27 @@
             <h3 class="text-2xl md:text-3xl font-semibold text-slate-950 mb-6 md:mb-8 tracking-tight">Technical Architecture</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
                 <div class="bg-slate-50 p-4 md:p-6 border border-slate-950/[0.08]">
-                    <h4 class="text-base md:text-lg font-semibold text-slate-950 mb-2 md:mb-3 tracking-tight">Frontend</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">React-based interface with conversational UX and real-time query processing</p>
+                    <h4 class="text-base md:text-lg font-semibold text-slate-950 mb-2 md:mb-3 tracking-tight">Conversational Interface Layer</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">React-based chat interface that maintains conversation context across multiple turns and displays both raw data and AI-generated narrative insights</p>
                 </div>
                 <div class="bg-slate-50 p-4 md:p-6 border border-slate-950/[0.08]">
-                    <h4 class="text-base md:text-lg font-semibold text-slate-950 mb-2 md:mb-3 tracking-tight">AI Layer</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Amazon Bedrock for natural language processing, intent detection, and SQL generation</p>
+                    <h4 class="text-base md:text-lg font-semibold text-slate-950 mb-2 md:mb-3 tracking-tight">AI Processing Layer</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Amazon Bedrock agent with carefully engineered system prompt containing the semantic data model, enabling intent detection, SQL generation, and self-correction</p>
                 </div>
                 <div class="bg-slate-50 p-4 md:p-6 border border-slate-950/[0.08]">
-                    <h4 class="text-base md:text-lg font-semibold text-slate-950 mb-2 md:mb-3 tracking-tight">Data Warehouse</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Amazon Redshift with comprehensive schema mapping for accurate query execution</p>
+                    <h4 class="text-base md:text-lg font-semibold text-slate-950 mb-2 md:mb-3 tracking-tight">Data Layer</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Amazon Redshift with optimized query execution and result formatting, mapped through the semantic data model for accuracy</p>
                 </div>
             </div>
 
-            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
-                <strong class="text-slate-950">Design Impact:</strong> By combining AI-powered natural language understanding with intelligent data summarization, the tool eliminates every technical barrier that previously prevented non-technical team members from accessing console usage insights. The result is true democratization of data analytics.
+            <div class="bg-slate-50 p-6 border-l-4 border-slate-950">
+                <p class="text-base text-slate-600 leading-relaxed">
+                    <strong class="text-slate-950">Technologies:</strong> React, Amazon Bedrock, Amazon Redshift, SQL, Semantic metadata architecture, System prompt engineering
+                </p>
+            </div>
+
+            <p class="text-lg text-slate-600 leading-relaxed max-w-3xl mt-8">
+                <strong class="text-slate-950">Design Impact:</strong> By combining conversational AI, a proprietary semantic data model achieving 90% accuracy, and intelligent data storytelling, the tool eliminates every technical barrier that previously prevented non-technical team members from accessing console usage insights. The result is true democratization of data analytics through discovery-based exploration.
             </p>
         </div>
     </section>
@@ -824,16 +483,37 @@
             </h2>
 
             <p class="text-lg text-slate-300 leading-relaxed mb-12 max-w-3xl">
-                The AI analytics tool fundamentally transformed how teams access and use console usage data, eliminating technical barriers and enabling data-driven decision making across the organization.
+                The conversational AI analytics tool fundamentally transformed how teams access and use console usage data, achieving 90% query accuracy through semantic intelligence and enabling data-driven decision making across the organization through discovery-based exploration.
             </p>
 
             <!-- Impact Categories -->
             <div class="space-y-12 mb-16">
                 <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Query Accuracy & Agent Intelligence</h3>
+                    <div class="bg-white/5 p-8 border border-white/10">
+                        <p class="text-base text-slate-300 leading-relaxed mb-4">
+                            <strong class="text-white">90% Query Accuracy:</strong> Through semantic data model implementation, query accuracy improved from less than 20% to 90%—a dramatic breakthrough that made the tool reliable and trustworthy for business-critical insights.
+                        </p>
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            <strong class="text-white">Self-Correction Capabilities:</strong> The agent developed intelligence to recognize when queries don't return expected results and autonomously reformulate its approach, continuously improving accuracy and handling edge cases without human intervention.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Discovery Enablement</h3>
+                    <div class="bg-white/5 p-8 border border-white/10">
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            The conversational approach allows users to discover insights they wouldn't have known to ask for initially. Through multi-turn dialogue, guided prompts, and progressive refinement, users start with broad questions and uncover specific patterns and opportunities through natural exploration. This capability transforms data access from answering known questions to enabling genuine discovery.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
                     <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Capability Unlock</h3>
                     <div class="bg-white/5 p-8 border border-white/10">
                         <p class="text-base text-slate-300 leading-relaxed">
-                            Made previously impossible or extremely difficult advanced analysis accessible to all team members, removing technical barriers entirely. Analyses that would have required data engineering support or were simply infeasible with legacy tools became routine self-service tasks.
+                            Made previously impossible or extremely difficult advanced analysis accessible to all team members, removing technical barriers entirely. Analyses that would have required data engineering support or were simply infeasible with legacy tools became routine self-service tasks through conversational requests.
                         </p>
                     </div>
                 </div>
@@ -869,7 +549,7 @@
             </div>
 
             <p class="text-lg text-slate-300 leading-relaxed max-w-3xl">
-                <strong class="text-white">Bottom Line:</strong> By eliminating technical barriers through AI-powered natural language queries, the tool transformed data from an exclusive resource requiring specialized skills into a universally accessible foundation for informed decision making. The democratization of analytics capabilities has compounding benefits across the organization.
+                <strong class="text-white">Bottom Line:</strong> By combining conversational AI with a proprietary semantic data model achieving 90% accuracy, the tool transformed data from an exclusive resource requiring specialized skills into a universally accessible foundation for informed decision making. The conversational approach enables discovery of insights users wouldn't have known to ask for, while the semantic intelligence ensures reliability. The democratization of analytics capabilities through discovery-based exploration has compounding benefits across the organization.
             </p>
         </div>
     </section>
@@ -887,33 +567,57 @@
 
             <div class="space-y-8">
                 <div class="bg-white p-10 border-l-2 border-slate-950">
-                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Database Schema Understanding</h3>
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Challenge 1: Creating an Accurate Semantic Data Model</h3>
                     <div class="mb-6">
                         <h4 class="text-base font-semibold text-slate-950 mb-2">Problem:</h4>
                         <p class="text-base text-slate-600 leading-relaxed">
-                            Understanding the database schema and how data was stored was critical to ensure the system created queries that would return correct results. The complexity of the data structure meant that incorrect schema interpretation would lead to inaccurate insights, undermining trust in the entire system.
+                            The core challenge was building a semantic data model that could accurately translate natural language requests into correct SQL queries. The database schema was complex with non-obvious labeling and relationships between fields. Parent-child relationships existed between data fields, and multiple fields often needed to be combined to generate valuable insights. The labeling conventions weren't intuitive, making it difficult for an AI agent to understand what users were asking for and which tables/fields to query. Initial query accuracy was less than 20%, making the tool unreliable.
                         </p>
                     </div>
                     <div>
                         <h4 class="text-base font-semibold text-slate-950 mb-2">Solution:</h4>
-                        <p class="text-base text-slate-600 leading-relaxed">
-                            I created comprehensive documentation of the database schema and established clear mappings between natural language concepts and database tables/fields. This involved working closely with the data structure to understand relationships, creating a knowledge base that the AI could reference, and implementing validation checks to ensure generated queries aligned with the actual data architecture.
+                        <p class="text-base text-slate-600 leading-relaxed mb-4">
+                            I developed a comprehensive three-step process to build the semantic data model:
+                        </p>
+                        <ol class="space-y-3 text-base text-slate-600 ml-6">
+                            <li class="pl-2"><strong class="text-slate-950">Discovery Queries:</strong> Generated exploratory queries against the database and exported the results to understand the actual data structure and relationships</li>
+                            <li class="pl-2"><strong class="text-slate-950">Metadata Translation:</strong> Created a translated semantic metadata file that mapped natural language concepts to database elements, including table definitions, field descriptions, relationships, and business logic rules</li>
+                            <li class="pl-2"><strong class="text-slate-950">Knowledge Base Integration:</strong> Incorporated the semantic metadata file and sample queries into the main system prompt that powers the conversational agent, giving it a robust knowledge base for understanding user requests</li>
+                        </ol>
+                        <p class="text-base text-slate-600 leading-relaxed mt-4">
+                            This semantic layer acts as the critical translation mechanism between how users think about data (in business terms) and how data is actually stored (in technical database structures). <strong class="text-slate-950">The impact was dramatic—query accuracy improved from <20% to 90%, and the agent gained self-correction capabilities,</strong> allowing it to recognize and fix query errors autonomously.
                         </p>
                     </div>
                 </div>
 
                 <div class="bg-white p-10 border-l-2 border-slate-950">
-                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Natural Language Interpretation</h3>
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Challenge 2: Designing for User Discovery vs. Precision</h3>
                     <div class="mb-6">
                         <h4 class="text-base font-semibold text-slate-950 mb-2">Problem:</h4>
                         <p class="text-base text-slate-600 leading-relaxed">
-                            Translating ambiguous natural language requests into precise SQL queries without losing the user's intended meaning or over-constraining the analysis. Users phrase the same question in many different ways, and the system needed to understand intent despite linguistic variations.
+                            Early testing with a one-shot query approach revealed that users didn't know how to describe the data they wanted with enough specificity. Most users couldn't formulate precise questions upfront because they weren't familiar with what data was available or how to articulate complex analytical requests. This created a barrier even when the technical SQL translation worked correctly.
                         </p>
                     </div>
                     <div>
                         <h4 class="text-base font-semibold text-slate-950 mb-2">Solution:</h4>
                         <p class="text-base text-slate-600 leading-relaxed">
-                            Developed a multi-step interpretation process where the system first identifies the key entities and metrics in the user's question, maps them to database elements, and constructs queries with appropriate flexibility. The AI-generated summary layer also helps clarify what was actually analyzed, providing transparency into how the question was interpreted.
+                            I pivoted to a conversational AI experience that prioritizes exploration over precision. Instead of requiring users to ask perfect questions, the tool allows them to start broad and refine through dialogue. The agent provides follow-up questions and recommendations based on initial queries, guiding users toward deeper insights. The key design innovation was shifting focus from "query accuracy" to "data storytelling"—what narrative emerges from the results? I created easy-to-read summarized reports that not only answer the user's question but also highlight related patterns and suggest additional avenues for exploration. This conversational approach enables users to discover insights they wouldn't have known to ask for, making previously impossible analyses accessible to non-technical team members.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Challenge 3: Understanding Database Schema and Data Storage Patterns</h3>
+                    <div class="mb-6">
+                        <h4 class="text-base font-semibold text-slate-950 mb-2">Problem:</h4>
+                        <p class="text-base text-slate-600 leading-relaxed">
+                            Understanding how data was stored in order to accurately have the system create queries that would return correct results. The complexity of the data structure meant that incorrect schema interpretation would lead to inaccurate insights, undermining trust in the entire system.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-base font-semibold text-slate-950 mb-2">Solution:</h4>
+                        <p class="text-base text-slate-600 leading-relaxed">
+                            I created comprehensive documentation of the database schema and established clear mappings between natural language concepts and database tables/fields through the semantic data model. This involved deep analysis of the data structure to understand relationships, creating a knowledge base that the AI could reference, and implementing validation checks to ensure generated queries aligned with the actual data architecture. The semantic metadata file became the single source of truth for how the agent interprets and queries the database.
                         </p>
                     </div>
                 </div>
@@ -934,23 +638,30 @@
 
             <div class="space-y-8 mb-12">
                 <div class="bg-slate-50 p-10 border-l-2 border-slate-950">
-                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Schema Understanding is Critical for AI Query Tools</h3>
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Semantic Modeling is the Foundation</h3>
                     <p class="text-lg text-slate-600 leading-relaxed">
-                        The accuracy of an AI-powered analytics tool fundamentally depends on proper schema mapping and validation. Without deep understanding of the underlying data architecture, even sophisticated AI models will generate queries that return misleading or incorrect results. Investing time in comprehensive schema documentation and validation mechanisms is non-negotiable.
+                        Building an accurate semantic data model that maps natural language to database schema is critical for AI-powered query tools—this translation layer is what enables non-technical users to access technical data. Without proper semantic understanding of how data is structured and how business concepts map to database elements, AI systems will generate incorrect queries. The investment in building a comprehensive semantic metadata file was the breakthrough that improved query accuracy from less than 20% to 90%.
                     </p>
                 </div>
 
                 <div class="bg-slate-50 p-10 border-l-2 border-slate-950">
-                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Democratizing Data Has Compounding Benefits</h3>
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Conversational Beats One-Shot</h3>
                     <p class="text-lg text-slate-600 leading-relaxed">
-                        Making data accessible to non-technical team members creates value that extends far beyond the immediate use case. When product managers, designers, and leadership can independently explore usage patterns and validate hypotheses, it enables data-driven decision making across previously excluded teams. This cultural shift toward evidence-based product development compounds over time.
+                        Users don't know what they don't know. A conversational approach that supports exploration and progressive refinement is far more effective than requiring precise upfront queries, especially for non-technical users. Early testing proved that one-shot query systems fail because users can't formulate specific enough questions initially. The conversational model enables users to start broad, see what's possible, and refine through dialogue—discovering insights they wouldn't have thought to ask for.
                     </p>
                 </div>
 
                 <div class="bg-slate-50 p-10 border-l-2 border-slate-950">
-                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Retrieval + Interpretation = Value</h3>
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Focus on Storytelling, Not Just Data</h3>
                     <p class="text-lg text-slate-600 leading-relaxed">
-                        The combination of accurate data retrieval and intelligent summarization is essential—raw data alone doesn't provide value without interpretation and pattern identification. Users ask questions because they want answers and insights, not because they want to manually analyze query results. The AI summarization layer transforms data into actionable intelligence.
+                        The combination of accurate data retrieval and intelligent narrative summarization is essential—raw data alone doesn't provide value without interpretation that highlights patterns and suggests next steps. Users ask questions because they want answers and understanding, not spreadsheets to analyze. Shifting the design focus from "query accuracy" to "data storytelling" transformed the tool from a technical SQL translator into a discovery partner that helps users understand what their data reveals.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Iteration Drives Accuracy</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        The semantic data model required iterative refinement through discovery queries, metadata translation, and continuous testing, but the result was a dramatic improvement in query accuracy from less than 20% to 90%. This journey demonstrated that building reliable AI-powered analytics tools requires patience, systematic methodology, and willingness to completely rebuild core components when initial approaches don't achieve acceptable accuracy. The three-step semantic modeling process became replicable for other complex data sources.
                     </p>
                 </div>
             </div>
@@ -958,7 +669,7 @@
             <!-- Quote -->
             <div class="bg-gradient-to-br from-slate-950 to-slate-900 p-12 border-l-2 border-white">
                 <p class="text-xl text-white leading-relaxed">
-                    True democratization of analytics means removing every technical barrier between a user's question and a data-driven answer. When asking becomes as simple as conversing, data transforms from an exclusive resource into a universal foundation for informed decisions.
+                    True democratization of analytics means removing every technical barrier between a user's question and a data-driven answer. When exploration becomes conversational and semantic intelligence ensures accuracy, data transforms from an exclusive resource into a universal foundation for discovery-driven decisions.
                 </p>
             </div>
         </div>
@@ -972,17 +683,17 @@
             <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Conclusion</span>
 
             <p class="text-xl text-slate-600 leading-relaxed mb-12">
-                This project demonstrates the powerful impact of combining AI capabilities with thoughtful UX design to break down technical barriers. By building a tool that understands natural language questions and generates accurate analytics, I enabled data-driven decision making for teams that were previously excluded from accessing console usage insights.
+                This project demonstrates the powerful impact of combining conversational AI with semantic intelligence and thoughtful UX design to break down technical barriers. By building a tool that enables multi-turn dialogue, achieves 90% query accuracy through proprietary semantic data modeling, and delivers narrative insights rather than raw data, I enabled true discovery-based exploration and data-driven decision making for teams that were previously excluded from accessing console usage insights.
             </p>
 
             <!-- Future Improvements -->
             <div class="text-left mb-16 bg-slate-50 p-10 border border-slate-950/[0.08]">
                 <h3 class="text-2xl font-semibold text-slate-950 mb-6 tracking-tight">Future Enhancements</h3>
                 <ul class="space-y-3 text-base text-slate-600">
-                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Saved query templates for common analysis patterns</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Saved conversation history allowing users to resume explorations and track insights over time</li>
                     <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Automated scheduling for recurring reports and trend tracking</li>
-                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Collaborative features for sharing insights across teams</li>
-                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Extensible architecture to support additional data sources beyond console usage</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Collaborative features for sharing insights and conversation threads across teams</li>
+                    <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Expansion of semantic model to support additional data sources beyond console usage, making the methodology replicable</li>
                 </ul>
             </div>
 
