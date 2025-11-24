@@ -139,17 +139,17 @@
 
             <!-- Project Title -->
             <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight text-slate-950 mb-8 max-w-5xl opacity-0 animate-fadeInUp" style="animation-delay: 0.3s; letter-spacing: -0.03em;">
-                Amazon Timestream Data Model Visual Builder
+                Data model builder
             </h1>
 
             <!-- Overview -->
             <p class="text-xl text-slate-600 leading-relaxed mb-6 max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.4s;">
-                A reusable, cross-workflow platform that bridges SQL mental models and time-series data modeling for Amazon Timestream, a serverless time-series database. This platform-level component helps developers—particularly those migrating from SQL databases—understand, validate, and configure correct Timestream data models. It reduced setup time from 90+ days to a few hours, and now powers multiple cross-service workflows including Scheduled Queries, Batch Load, and Custom Partition Keys.
+                A visual design tool that simplifies data model creation for Amazon Timestream, a serverless time-series database. This project addressed a critical adoption barrier by helping developers—particularly those migrating from SQL databases—understand and correctly structure their data in a schemaless environment, reducing setup time from 90+ days to a matter of hours.
             </p>
 
             <!-- Goal -->
             <p class="text-xl text-slate-600 leading-relaxed max-w-4xl opacity-0 animate-fadeInUp" style="animation-delay: 0.5s;">
-                <strong class="text-slate-950">Goal:</strong> Bridge the gap between SQL mental models and time-series data structure, eliminate the 90+ day setup cycle caused by incorrect data modeling, increase workflow completion rates, and create a scalable platform component that could power multiple cross-service workflows.
+                <strong class="text-slate-950">Goal:</strong> Reduce cognitive load for new customers, help SQL database users understand schemaless time-series data structure, increase completion rates for Batch Load and Scheduled Queries workflows, and accelerate time-to-value.
             </p>
 
             <!-- Project Meta -->
@@ -182,40 +182,40 @@
             <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Challenge</span>
 
             <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
-                The Problem Wasn't Technical Complexity—It Was Cognitive Overload
+                SQL Mental Models Were Blocking Timestream Adoption
             </h2>
 
             <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
-                Developers with SQL backgrounds brought the wrong mental model to Timestream. They assumed it worked like a relational database—with metrics in fixed table columns, attributes modeled like typical SQL fields, and schema defined once at creation. This fundamental mismatch resulted in inefficient schemas, queries scanning excessive data, ingestion failures, and a 90+ day setup cycle. Customers frequently re-ingested data after realizing their model was incorrect, and some abandoned onboarding entirely.
+                New customers struggled to adopt Amazon Timestream due to fundamental misunderstandings about schemaless time-series data structure. Developers with SQL backgrounds attempted to structure Timestream databases using traditional relational patterns, resulting in inefficient queries, failed implementations, and a setup process that took over 90 days.
             </p>
 
             <!-- Challenge Cards -->
             <div class="grid md:grid-cols-2 gap-6 mb-12">
                 <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
-                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Misaligned Mental Models</h3>
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Wrong Mental Model</h3>
                     <p class="text-[15px] text-slate-600 leading-relaxed">
-                        SQL users tried to apply relational thinking to a schemaless time-series database. They expected metrics to live in fixed columns, attributes to behave like SQL fields, and schema to be defined once at table creation—all incorrect assumptions that led to structural failures.
+                        Developers with SQL backgrounds instinctively tried to structure data relationally, leading to inefficient schema designs that would only reveal problems after data ingestion.
                     </p>
                 </div>
 
                 <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
-                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Costly Restart Cycles</h3>
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">90+ Day Setup Process</h3>
                     <p class="text-[15px] text-slate-600 leading-relaxed">
-                        The 90+ day setup wasn't a single linear process. Customers would ingest data, discover modeling errors during queries, then have to restart completely. Some went through multiple cycles; others abandoned Timestream altogether.
+                        Many customers would realize their data model was incorrect only after ingesting data and attempting queries, forcing them to restart the entire process or abandon the service altogether.
                     </p>
                 </div>
 
                 <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
                     <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Hidden Best Practices</h3>
                     <p class="text-[15px] text-slate-600 leading-relaxed">
-                        Best-practice data model patterns existed but were buried deep in documentation or passed only verbally through Solution Architects. New customers had no way to discover validated starting points for common use cases.
+                        Data model formats and templates that could help customers were buried deep in documentation, making it difficult for new users to find validated starting points.
                     </p>
                 </div>
 
                 <div class="bg-white p-8 border border-slate-950/[0.08] hover:border-slate-950/[0.12] transition-all">
-                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Workflow Abandonment</h3>
+                    <h3 class="text-lg font-semibold text-slate-950 mb-3 tracking-tight">Low Workflow Completion</h3>
                     <p class="text-[15px] text-slate-600 leading-relaxed">
-                        Incorrect data models caused failures in critical workflows: Batch Load (data import) and Scheduled Queries (a key retention driver). This directly impacted service adoption and customer retention rates.
+                        Customers struggled to complete key workflows like Batch Load (data import) and Scheduled Queries (retention driver), directly impacting service adoption and customer retention.
                     </p>
                 </div>
             </div>
@@ -237,12 +237,8 @@
                 Bridge the Gap, Don't Force the Change
             </h2>
 
-            <p class="text-lg text-slate-600 leading-relaxed mb-6 max-w-3xl">
-                The approach centered on three key principles: <strong>match the customer's existing mental model</strong> (SQL databases), <strong>use the interface as the teaching tool</strong> for time-series concepts, and <strong>build a scalable, cross-workflow platform</strong> from the beginning. Rather than forcing customers to abandon their existing knowledge, I designed a bridge to new concepts.
-            </p>
-
             <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
-                <strong class="text-slate-950">Core Design Principle:</strong> "Bridge the gap—don't force the change." Let users start with what they already know (table columns, column types, schema-first thinking), then progressively translate these concepts into Timestream attributes (dimensions, measures, timestamps, multi-measure records, partition keys).
+                The approach centered on two key principles: matching the customer's existing mental model (SQL databases) while using the interface itself as a teaching tool for time-series concepts. Rather than forcing customers to abandon their existing knowledge, I designed a bridge to new concepts.
             </p>
 
             <!-- Approach Phases -->
@@ -267,15 +263,14 @@
                 <div class="flex gap-8 relative">
                     <div class="w-12 h-12 bg-slate-950 text-white rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0 relative z-10">2</div>
                     <div class="flex-1 pb-8">
-                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Ideation & Platform Design</h3>
+                        <h3 class="text-2xl font-semibold text-slate-950 mb-4">Ideation & Design</h3>
                         <p class="text-base text-slate-600 leading-relaxed mb-4">
-                            I chose a visual builder approach over alternatives (improved documentation, tutorials, CLI tools) because it could simultaneously guide and educate users. Critically, I designed it as a reusable schema-mapping system—not a single-use feature—recognizing early that multiple workflows needed data model configuration. Using Figma and the AWS Console Design System library, I created prototypes that made abstract concepts concrete and could scale across workflows.
+                            I chose a visual builder approach over alternatives (improved documentation, tutorials, CLI tools) because it could simultaneously guide and educate users. Using Figma and the AWS Console Design System library, I created prototypes that made abstract concepts concrete.
                         </p>
                         <ul class="space-y-3 text-base text-slate-600">
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Designed table-based visual mapping matching SQL mental models</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created auto-detection system for Scheduled Queries and Batch Load workflows</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Built contextual education and validation directly into the interface</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Identified Custom Partition Keys as another workflow needing this component</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Designed template-based starting points surfacing hidden best practices</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Created auto-detection from sample data feature</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Built visual relationship mapping to show how dimensions, measures, and time relate</li>
                         </ul>
                     </div>
                 </div>
@@ -286,12 +281,12 @@
                     <div class="flex-1 pb-8">
                         <h3 class="text-2xl font-semibold text-slate-950 mb-4">Development & Implementation</h3>
                         <p class="text-base text-slate-600 leading-relaxed mb-4">
-                            I collaborated closely with backend engineers to build schema inference and validation logic for both Scheduled Queries and Batch Load workflows, console engineers to implement a performant and reusable visual component, and Solution Architects to ensure the system addressed real customer needs across multiple use cases.
+                            I collaborated closely with service engineers to understand backend constraints and data model validation requirements, console engineers to implement the visual interface, and solution architects to validate that the tool addressed real customer needs and aligned with best practices.
                         </p>
                         <ul class="space-y-3 text-base text-slate-600">
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Built reusable component architecture supporting multiple workflow integrations</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Implemented auto-detection for query validation and S3 source introspection</li>
-                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Ensured performance and scalability with complex data models</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Worked iteratively with regular check-ins to ensure technical feasibility</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Maintained design integrity while accommodating backend requirements</li>
+                            <li class="pl-6 relative before:content-['→'] before:absolute before:left-0 before:text-blue-500 before:font-semibold">Ensured performance with various data model sizes</li>
                         </ul>
                     </div>
                 </div>
@@ -323,26 +318,26 @@
             <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">The Solution</span>
 
             <h2 class="text-4xl md:text-5xl font-semibold leading-tight tracking-tight text-slate-950 mb-8 max-w-4xl" style="letter-spacing: -0.025em;">
-                A Platform That Teaches While Users Build
+                A Visual Builder That Teaches While It Builds
             </h2>
 
             <p class="text-lg text-slate-600 leading-relaxed mb-12 max-w-3xl">
-                The Data Model Visual Builder transforms abstract time-series concepts into concrete, understandable structures while preventing common errors. Rather than relying on external documentation, it embeds contextual learning directly into the workflow. As a platform-level component, it now powers Scheduled Queries, Batch Load, and Custom Partition Keys—with each workflow benefiting from the same cognitive bridge between SQL and time-series thinking.
+                The visual builder transforms abstract time-series concepts into concrete, understandable structures while preventing common errors. Rather than relying on external documentation, the tool embeds contextual learning directly into the workflow.
             </p>
 
             <!-- Key Features -->
             <div class="grid md:grid-cols-3 gap-6 mb-16">
                 <div class="p-6 border-l-2 border-slate-950">
-                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Table-Based Visual Mapping</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Familiar table interface that maps columns to Timestream attributes, matching SQL users' mental models while teaching time-series concepts.</p>
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Template-Based Creation</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Pre-configured templates based on common use cases provide validated starting points that follow best practices.</p>
                 </div>
                 <div class="p-6 border-l-2 border-slate-950">
                     <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Auto Schema Detection</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Automatically generates data model mappings from query validation or S3 source files, eliminating manual configuration and reducing errors.</p>
+                    <p class="text-sm text-slate-600 leading-relaxed">Upload sample data and the system automatically analyzes structure and populates correct fields.</p>
                 </div>
                 <div class="p-6 border-l-2 border-slate-950">
-                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Contextual Education</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Inline guidance and validation that explains unfamiliar terms, surfaces best practices, and warns about inefficient schema choices.</p>
+                    <h4 class="text-base font-semibold text-slate-950 mb-2 tracking-tight">Visual Relationships</h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">Interactive diagram showing how dimensions, measures, and time columns relate in a schemaless structure.</p>
                 </div>
             </div>
 
@@ -351,16 +346,13 @@
 
             <div class="space-y-8 mb-16">
                 <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
-                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">1. Table-Based Visual Mapping</h4>
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">1. Template-Based Data Model Creation</h4>
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
-                        The heart of the system is an editable table interface that matches how SQL users already think about data. Users see their source columns (from queries or S3 files) and map them to Timestream attribute types (Timestamp, Dimension, Measure, Measure_Name) with corresponding data types (String, Integer, Double, etc.).
-                    </p>
-                    <p class="text-base text-slate-600 leading-relaxed mb-4">
-                        <strong class="text-slate-950">Why a table?</strong> SQL users instinctively understand tables. The familiar "columns → roles → datatypes" workflow provides a bridge to time-series concepts without requiring graph visualizations or abstract diagrams. The table itself <em>is</em> the relationship visualization, showing at a glance how source data maps to Timestream's schemaless structure.
+                        Pre-configured templates based on common time-series use cases and supported data model formats. These templates, previously hidden deep in documentation, provide developers with validated starting points that follow Timestream best practices. Templates are organized by use case (IoT, DevOps monitoring, application metrics, etc.) with contextual guidance about when to use each approach.
                     </p>
                     <!-- Desktop Demo -->
                     <div class="hidden md:block w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
-                        <iframe src="demos/template-selection.html" class="w-full h-full" title="Table-Based Visual Mapping Demo"></iframe>
+                        <iframe src="demos/template-selection.html" class="w-full h-full" title="Template Selection Demo"></iframe>
                     </div>
                     <!-- Mobile Placeholder -->
                     <div class="md:hidden w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50">
@@ -369,17 +361,9 @@
                 </div>
 
                 <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
-                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">2. Auto Schema Detection Across Workflows</h4>
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">2. Auto Schema Detection from Sample Records</h4>
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
-                        The platform automatically generates data model mappings from different sources depending on the workflow:
-                    </p>
-                    <ul class="space-y-3 text-base text-slate-600 mb-4 ml-6">
-                        <li class="pl-2"><strong class="text-slate-950">Scheduled Queries:</strong> During "Validate Query," the backend returns column names and inferred attribute types, allowing the builder to auto-generate the entire mapping. Users can review and edit if needed, but rarely need to adjust.</li>
-                        <li class="pl-2"><strong class="text-slate-950">Batch Load:</strong> Upon connecting to S3 source files (CSV/Parquet), file headers are parsed, datatypes inferred, and recommended mappings applied automatically.</li>
-                        <li class="pl-2"><strong class="text-slate-950">Custom Partition Keys:</strong> When destination tables have custom partition keys, the builder detects this configuration and guides users to map the correct attribute, preventing silent ingestion errors.</li>
-                    </ul>
-                    <p class="text-base text-slate-600 leading-relaxed mb-4">
-                        This automation eliminates the most error-prone manual configuration tasks and creates a consistent schema experience across both ingestion and query workflows.
+                        Customers can upload sample data or records, and the system automatically analyzes the structure and populates the correct data model fields. This removes guesswork and ensures proper dimensional vs. measure field categorization. The auto-detection handles various data formats and provides confidence scores for its suggestions, allowing customers to validate the analysis.
                     </p>
                     <!-- Desktop Demo -->
                     <div class="hidden md:block w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
@@ -392,25 +376,13 @@
                 </div>
 
                 <div class="bg-slate-50 p-8 border border-slate-950/[0.08]">
-                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">3. Contextual Education & Validation</h4>
+                    <h4 class="text-xl font-semibold text-slate-950 mb-4 tracking-tight">3. Visual Data Relationship Mapping</h4>
                     <p class="text-base text-slate-600 leading-relaxed mb-4">
-                        Every interaction helps users learn by doing. The interface explains unfamiliar terms inline, surfaces best practices contextually, and warns users when schema choices might lead to inefficiencies. This addresses the knowledge gap directly inside the workflow rather than forcing users to read external documentation.
-                    </p>
-                    <p class="text-base text-slate-600 leading-relaxed mb-4">
-                        <strong class="text-slate-950">Example guidance:</strong>
-                    </p>
-                    <ul class="space-y-2 text-base text-slate-600 mb-4 ml-6">
-                        <li class="pl-2">"This looks like a dimension; dimensions are used for filtering and grouping queries."</li>
-                        <li class="pl-2">"Numeric fields can be measures; measures represent metric values that change over time."</li>
-                        <li class="pl-2">"This table uses a custom partition key — review mapping guidance to ensure correct attribute assignment."</li>
-                        <li class="pl-2">"Consider using multi-measure records for related metrics to optimize query performance."</li>
-                    </ul>
-                    <p class="text-base text-slate-600 leading-relaxed mb-4">
-                        Real-time validation prevents common mistakes before data ingestion, and progressive disclosure patterns maintain usability even with complex schemas containing dozens of dimensions and measures.
+                        An interactive diagram that shows how dimensions (attributes), measures (metrics), and time columns relate within the schemaless structure. This visualization bridges the mental model gap for SQL-background developers by making abstract time-series concepts tangible and understandable. For complex schemas, progressive disclosure patterns and grouping mechanisms prevent clutter. Real-time validation warnings alert users when their structure might lead to query inefficiencies.
                     </p>
                     <!-- Desktop Demo -->
                     <div class="hidden md:block w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden">
-                        <iframe src="demos/visual-relationships.html" class="w-full h-full" title="Contextual Education & Validation Demo"></iframe>
+                        <iframe src="demos/visual-relationships.html" class="w-full h-full" title="Visual Data Relationship Mapping Demo"></iframe>
                     </div>
                     <!-- Mobile Placeholder -->
                     <div class="md:hidden w-full aspect-video border border-slate-950/[0.06] rounded-lg overflow-hidden flex items-center justify-center bg-slate-50">
@@ -420,7 +392,7 @@
             </div>
 
             <p class="text-lg text-slate-600 leading-relaxed max-w-3xl">
-                <strong class="text-slate-950">Design Impact:</strong> The Data Model Visual Builder doesn't just enable configuration—it teaches time-series best practices while users work. By embedding education directly into the workflow and building it as a platform component from the start, this solution transformed multiple customer experiences simultaneously. One well-designed component now unifies schema configuration across Scheduled Queries, Batch Load, and Custom Partition Keys, with future workflows able to leverage the same foundation.
+                <strong class="text-slate-950">Design Impact:</strong> The visual builder doesn't just enable configuration—it teaches time-series best practices. By embedding education directly into the workflow, customers learn the right patterns while completing real tasks.
             </p>
         </div>
     </section>
@@ -439,7 +411,7 @@
             </h2>
 
             <p class="text-lg text-slate-300 leading-relaxed mb-12 max-w-3xl">
-                The Data Model Visual Builder transformed the Timestream onboarding experience, dramatically reducing setup time and improving completion rates for critical workflows. By designing it as a platform-level component from the start, the impact extended far beyond the original scope—now powering multiple cross-service workflows with the same cognitive bridge between SQL and time-series thinking.
+                The visual data model builder transformed the Timestream onboarding experience, dramatically reducing setup time and improving completion rates for critical workflows.
             </p>
 
             <!-- Impact Stats -->
@@ -489,20 +461,10 @@
                         <li>Enabled faster time-to-value, improving competitive positioning</li>
                     </ul>
                 </div>
-
-                <div>
-                    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">Platform Impact — Beyond Original Scope</h3>
-                    <ul class="space-y-4 text-base text-slate-300 border-l-2 border-white/20 pl-8">
-                        <li>Became a system-level component powering <strong class="text-white">Scheduled Queries</strong>, <strong class="text-white">Batch Load</strong>, and <strong class="text-white">Custom Partition Keys</strong></li>
-                        <li>Unified schema configuration experience across multiple workflows, creating consistency for users</li>
-                        <li>Future API ingestion workflows can leverage the same foundation without rebuilding core functionality</li>
-                        <li>One well-designed component multiplied impact across the entire service ecosystem</li>
-                    </ul>
-                </div>
             </div>
 
             <p class="text-lg text-slate-300 leading-relaxed mt-12 max-w-3xl">
-                <strong class="text-white">Bottom Line:</strong> This project demonstrates how thoughtful UX design can address not just usability issues, but fundamental adoption barriers rooted in knowledge gaps and misconceptions. By focusing on the customer's mental model and designing systems rather than single-use features, we created a bridge to new technology that now serves multiple workflows—multiplying the impact far beyond the original scope.
+                <strong class="text-white">Bottom Line:</strong> This project demonstrates how thoughtful UX design can address not just usability issues, but fundamental adoption barriers rooted in knowledge gaps and misconceptions. By focusing on the customer's mental model, we created a bridge to new technology rather than expecting customers to abandon their existing frameworks.
             </p>
         </div>
     </section>
@@ -520,30 +482,30 @@
 
             <div class="space-y-8 mb-12">
                 <div class="bg-white p-10 border-l-2 border-slate-950">
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Simplify Cognitive-Heavy Tasks</h3>
+                    <p class="text-lg text-slate-600 leading-relaxed">
+                        Breaking down complex, unfamiliar concepts into visual, guided experiences dramatically lowers barriers to entry for new users. The 90+ day setup time wasn't due to technical complexity alone—it was cognitive overload. Visual representation made abstract concepts concrete while preventing common structural errors.
+                    </p>
+                </div>
+
+                <div class="bg-white p-10 border-l-2 border-slate-950">
                     <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Meet Users Where They Are</h3>
                     <p class="text-lg text-slate-600 leading-relaxed">
-                        SQL users needed a bridge, not a paradigm shift. Understanding customers' existing mental models (relational databases, table columns, schema-first thinking) and their context (data migration) allowed me to design an experience that translated familiar concepts to new ones rather than forcing users to abandon their existing knowledge. This cognitive bridge was the key to eliminating the 90+ day setup cycle.
+                        Understanding a customer's existing mental model (SQL databases) and their intent (data migration) allowed me to design an experience that bridged the gap to new concepts (schemaless time-series) rather than forcing them to start from scratch. Used familiar SQL terminology where appropriate but provided clear comparisons showing "SQL approach vs. Timestream approach."
                     </p>
                 </div>
 
                 <div class="bg-white p-10 border-l-2 border-slate-950">
-                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Use the Product as the Learning Surface</h3>
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">The Interface Is the Education</h3>
                     <p class="text-lg text-slate-600 leading-relaxed">
-                        Contextual guidance beats external documentation. Rather than relying on separate tutorials or help pages, embedding education directly into the workflow ensured customers learned the right patterns while completing real tasks. The interface itself became the teaching tool—explaining unfamiliar terms inline, surfacing best practices contextually, and validating choices in real-time.
+                        Rather than relying on external documentation or tutorials, embedding contextual learning directly into the workflow ensured customers learned the right patterns while completing real tasks. The visual builder didn't just enable configuration—it taught time-series best practices through real-time validation and contextual guidance.
                     </p>
                 </div>
 
                 <div class="bg-white p-10 border-l-2 border-slate-950">
-                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Design Systems, Not Screens</h3>
+                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Collaborate with Customer-Facing Teams</h3>
                     <p class="text-lg text-slate-600 leading-relaxed">
-                        One well-designed component unified multiple workflows. By recognizing early that Scheduled Queries, Batch Load, and Custom Partition Keys all needed schema configuration, I designed a reusable platform component rather than a single-use feature. This architectural approach multiplied the impact—the same cognitive bridge and auto-detection logic now serves multiple customer journeys, and future workflows can leverage this foundation without rebuilding core functionality.
-                    </p>
-                </div>
-
-                <div class="bg-white p-10 border-l-2 border-slate-950">
-                    <h3 class="text-2xl font-semibold text-slate-950 mb-4 tracking-tight">Automate Wherever Possible</h3>
-                    <p class="text-lg text-slate-600 leading-relaxed">
-                        Schema inference removed the most error-prone tasks. By automatically detecting structure from query validation results or S3 source files, the system eliminated manual configuration wherever possible. Users could review and adjust if needed, but automation handled the heavy lifting—drastically reducing cognitive load and preventing common mistakes before they happened.
+                        Close collaboration with Solution Architects who worked directly with new customers during onboarding provided invaluable insight into real-world pain points. Their input ensured the solution addressed actual customer needs rather than perceived problems, and their validation during testing confirmed the approach would work in practice.
                     </p>
                 </div>
             </div>
@@ -558,7 +520,7 @@
             <span class="inline-block text-sm uppercase tracking-[0.12em] text-slate-500 font-semibold mb-6 pb-2 border-b-2 border-slate-200">Conclusion</span>
 
             <p class="text-xl text-slate-600 leading-relaxed mb-12">
-                This project reinforced the importance of understanding not just what customers are trying to do, but how they think about the problem. By designing a platform that met customers at their existing level of understanding (SQL) and guided them to new concepts (time-series), we eliminated a critical adoption barrier across multiple workflows simultaneously. The architectural decision to build a reusable system rather than a single-use feature multiplied the long-term value, with the same component now serving Scheduled Queries, Batch Load, Custom Partition Keys, and future API ingestion workflows.
+                This project reinforced the importance of understanding not just what customers are trying to do, but how they think about the problem. By designing an interface that met customers at their existing level of understanding (SQL) and guided them to new concepts (time-series), we eliminated a critical adoption barrier. Future improvements could include: expanded template library based on emerging use cases, collaborative data model design for teams, and version control for data model iterations.
             </p>
 
             <!-- CTA Buttons -->
