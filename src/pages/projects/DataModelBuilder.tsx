@@ -107,7 +107,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               Discovery
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -140,7 +140,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
                   : "opacity-0 translate-y-8"
               }`}
             >
-              <h3 className="text-2xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+              <h3 className="text-2xl font-bold tracking-tight text-foreground">
                 Developers applied SQL mental models to schemaless architecture
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -188,8 +188,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
       {/* Solution Section */}
       <section
         ref={solutionSection.ref}
-        className="min-h-screen w-full flex items-center justify-center snap-start py-24"
-        style={{ background: "#F9FAFC" }}
+        className="min-h-screen w-full flex items-center justify-center snap-start py-24 bg-muted/30"
       >
         <div className="max-w-7xl w-full px-6 flex flex-col items-center gap-12">
           {/* Section Header */}
@@ -200,7 +199,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               Design Approach
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -233,7 +232,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
                   : "opacity-0 translate-y-8"
               }`}
             >
-              <h3 className="text-2xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+              <h3 className="text-2xl font-bold tracking-tight text-foreground">
                 Bridge mental models through visual building
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -290,8 +289,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
                 artifactsSection.isInView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
-              }`}
-              style={{ color: "#0E172A" }}
+              } text-foreground`}
             >
               What I Delivered
             </h2>
@@ -326,7 +324,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
                   />
                 </div>
                 <div className="flex flex-col gap-1 max-w-[750px] text-left">
-                  <h4 className="text-lg font-semibold tracking-tight" style={{ color: "#0E172A" }}>Template-Based Creation</h4>
+                  <h4 className="text-lg font-semibold tracking-tight text-foreground">Template-Based Creation</h4>
                   <span className="text-muted-foreground text-sm">
                     Pre-configured templates organized by use case—IoT, DevOps, application metrics—provide
                     validated starting points that follow Timestream best practices, eliminating guesswork for new users.
@@ -353,7 +351,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
                   />
                 </div>
                 <div className="flex flex-col gap-1 max-w-[750px] text-left">
-                  <h4 className="text-lg font-semibold tracking-tight" style={{ color: "#0E172A" }}>Auto Schema Detection</h4>
+                  <h4 className="text-lg font-semibold tracking-tight text-foreground">Auto Schema Detection</h4>
                   <span className="text-muted-foreground text-sm">
                     Upload sample data and the system automatically analyzes structure, populating correct
                     fields and eliminating guesswork around dimensional vs. measure categorization.
@@ -378,7 +376,7 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
                   />
                 </div>
                 <div className="flex flex-col gap-1 max-w-[750px] text-left">
-                  <h4 className="text-lg font-semibold tracking-tight" style={{ color: "#0E172A" }}>Visual Mappings Parsed to API Format</h4>
+                  <h4 className="text-lg font-semibold tracking-tight text-foreground">Visual Mappings Parsed to API Format</h4>
                   <span className="text-muted-foreground text-sm">
                     I designed the system architecture to automatically parse mappings from the Visual Builder component
                     into the required API format. Using a table as the base component made the mapping configuration
@@ -543,18 +541,16 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
       {/* CTA Section */}
       <section
         ref={ctaSection.ref}
-        className="h-screen w-full flex flex-col items-center justify-center snap-start"
-        style={{ backgroundColor: "#FFFFFF" }}
+        className="h-screen w-full flex flex-col items-center justify-center snap-start bg-background"
       >
         <div
           className={`max-w-4xl w-full mx-auto px-6 py-16 flex flex-col items-center text-center gap-6 transition-all duration-[1500ms] ease-out ${
             ctaSection.isInView
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
-          }`}
-          style={{ borderRadius: "12px", backgroundColor: "#F8FAFC" }}
+          } rounded-xl bg-muted/50`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
             Interested in working together?
           </h2>
           <p className="text-muted-foreground">

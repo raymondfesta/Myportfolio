@@ -108,7 +108,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               Discovery
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -141,7 +141,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                   : "opacity-0 translate-y-8"
               }`}
             >
-              <h3 className="text-2xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+              <h3 className="text-2xl font-bold tracking-tight text-foreground">
                 Data insights were locked behind technical barriers and knowledge gaps
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -178,8 +178,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
       {/* Solution Section */}
       <section
         ref={solutionSection.ref}
-        className="min-h-screen w-full flex items-center justify-center snap-start py-24"
-        style={{ background: "#F9FAFC" }}
+        className="min-h-screen w-full flex items-center justify-center snap-start py-24 bg-muted/30"
       >
         <div className="max-w-7xl w-full px-6 flex flex-col items-center gap-12">
           {/* Section Header */}
@@ -190,7 +189,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               Design Approach
             </h2>
             <p className="text-muted-foreground leading-relaxed">
@@ -223,7 +222,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                   : "opacity-0 translate-y-8"
               }`}
             >
-              <h3 className="text-2xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+              <h3 className="text-2xl font-bold tracking-tight text-foreground">
                 Conversational AI that helps users discover what to ask, not just answer what they already know
               </h3>
               <p className="text-muted-foreground leading-relaxed">
@@ -275,8 +274,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                 artifactsSection.isInView
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
-              }`}
-              style={{ color: "#0E172A" }}
+              } text-foreground`}
             >
               What I Delivered
             </h2>
@@ -311,7 +309,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                   />
                 </div>
                 <div className="flex flex-col gap-1 max-w-[750px] text-left">
-                  <h4 className="text-lg font-semibold tracking-tight" style={{ color: "#0E172A" }}>Conversational Interface with Guided Discovery</h4>
+                  <h4 className="text-lg font-semibold tracking-tight text-foreground">Conversational Interface with Guided Discovery</h4>
                   <span className="text-muted-foreground text-sm">
                     The conversational experience with guided prompts enables users to start broad and progressively refine their questions. Context is maintained across turns, allowing natural exploration without repeating information.
                   </span>
@@ -337,7 +335,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                   />
                 </div>
                 <div className="flex flex-col gap-1 max-w-[750px] text-left">
-                  <h4 className="text-lg font-semibold tracking-tight" style={{ color: "#0E172A" }}>Intelligent Data Storytelling</h4>
+                  <h4 className="text-lg font-semibold tracking-tight text-foreground">Intelligent Data Storytelling</h4>
                   <span className="text-muted-foreground text-sm">
                     Rather than raw tables, the system transforms query results into narrative summaries that identify patterns, trends, and actionable insights—highlighting what matters most and suggesting related explorations.
                   </span>
@@ -361,7 +359,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                   />
                 </div>
                 <div className="flex flex-col gap-1 max-w-[750px] text-left">
-                  <h4 className="text-lg font-semibold tracking-tight" style={{ color: "#0E172A" }}>Semantic Data Model Architecture</h4>
+                  <h4 className="text-lg font-semibold tracking-tight text-foreground">Semantic Data Model Architecture</h4>
                   <span className="text-muted-foreground text-sm">
                     The breakthrough innovation: A proprietary semantic data model that maps how users think about data (business terms) to how data is stored (technical database structures).
                   </span>
@@ -518,18 +516,16 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
       {/* CTA Section */}
       <section
         ref={ctaSection.ref}
-        className="h-screen w-full flex flex-col items-center justify-center snap-start"
-        style={{ backgroundColor: "#FFFFFF" }}
+        className="h-screen w-full flex flex-col items-center justify-center snap-start bg-background"
       >
         <div
           className={`max-w-4xl w-full mx-auto px-6 py-16 flex flex-col items-center text-center gap-6 transition-all duration-[1500ms] ease-out ${
             ctaSection.isInView
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
-          }`}
-          style={{ borderRadius: "12px", backgroundColor: "#F8FAFC" }}
+          } rounded-xl bg-muted/50`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "#0E172A" }}>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
             Interested in working together?
           </h2>
           <p className="text-muted-foreground">
