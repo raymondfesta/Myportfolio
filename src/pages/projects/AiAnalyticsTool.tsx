@@ -25,6 +25,9 @@ import screenDesign3 from "@/assets/screen-design-3.png"
 import screenGuidedInterface from "@/assets/screen_guided_interface.png"
 import systemArchitecture from "@/assets/system-architecture.png"
 import conversationApproach from "@/assets/conversation_approach.png"
+import aiDataTool1 from "@/assets/1_ai-data-tool.png"
+import aiDataTool2 from "@/assets/2_ai-data-tool.png"
+import aiDataTool3 from "@/assets/3_ai-data-tool.png"
 
 interface AiAnalyticsToolProps {
   onBack?: () => void
@@ -57,7 +60,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
       >
         <div className="max-w-7xl w-full px-6 mx-auto">
           <div
-            className="w-fit max-w-full mx-auto rounded-lg overflow-hidden animate-fade-in-up shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200"
+            className="w-fit max-w-full mx-auto rounded-lg animate-fade-in-up shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200"
           >
             <img
               src={heroScreen}
@@ -127,7 +130,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
 
           {/* Image Canvas */}
           <div
-            className={`w-fit max-w-full mx-auto rounded-lg overflow-hidden transition-all duration-[1500ms] ease-out delay-100 shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] ${
+            className={`w-fit max-w-full mx-auto rounded-lg transition-all duration-[1500ms] ease-out delay-100 shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] ${
               problemSection.isInView
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -208,7 +211,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
 
           {/* Image Canvas */}
           <div
-            className={`w-fit max-w-full mx-auto rounded-lg overflow-hidden transition-all duration-[1500ms] ease-out delay-100 shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] ${
+            className={`w-fit max-w-full mx-auto rounded-lg transition-all duration-[1500ms] ease-out delay-100 shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] ${
               solutionSection.isInView
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -308,7 +311,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                 }`}
               >
                 <div
-                  className="w-fit max-w-full rounded-lg overflow-hidden shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200"
+                  className="w-fit max-w-full rounded-lg shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200"
                 >
                   <img
                     src={screenGuidedInterface}
@@ -334,7 +337,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                 }`}
               >
                 <div
-                  className="w-fit max-w-full rounded-lg overflow-hidden shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200"
+                  className="w-fit max-w-full rounded-lg shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200"
                 >
                   <img
                     src={screenDesign3}
@@ -359,7 +362,7 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                     : "opacity-0 translate-y-8"
                 }`}
               >
-                <div className="w-fit max-w-full">
+                <div className="w-fit max-w-full rounded-lg shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200">
                   <img
                     src={systemArchitecture}
                     alt="System Architecture"
@@ -372,6 +375,42 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
                   <span className="text-muted-foreground text-sm">
                     The breakthrough innovation: A proprietary semantic data model that maps how users think about data (business terms) to how data is stored (technical database structures).
                   </span>
+                </div>
+              </div>
+
+              {/* Image Gallery */}
+              <div
+                className={`w-full mt-8 transition-all duration-[1500ms] ease-out delay-700 ${
+                  artifactsSection.isInView
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-8"
+                }`}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="rounded-lg shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200">
+                    <img
+                      src={aiDataTool1}
+                      alt="AI Data Tool screenshot 1"
+                      className="w-full h-auto block cursor-pointer rounded-lg"
+                      onClick={() => setLightboxSrc(aiDataTool1)}
+                    />
+                  </div>
+                  <div className="rounded-lg shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200">
+                    <img
+                      src={aiDataTool2}
+                      alt="AI Data Tool screenshot 2"
+                      className="w-full h-auto block cursor-pointer rounded-lg"
+                      onClick={() => setLightboxSrc(aiDataTool2)}
+                    />
+                  </div>
+                  <div className="rounded-lg shadow-[0_1px_4px_-1px_rgba(14,14,17,0.08),0_8px_16px_-8px_rgba(14,14,17,0.12)] hover:shadow-[0_1px_8px_-2px_rgba(14,14,17,0.10),0_16px_28px_-10px_rgba(14,14,17,0.16)] transition-shadow duration-200">
+                    <img
+                      src={aiDataTool3}
+                      alt="AI Data Tool screenshot 3"
+                      className="w-full h-auto block cursor-pointer rounded-lg"
+                      onClick={() => setLightboxSrc(aiDataTool3)}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
