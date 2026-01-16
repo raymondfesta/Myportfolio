@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import {
   Accordion,
   AccordionContent,
@@ -14,6 +14,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Button } from "@/components/ui/button"
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
+import { Check } from "lucide-react"
 import { Lightbox } from "@/components/ui/lightbox"
 import { Separator } from "@/components/ui/separator"
 import { useInView } from "@/hooks/use-in-view"
@@ -29,11 +31,18 @@ interface DataModelBuilderProps {
 
 export function DataModelBuilder({}: DataModelBuilderProps) {
   const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
+  const [contactPopoverOpen, setContactPopoverOpen] = useState(false)
   const problemSection = useInView<HTMLElement>({ threshold: 0.2 })
   const solutionSection = useInView<HTMLElement>({ threshold: 0.2 })
   const artifactsSection = useInView<HTMLElement>({ threshold: 0.1 })
   const decisionsSection = useInView<HTMLElement>({ threshold: 0.1 })
   const ctaSection = useInView<HTMLElement>({ threshold: 0.3 })
+
+  const handleContactClick = useCallback(() => {
+    navigator.clipboard.writeText("raymond.festa2020@gmail.com")
+    setContactPopoverOpen(true)
+    setTimeout(() => setContactPopoverOpen(false), 2000)
+  }, [])
 
   return (
     <div className="fixed inset-0 top-16 overflow-y-scroll snap-y snap-mandatory scroll-smooth">
@@ -557,7 +566,17 @@ export function DataModelBuilder({}: DataModelBuilderProps) {
             Let's talk about how I can help solve complex product challenges for your business.
           </p>
           <div className="flex gap-3">
-            <Button size="lg">Send a message</Button>
+            <Popover open={contactPopoverOpen} onOpenChange={setContactPopoverOpen}>
+              <PopoverTrigger asChild>
+                <Button size="lg" onClick={handleContactClick}>Send a message</Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto px-3 py-2">
+                <p className="text-sm text-green-600 flex items-center gap-1.5">
+                  <Check className="h-4 w-4" />
+                  Email copied to clipboard
+                </p>
+              </PopoverContent>
+            </Popover>
             <Button
               variant="outline"
               size="lg"

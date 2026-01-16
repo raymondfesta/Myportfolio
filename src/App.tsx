@@ -6,11 +6,13 @@ declare global {
   }
 }
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Routes, Route, useNavigate, useLocation, useSearchParams } from "react-router-dom"
-import { User, Eye, ShieldCheck, RefreshCw } from "lucide-react"
+import { User, Eye, ShieldCheck, RefreshCw, Check, Menu } from "lucide-react"
 import { ProjectShowcase } from "./components/ProjectShowcase"
 import { Button } from "./components/ui/button"
+import { Popover, PopoverTrigger, PopoverContent } from "./components/ui/popover"
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "./components/ui/sheet"
 import { TemplateCaseStudy } from "./pages/TemplateCaseStudy"
 import { AiAnalyticsTool } from "./pages/projects/AiAnalyticsTool"
 import { DataModelBuilder } from "./pages/projects/DataModelBuilder"
@@ -29,6 +31,14 @@ function App() {
     const saved = localStorage.getItem("theme")
     return saved === "dark"
   })
+  const [contactPopoverOpen, setContactPopoverOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const handleContactClick = useCallback(() => {
+    navigator.clipboard.writeText("raymond.festa2020@gmail.com")
+    setContactPopoverOpen(true)
+    setTimeout(() => setContactPopoverOpen(false), 2000)
+  }, [])
 
   // Read section from URL params on home page
   useEffect(() => {
@@ -88,8 +98,8 @@ function App() {
                 RF Design
               </button>
 
-              {/* Navigation & Theme Toggle */}
-              <div className="flex items-center gap-6 lg:gap-8">
+              {/* Desktop Navigation & Theme Toggle */}
+              <div className="hidden md:flex items-center gap-6 lg:gap-8">
                 <button
                   onClick={() => setIsDark(!isDark)}
                   className="p-2 hover:opacity-60 transition-opacity rounded-md"
@@ -151,14 +161,22 @@ function App() {
                 >
                   About
                 </button>
-                <button
-                  onClick={() => handleNavClick("contact")}
-                  className={`text-sm font-medium transition-opacity ${
-                    activeSection === "contact" && !isProjectPage ? "text-foreground" : "text-muted-foreground hover:opacity-70"
-                  }`}
-                >
-                  Contact
-                </button>
+                <Popover open={contactPopoverOpen} onOpenChange={setContactPopoverOpen}>
+                  <PopoverTrigger asChild>
+                    <button
+                      onClick={handleContactClick}
+                      className="text-sm font-medium text-muted-foreground hover:opacity-70 transition-opacity"
+                    >
+                      Contact
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto px-3 py-2">
+                    <p className="text-sm text-green-600 flex items-center gap-1.5">
+                      <Check className="h-4 w-4" />
+                      Email copied to clipboard
+                    </p>
+                  </PopoverContent>
+                </Popover>
                 <a
                   href="https://www.linkedin.com/in/raymondcfesta/"
                   target="_blank"
@@ -167,6 +185,105 @@ function App() {
                 >
                   LinkedIn
                 </a>
+              </div>
+
+              {/* Mobile Navigation */}
+              <div className="flex md:hidden items-center gap-2">
+                <button
+                  onClick={() => setIsDark(!isDark)}
+                  className="p-2 hover:opacity-60 transition-opacity rounded-md"
+                  aria-label="Toggle theme"
+                >
+                  {isDark ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="4" />
+                      <path d="M12 2v2" />
+                      <path d="M12 20v2" />
+                      <path d="m4.93 4.93 1.41 1.41" />
+                      <path d="m17.66 17.66 1.41 1.41" />
+                      <path d="M2 12h2" />
+                      <path d="M20 12h2" />
+                      <path d="m6.34 17.66-1.41 1.41" />
+                      <path d="m19.07 4.93-1.41 1.41" />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                    </svg>
+                  )}
+                </button>
+                <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                  <SheetTrigger asChild>
+                    <button
+                      className="p-2 hover:opacity-60 transition-opacity rounded-md"
+                      aria-label="Open menu"
+                    >
+                      <Menu className="h-5 w-5" />
+                    </button>
+                  </SheetTrigger>
+                  <SheetContent side="right" className="w-full sm:w-[320px] p-0">
+                    <SheetHeader className="px-6 pt-6 pb-4 border-b border-border/40">
+                      <SheetTitle className="text-left text-lg font-semibold tracking-tight">Menu</SheetTitle>
+                    </SheetHeader>
+                    <nav className="flex flex-col px-6 py-6">
+                      <button
+                        onClick={() => {
+                          handleNavClick("work")
+                          setMobileMenuOpen(false)
+                        }}
+                        className="py-4 text-lg font-medium text-left hover:opacity-60 transition-opacity border-b border-border/40"
+                      >
+                        Work
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleNavClick("about")
+                          setMobileMenuOpen(false)
+                        }}
+                        className="py-4 text-lg font-medium text-left hover:opacity-60 transition-opacity border-b border-border/40"
+                      >
+                        About
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleContactClick()
+                          setMobileMenuOpen(false)
+                        }}
+                        className="py-4 text-lg font-medium text-left hover:opacity-60 transition-opacity border-b border-border/40"
+                      >
+                        Contact
+                      </button>
+                      <a
+                        href="https://www.linkedin.com/in/raymondcfesta/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-4 text-lg font-medium hover:opacity-60 transition-opacity"
+                      >
+                        LinkedIn
+                      </a>
+                    </nav>
+                  </SheetContent>
+                </Sheet>
               </div>
             </div>
           </nav>
