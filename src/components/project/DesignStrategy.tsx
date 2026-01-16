@@ -1,0 +1,37 @@
+interface DesignStrategyProps {
+  visualUrl?: string
+  heading: string
+  bullets: string[]
+}
+
+export function DesignStrategy({ visualUrl, heading, bullets }: DesignStrategyProps) {
+  return (
+    <section id="strategy" className="py-12 lg:py-20 bg-muted/20">
+      <div className="max-w-[780px] mx-auto px-6 lg:px-8 mb-8">
+        <h3 className="mb-8">Design Strategy</h3>
+      </div>
+
+      {/* Visual first */}
+      <div className="w-full aspect-video bg-muted/30 border-y border-border/40 flex items-center justify-center mb-8">
+        {visualUrl ? (
+          <img src={visualUrl} alt="Design strategy" className="w-full h-full object-cover" />
+        ) : (
+          <span className="text-muted-foreground text-sm">Comparison / Abstraction Diagram</span>
+        )}
+      </div>
+
+      {/* Heading + bullets */}
+      <div className="max-w-[780px] mx-auto px-6 lg:px-8">
+        <h4 className="text-xl font-semibold mb-6">{heading}</h4>
+        <ul className="space-y-3">
+          {bullets.map((bullet, index) => (
+            <li key={index} className="text-muted-foreground flex gap-3">
+              <span className="text-foreground mt-1.5 shrink-0">·</span>
+              <span>{bullet}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
