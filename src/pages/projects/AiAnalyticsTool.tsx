@@ -17,8 +17,8 @@ import { Button } from "@/components/ui/button"
 import { Lightbox } from "@/components/ui/lightbox"
 import { Separator } from "@/components/ui/separator"
 import { useInView } from "@/hooks/use-in-view"
-import placeholderScreen from "@/assets/placeholder_screen.png"
 import heroScreen from "@/assets/hero-screen-ai-analytics-tool.png"
+import discoverAiTool from "@/assets/discover_ai_tool.png"
 import screenDesign3 from "@/assets/screen-design-3.png"
 import screenGuidedInterface from "@/assets/screen_guided_interface.png"
 import systemArchitecture from "@/assets/system-architecture.png"
@@ -125,10 +125,10 @@ export function AiAnalyticsTool({}: AiAnalyticsToolProps) {
             }`}
           >
             <img
-              src={placeholderScreen}
+              src={discoverAiTool}
               alt="Discovery visualization"
               className="max-w-full max-h-[60vh] w-auto h-auto block cursor-pointer"
-              onClick={() => setLightboxSrc(placeholderScreen)}
+              onClick={() => setLightboxSrc(discoverAiTool)}
             />
           </div>
 
