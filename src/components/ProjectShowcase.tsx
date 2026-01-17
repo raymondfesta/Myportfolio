@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import heroAiAnalytics from "@/assets/card_hero_ai_tool.png"
 import heroDataModelBuilder from "@/assets/card_hero_data_model_builder.png"
 import heroTeslaEnergy from "@/assets/card_tesla_energy.png"
+import heroFinanceApp from "@/assets/card_hero_finance_app.png"
 
 interface Project {
   id: string
@@ -11,6 +12,7 @@ interface Project {
   tags: string[]
   year: string
   imageUrl?: string
+  comingSoon?: boolean
 }
 
 const projects: Project[] = [
@@ -29,6 +31,15 @@ const projects: Project[] = [
     tags: ["Dashboard", "AI", "IoT"],
     year: "2024",
     imageUrl: heroTeslaEnergy,
+  },
+  {
+    id: "7",
+    title: "AI-Powered Money Management Platform",
+    description: "Native iOS app providing automated wealth management for professionals earning $150-200K. Full-stack design and development: SwiftUI interface, financial allocation algorithm, banking integration, and comprehensive design system.",
+    tags: ["AI", "Fintech", "Product Strategy", "Native iOS"],
+    year: "2024",
+    imageUrl: heroFinanceApp,
+    comingSoon: true,
   },
   {
     id: "2",
@@ -70,20 +81,25 @@ export function ProjectShowcase({ onProjectClick, limit }: ProjectShowcaseProps)
   const displayedProjects = limit ? projects.slice(0, limit) : projects
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
       {displayedProjects.map((project, index) => (
         <Card
           key={project.id}
-          onClick={() => onProjectClick?.(project.id)}
-          className="group border-border/40 hover:border-foreground/20 transition-all duration-300 overflow-hidden cursor-pointer animate-fade-in-up"
+          onClick={() => !project.comingSoon && onProjectClick?.(project.id)}
+          className={`group border-border/40 hover:border-foreground/20 transition-all duration-300 overflow-hidden animate-fade-in-up ${project.comingSoon ? "cursor-default" : "cursor-pointer"}`}
           style={{ animationDelay: `${index * 100}ms` }}
         >
           {/* Project Image */}
-          <div className="-mt-6 aspect-video bg-muted/30 border-b border-border/40 overflow-hidden">
+          <div className="-mt-6 aspect-video bg-muted/30 border-b border-border/40 overflow-hidden relative">
             {project.imageUrl ? (
               <img src={project.imageUrl} alt={project.title} className="block w-full h-full object-cover" />
             ) : (
               <span className="text-muted-foreground text-sm">Project Image</span>
+            )}
+            {project.comingSoon && (
+              <Badge className="absolute top-3 right-3 bg-foreground/80 text-background text-xs font-medium">
+                Coming Soon
+              </Badge>
             )}
           </div>
 

@@ -400,7 +400,7 @@ function App() {
                   else if (id === "2") navigate("/projects/data-model-builder")
                   else if (id === "3") navigate("/projects/tesla-case-study")
                   else navigate(`/projects/${id}`)
-                }} limit={3} />
+                }} limit={4} />
           </section>
 
         {/* About Section */}
