@@ -17,6 +17,7 @@ import { TemplateCaseStudy } from "./pages/TemplateCaseStudy"
 import { AiAnalyticsTool } from "./pages/projects/AiAnalyticsTool"
 import { DataModelBuilder } from "./pages/projects/DataModelBuilder"
 import { TeslaCaseStudy } from "./pages/projects/TeslaCaseStudy"
+import { FinanceApp } from "./pages/projects/FinanceApp"
 import "./App.css"
 
 type Section = "work" | "about" | "services" | "contact"
@@ -295,6 +296,7 @@ function App() {
           <Route path="/projects/ai-analytics-tool" element={<AiAnalyticsTool onBack={() => navigate("/")} />} />
           <Route path="/projects/data-model-builder" element={<DataModelBuilder onBack={() => navigate("/")} />} />
           <Route path="/projects/tesla-case-study" element={<TeslaCaseStudy onBack={() => navigate("/")} />} />
+          <Route path="/projects/finance-app" element={<FinanceApp onBack={() => navigate("/")} />} />
           <Route path="/projects/:id" element={<TemplateCaseStudy onBack={() => navigate("/")} />} />
           <Route path="/" element={
             <>
@@ -399,6 +401,7 @@ function App() {
                   if (id === "1") navigate("/projects/ai-analytics-tool")
                   else if (id === "2") navigate("/projects/data-model-builder")
                   else if (id === "3") navigate("/projects/tesla-case-study")
+                  else if (id === "7") navigate("/projects/finance-app")
                   else navigate(`/projects/${id}`)
                 }} limit={4} />
           </section>

@@ -39,7 +39,6 @@ const projects: Project[] = [
     tags: ["AI", "Fintech", "Product Strategy", "Native iOS"],
     year: "2024",
     imageUrl: heroFinanceApp,
-    comingSoon: true,
   },
   {
     id: "2",
