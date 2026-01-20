@@ -8,7 +8,7 @@ declare global {
 
 import { useState, useEffect, useCallback } from "react"
 import { Routes, Route, useNavigate, useLocation, useSearchParams } from "react-router-dom"
-import { User, Eye, ShieldCheck, RefreshCw, Check, Menu, Brain, Layers, Zap } from "lucide-react"
+import { User, Eye, ShieldCheck, RefreshCw, Check, Menu } from "lucide-react"
 import { ProjectShowcase } from "./components/ProjectShowcase"
 import { Button } from "./components/ui/button"
 import { Popover, PopoverTrigger, PopoverContent } from "./components/ui/popover"
@@ -375,43 +375,6 @@ function App() {
                 else if (id === "7") navigate("/projects/finance-app")
                 else navigate(`/projects/${id}`)
               }} limit={4} />
-        </section>
-
-        {/* Services Section */}
-        <section className="min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-          <div className="max-w-3xl mb-12 animate-fade-in-up">
-            <h2 className="mb-6">Services</h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              I help companies design and implement AI systems that people actually want to use. Whether you need strategic guidance or hands-on execution, I bring enterprise product design expertise and technical AI implementation skills.
-            </p>
-          </div>
-
-          {/* Core Offerings */}
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
-            <div className="card-minimal bg-secondary animate-fade-in-up animation-delay-100">
-              <Brain className="text-primary mb-4" size={24} />
-              <h5 className="mb-3">AI Product Strategy & Design</h5>
-              <p className="text-muted-foreground text-sm">
-                Designing AI systems that align with user mental models, transforming complex technical capabilities into trustworthy interfaces that drive adoption.
-              </p>
-            </div>
-
-            <div className="card-minimal bg-secondary animate-fade-in-up animation-delay-200">
-              <Layers className="text-primary mb-4" size={24} />
-              <h5 className="mb-3">Enterprise Product Design</h5>
-              <p className="text-muted-foreground text-sm">
-                Translating technical complexity into intuitive experiences that make sophisticated database and data tools accessible to non-technical stakeholders.
-              </p>
-            </div>
-
-            <div className="card-minimal bg-secondary animate-fade-in-up animation-delay-300">
-              <Zap className="text-primary mb-4" size={24} />
-              <h5 className="mb-3">Rapid Prototyping</h5>
-              <p className="text-muted-foreground text-sm">
-                Building functional prototypes accelerating product validation and strategic decision-making.
-              </p>
-            </div>
-          </div>
         </section>
 
         {/* About Me Section */}
