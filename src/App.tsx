@@ -7,6 +7,7 @@ declare global {
 }
 
 import { useState, useEffect, useCallback } from "react"
+import { GL } from "./components/gl"
 import { Routes, Route, useNavigate, useLocation, useSearchParams } from "react-router-dom"
 import { User, Eye, ShieldCheck, RefreshCw, Check, Menu } from "lucide-react"
 import { ProjectShowcase } from "./components/ProjectShowcase"
@@ -34,6 +35,7 @@ function App() {
   })
   const [contactPopoverOpen, setContactPopoverOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [glHovering, setGlHovering] = useState(false)
 
   const handleContactClick = useCallback(() => {
     navigator.clipboard.writeText("raymond.festa2020@gmail.com")
@@ -301,8 +303,9 @@ function App() {
           <Route path="/" element={
             <>
               {/* Hero Section */}
-            <section className="flex items-center justify-center min-h-[100vh]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <section className="flex items-center justify-center min-h-[100vh] relative overflow-hidden">
+              <GL hovering={glHovering} isDark={isDark} />
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
             <div className="max-w-7xl mx-auto">
             <h1 className="text-9x1 mb-8 animate-fade-in-up">
               I design how intelligent systems think with humans.
@@ -311,11 +314,20 @@ function App() {
               Product designer focused on human-AI interaction, decision systems, and making complex technology usable, trustworthy, and effective.
             </p>
             <div className="flex gap-4 animate-fade-in-up animation-delay-300">
-              <Button size="lg" onClick={() => scrollToSection("work")}>View Work</Button>
+              <Button
+                size="lg"
+                onClick={() => scrollToSection("work")}
+                onMouseEnter={() => setGlHovering(true)}
+                onMouseLeave={() => setGlHovering(false)}
+              >
+                View Work
+              </Button>
               <Button
                 size="lg"
                 variant="outline"
                 onClick={() => window.Calendly?.initPopupWidget({ url: "https://calendly.com/raymond-festa/30min" })}
+                onMouseEnter={() => setGlHovering(true)}
+                onMouseLeave={() => setGlHovering(false)}
               >
                 Schedule a call
               </Button>
@@ -325,7 +337,8 @@ function App() {
         </section>
 
         {/* Design Principles Section */}
-        <section className="min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+        <section className="min-h-screen flex flex-col justify-center py-16 lg:py-24 bg-muted">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="text-center mb-12 animate-fade-in-up">How I Design Intelligent Systems</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="card-minimal bg-secondary animate-fade-in-up animation-delay-100">
@@ -356,6 +369,7 @@ function App() {
                 People discover what they need through interaction. I design systems that support exploration, feedback, and refinement instead of requiring perfect questions upfront.
               </p>
             </div>
+          </div>
           </div>
         </section>
 
