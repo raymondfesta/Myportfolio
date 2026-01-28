@@ -9,7 +9,7 @@ declare global {
 import { useState, useEffect, useCallback } from "react"
 import { GL } from "./components/gl"
 import { Routes, Route, useNavigate, useLocation, useSearchParams } from "react-router-dom"
-import { User, Eye, ShieldCheck, RefreshCw, Check, Menu } from "lucide-react"
+import { User, Eye, ShieldCheck, RefreshCw, Check, Menu, Code, LifeBuoy, Layers, Zap, Rocket } from "lucide-react"
 import { ProjectShowcase } from "./components/ProjectShowcase"
 import { Button } from "./components/ui/button"
 import { Popover, PopoverTrigger, PopoverContent } from "./components/ui/popover"
@@ -308,10 +308,10 @@ function App() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
             <div className="max-w-7xl mx-auto">
             <h1 className="text-9x1 mb-8 animate-fade-in-up">
-              I design how intelligent systems think with humans.
+              I design and build technical products that work.
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-8 animate-fade-in-up animation-delay-200">
-              Product designer focused on human-AI interaction, decision systems, and making complex technology usable, trustworthy, and effective.
+              No waiting. No handoff. From concept to production.
             </p>
             <div className="flex gap-4 animate-fade-in-up animation-delay-300">
               <Button
@@ -336,8 +336,75 @@ function App() {
           </div>
         </section>
 
-        {/* Design Principles Section */}
-        <section className="min-h-screen flex flex-col justify-center py-16 lg:py-24 bg-muted">
+        {/* Sound Like Your Situation Section */}
+        <section className="py-16 lg:py-24 bg-white dark:bg-background">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="mb-12 animate-fade-in-up">
+              <h2 className="mb-3">Sound like your situation?</h2>
+              <div className="w-12 h-1 bg-primary rounded-full"></div>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 mb-12">
+              <div className="rounded-xl border border-[rgba(15,23,42,0.08)] bg-[#F9FAFC] dark:bg-card dark:border-border shadow-[0_1px_4px_-1px_rgba(14,14,17,0.10)] p-6 animate-fade-in-up animation-delay-100">
+                <Code className="text-primary mb-4" size={24} />
+                <h5 className="mb-2">You're building something technical</h5>
+                <p className="text-muted-foreground text-sm">
+                  A developer tool, AI product, or data platform and you can't afford a slow design-to-dev handoff.
+                </p>
+              </div>
+              <div className="rounded-xl border border-[rgba(15,23,42,0.08)] bg-[#F9FAFC] dark:bg-card dark:border-border shadow-[0_1px_4px_-1px_rgba(14,14,17,0.10)] p-6 animate-fade-in-up animation-delay-200">
+                <LifeBuoy className="text-primary mb-4" size={24} />
+                <h5 className="mb-2">You have a complex tool that isn't landing</h5>
+                <p className="text-muted-foreground text-sm">
+                  Users are confused, adoption is stuck, and you suspect the problem goes deeper than the interface.
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center animate-fade-in-up animation-delay-300">
+              <Button
+                size="lg"
+                onClick={() => window.Calendly?.initPopupWidget({ url: "https://calendly.com/raymond-festa/30min" })}
+              >
+                Let's talk
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* How I Work Section */}
+        <section className="py-16 lg:py-24 bg-white dark:bg-background">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="mb-12 animate-fade-in-up">
+              <h2 className="mb-3">How I work</h2>
+              <div className="w-12 h-1 bg-primary rounded-full"></div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="rounded-xl border border-[rgba(15,23,42,0.08)] bg-[#F9FAFC] dark:bg-card dark:border-border shadow-[0_1px_4px_-1px_rgba(14,14,17,0.10)] p-6 animate-fade-in-up animation-delay-100">
+                <Layers className="text-primary mb-4" size={24} />
+                <h5 className="mb-2">Understand the system</h5>
+                <p className="text-muted-foreground text-sm">
+                  I dig into the architecture, the data, the constraint, not just the screens.
+                </p>
+              </div>
+              <div className="rounded-xl border border-[rgba(15,23,42,0.08)] bg-[#F9FAFC] dark:bg-card dark:border-border shadow-[0_1px_4px_-1px_rgba(14,14,17,0.10)] p-6 animate-fade-in-up animation-delay-200">
+                <Zap className="text-primary mb-4" size={24} />
+                <h5 className="mb-2">Move fast</h5>
+                <p className="text-muted-foreground text-sm">
+                  Concepts become working prototypes in days, not weeks.
+                </p>
+              </div>
+              <div className="rounded-xl border border-[rgba(15,23,42,0.08)] bg-[#F9FAFC] dark:bg-card dark:border-border shadow-[0_1px_4px_-1px_rgba(14,14,17,0.10)] p-6 animate-fade-in-up animation-delay-300">
+                <Rocket className="text-primary mb-4" size={24} />
+                <h5 className="mb-2">Ship it</h5>
+                <p className="text-muted-foreground text-sm">
+                  I deliver production-ready work, not handoffs that sit in a backlog.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Design Principles Section - Hidden */}
+        {false && <section className="min-h-screen flex flex-col justify-center py-16 lg:py-24 bg-muted">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="text-center mb-12 animate-fade-in-up">How I Design Intelligent Systems</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -371,7 +438,7 @@ function App() {
             </div>
           </div>
           </div>
-        </section>
+        </section>}
 
         {/* Projects Section */}
         <section id="work" className="min-h-screen flex flex-col justify-center max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
